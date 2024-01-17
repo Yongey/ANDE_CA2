@@ -116,6 +116,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
+    <Button
+        android:id="@+id/reset_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/checkBox"
+        android:layout_marginStart="95dp"
+        android:layout_marginTop="12dp"
+
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="24dp"
+        android:onClick="onResetButtonClick"
+        android:text="Reset Progress"
+        app:layout_constraintBottom_toTopOf="@+id/textView5"
+        app:layout_constraintEnd_toStartOf="@+id/checkBox"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
     <ProgressBar
         android:id="@+id/progress_bar"
         android:layout_width="59dp"
@@ -131,10 +148,11 @@
         app:layout_constraintVertical_bias="0.468"
         tools:progress="60" />
 
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
-        android:layout_width="409dp"
-        android:layout_height="65dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -321,7 +339,7 @@
 
 
         <RadioButton
-            android:id="@+id/radioButton10"
+            android:id="@+id/r1"
             android:layout_width="34dp"
             android:layout_height="28dp"
             android:textAlignment="center"
@@ -333,7 +351,7 @@
             app:layout_constraintVertical_bias="0.82" />
 
         <RadioButton
-            android:id="@+id/radioButton17"
+            android:id="@+id/r2"
             android:layout_width="36dp"
             android:layout_height="28dp"
             android:textAlignment="center"
@@ -345,7 +363,7 @@
             app:layout_constraintVertical_bias="0.82" />
 
         <RadioButton
-            android:id="@+id/radioButton16"
+            android:id="@+id/r3"
             android:layout_width="37dp"
             android:layout_height="28dp"
             android:textAlignment="center"
@@ -357,7 +375,7 @@
             app:layout_constraintVertical_bias="0.82" />
 
         <RadioButton
-            android:id="@+id/radioButton15"
+            android:id="@+id/r4"
             android:layout_width="34dp"
             android:layout_height="28dp"
             android:textAlignment="center"
@@ -369,7 +387,7 @@
             app:layout_constraintVertical_bias="0.82" />
 
     <RadioButton
-        android:id="@+id/radioButton14"
+        android:id="@+id/r5"
         android:layout_width="30dp"
         android:layout_height="27dp"
         android:textAlignment="center"
@@ -381,7 +399,7 @@
         app:layout_constraintVertical_bias="0.82" />
 
         <RadioButton
-            android:id="@+id/radioButton13"
+            android:id="@+id/r6"
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:textAlignment="center"
@@ -393,7 +411,7 @@
             app:layout_constraintVertical_bias="0.82" />
 
         <RadioButton
-            android:id="@+id/button_incr"
+            android:id="@+id/r7"
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:textAlignment="center"

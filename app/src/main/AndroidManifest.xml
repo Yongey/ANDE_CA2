@@ -13,19 +13,28 @@
         android:theme="@style/Theme.CA1MainScreen"
         tools:targetApi="31">
         <activity
-            android:name=".splashscreen"
-            android:exported="true" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+            android:name=".Settings"
+            android:label="Settings">
+            <!-- Additional activity settings if needed -->
+        </activity>
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+        <activity
+            android:name=".Add"
+            android:label="Add Item">
+            <!-- Additional activity settings if needed -->
+        </activity>
+        <activity
+            android:name=".splashscreen"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="false">
-
-        </activity>
+            android:exported="false" />
     </application>
 
 </manifest>

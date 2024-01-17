@@ -1,6 +1,10 @@
 package com.example.ca1_mainscreen;
 
+import android.content.ClipData;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -11,10 +15,19 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.example.ca1_mainscreen.databinding.ActivityMainBinding;
+import com.google.android.material.bottomnavigation.BottomNavigationItemView;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
+
 
     private int progr = 0;
     private CheckBox checkBox;
@@ -29,17 +42,38 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         setContentView(R.layout.activity_main);
         updateProgressBar();
         checkBox = findViewById(R.id.checkBox);
-        RadioButton  buttonIncr1 = findViewById(R.id.radioButton10);
-        RadioButton  buttonIncr = findViewById(R.id.button_incr);
-        RadioButton  buttonDecr = findViewById(R.id.radioButton14);
-        RadioButton  buttonIncr2 = findViewById(R.id.radioButton13);
-        RadioButton  buttonIncr3 = findViewById(R.id.radioButton15);
-        RadioButton  buttonIncr4 = findViewById(R.id.radioButton16);
-        RadioButton  buttonIncr5 = findViewById(R.id.radioButton17);
-        buttonDecr.setOnClickListener(new View.OnClickListener() {
+        RadioButton  buttonI1 = findViewById(R.id.r1);
+        RadioButton  buttonI2 = findViewById(R.id.r2);
+        RadioButton  buttonI3 = findViewById(R.id.r3);
+        RadioButton  buttonI4 = findViewById(R.id.r4);
+        RadioButton  buttonI5 = findViewById(R.id.r5);
+        RadioButton  buttonI6 = findViewById(R.id.r6);
+        RadioButton  buttonI7 = findViewById(R.id.r7);
+        Button resetButton = findViewById(R.id.reset_button);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            if(item.getItemId()==R.id.home) {
+                return true;
+            }else if(item.getItemId()==R.id.add) {
+                startActivity(new Intent(MainActivity.this, Add.class));
+                finish();
+                return true;
+
+            }else if(item.getItemId()==R.id.settings) {
+                startActivity(new Intent(MainActivity.this, Settings.class));
+                finish();
+                return true;
+            }else{
+                return false;
+            }
+        });
+        bottomNavigationView.setSelectedItemId(R.id.home);
+        buttonI7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (progr <= 90&& !buttonIncrClicked6) {
@@ -49,7 +83,14 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        buttonIncr5.setOnClickListener(new View.OnClickListener() {
+        resetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                resetProgressBar();
+
+            }
+        });
+        buttonI6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (progr <= 90&& !buttonIncrClicked5) {
@@ -60,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        buttonIncr4.setOnClickListener(new View.OnClickListener() {
+        buttonI5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (progr <= 90&& !buttonIncrClicked4) {
@@ -71,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        buttonIncr2.setOnClickListener(new View.OnClickListener() {
+        buttonI4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (progr <= 90&& !buttonIncrClicked3) {
@@ -81,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        buttonIncr3.setOnClickListener(new View.OnClickListener() {
+        buttonI3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (progr <= 90&& !buttonIncrClicked2) {
@@ -91,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        buttonIncr.setOnClickListener(new View.OnClickListener() {
+        buttonI2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (progr <= 90 && !buttonIncrClicked1) {
@@ -104,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        buttonIncr1.setOnClickListener(new View.OnClickListener() {
+        buttonI1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (progr <= 90 && !buttonIncrClicked) {
@@ -113,13 +154,57 @@ public class MainActivity extends AppCompatActivity {
                     buttonIncrClicked = true;
                 }
             }
+
+
+
+
         });
 
 
 
 
     }
+//private void replaceFragment(Fragment fragment){
+//    FragmentManager fragmentManager = getSupportFragmentManager();
+//    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//    fragmentTransaction.replace(R.id.frame_layout,fragment);
+//    fragmentTransaction.commit();
+//}
+    private void resetProgressBar() {
+        progr = 0;
+        resetClickedFlags(); // Reset the flags first
+        updateProgressBar();
+        checkBox.setChecked(false);
+        checkBox.setEnabled(false);
 
+        RadioButton buttonI1 = findViewById(R.id.r1);
+        RadioButton buttonI2 = findViewById(R.id.r2);
+        RadioButton buttonI3 = findViewById(R.id.r3);
+        RadioButton buttonI4 = findViewById(R.id.r4);
+        RadioButton buttonI5 = findViewById(R.id.r5);
+        RadioButton buttonI6 = findViewById(R.id.r6);
+        RadioButton buttonI7 = findViewById(R.id.r7);
+
+        buttonI1.setChecked(false);
+        buttonI2.setChecked(false);
+        buttonI3.setChecked(false);
+        buttonI4.setChecked(false);
+        buttonI5.setChecked(false);
+        buttonI6.setChecked(false);
+        buttonI7.setChecked(false);
+    }
+
+
+
+    private void resetClickedFlags() {
+        buttonIncrClicked = false;
+        buttonIncrClicked1 = false;
+        buttonIncrClicked2 = false;
+        buttonIncrClicked3 = false;
+        buttonIncrClicked4 = false;
+        buttonIncrClicked5 = false;
+        buttonIncrClicked6 = false;
+    }
 
 
 
@@ -127,16 +212,19 @@ public class MainActivity extends AppCompatActivity {
     private void updateProgressBar() {
         ProgressBar progressBar = findViewById(R.id.progress_bar);
         TextView textViewProgress = findViewById(R.id.text_view_progress);
+        Button resetButton = findViewById(R.id.reset_button);
 
         progressBar.setProgress(progr);
         textViewProgress.setText(progr + "%");
+
         if (progr == 100) {
             checkBox.setChecked(true);
             checkBox.setEnabled(false);
+            resetButton.setVisibility(View.VISIBLE); // Show the reset button
+        } else {
+            resetButton.setVisibility(View.GONE); // Hide the reset button
         }
-
     }
-
 
 
 }
