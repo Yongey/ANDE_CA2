@@ -45,7 +45,7 @@
     <TextView
         android:id="@+id/textView5"
         android:layout_width="342dp"
-        android:layout_height="204dp"
+        android:layout_height="175dp"
         android:layout_marginTop="84dp"
         android:background="@drawable/rec"
 
@@ -161,7 +161,7 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="341dp"
-        android:layout_height="199dp"
+        android:layout_height="169dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@+id/textView5"
         app:layout_constraintEnd_toEndOf="@+id/textView5"
@@ -172,63 +172,87 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="62dp"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
+            <!-- Checkbox 1 -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toTopOf="parent"> <!-- Add this constraint -->
 
-            <TextView
-                android:id="@+id/textView11"
-                android:layout_width="293dp"
-                android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:gravity="center"
-                android:text="Today's Plan"
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                <CheckBox
+                    android:id="@+id/checkBox2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:text="Lorem ipsum dolor sit amet" />
 
-            <Button
-                android:id="@+id/button"
-                android:layout_width="70dp"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="15dp"
+                <!-- Underline for Checkbox 1 -->
+                <View
+                    android:id="@+id/underline2"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_gravity="center"
+                    android:background="#000000" /> <!-- Set your underline color -->
+            </FrameLayout>
 
-                android:layout_weight="1"
-                android:insetLeft="0dp"
-                android:text="+"
-                android:textAlignment="center"
-                android:textSize="25dp"
-                android:textStyle="bold" />
+            <!-- Checkbox 2 -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox2"> <!-- Add this constraint -->
 
+                <CheckBox
+                    android:id="@+id/checkBox3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:text="Lorem ipsum dolor sit amet" />
+
+                <!-- Underline for Checkbox 2 -->
+                <View
+                    android:id="@+id/underline3"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_gravity="center"
+                    android:background="#000000" /> <!-- Set your underline color -->
+            </FrameLayout>
+
+            <!-- Checkbox 3 -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox3"> <!-- Add this constraint -->
+
+                <CheckBox
+                    android:id="@+id/checkBox4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:text="Lorem ipsum dolor sit amet" />
+
+                <!-- Underline for Checkbox 3 -->
+                <View
+                    android:id="@+id/underline4"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_gravity="center"
+                    android:background="#000000" /> <!-- Set your underline color -->
+            </FrameLayout>
         </LinearLayout>
 
-        <CheckBox
-            android:id="@+id/checkBox2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Lorem ipsum dolor sit amet" />
-
-        <CheckBox
-            android:id="@+id/checkBox3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Lorem ipsum dolor sit amet"
-            />
-
-        <CheckBox
-            android:id="@+id/checkBox4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Lorem ipsum dolor sit amet" />
-
-        <TextView
-            android:id="@+id/textView12"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1/6" />
     </LinearLayout>
+<!--        <TextView-->
+<!--            android:id="@+id/textView12"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="1/6" />-->
+
+
 
     <TextView
         android:id="@+id/textView13"
