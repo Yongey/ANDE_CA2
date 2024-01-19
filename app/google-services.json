@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "685500519655",
+    "project_id": "ca2-ande",
+    "storage_bucket": "ca2-ande.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:685500519655:android:fd8925a02ba2e360f17e42",
+        "android_client_info": {
+          "package_name": "com.example.ca1_mainscreen"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4qgXdHiLsDFWDhMBqCkm5lmEjq7SpLR4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
