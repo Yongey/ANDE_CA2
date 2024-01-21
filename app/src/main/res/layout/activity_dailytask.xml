@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DailyTask"
+    android:background="@color/dailybackground">
+
+    <Button
+        android:id="@+id/cancelbtn"
+        android:layout_width="128dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="33dp"
+        android:layout_marginEnd="71dp"
+        android:layout_marginBottom="20dp"
+        android:text="Cancel"
+        android:textColor="#ECE6FF"
+        android:background="@drawable/cancelbtn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/savebtn"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/savebtn"
+        android:layout_width="128dp"
+        android:layout_height="41dp"
+        android:layout_marginEnd="33dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/savebtn"
+        android:text="Save"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="205dp"
+        android:layout_height="68dp"
+        android:layout_marginStart="105dp"
+        android:layout_marginTop="130dp"
+        android:layout_marginEnd="106dp"
+        android:layout_marginBottom="15dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="Put in a name for your task"
+        android:textAlignment="center"
+        android:textColor="#ECE6FF"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="318dp"
+        android:layout_height="105dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="33dp"
+        android:layout_marginEnd="20dp"
+        android:text="&quot;Success is not in what you have, but who you become. Establish a routine that reflects the person you aspire to be.&quot; - Jim Rohn"
+        android:textColor="#ECE6FF"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        android:layout_width="325dp"
+        android:layout_height="95dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="33dp"
+        app:boxBackgroundColor="#FFFFFF"
+        app:boxCornerRadiusBottomEnd="13dp"
+        app:boxCornerRadiusBottomStart="13dp"
+        app:boxCornerRadiusTopEnd="13dp"
+        app:boxCornerRadiusTopStart="13dp"
+        app:counterEnabled="true"
+        app:counterMaxLength="40"
+        app:counterTextAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:counterTextColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/textView10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/layoutText"
+            android:layout_width="314dp"
+            android:layout_height="56dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="363dp"
+        android:layout_height="543dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="103dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="274dp"
+        android:background="@drawable/border"
+        app:layout_constraintBottom_toTopOf="@+id/cancelbtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
