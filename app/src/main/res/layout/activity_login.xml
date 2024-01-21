@@ -59,6 +59,16 @@
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <TextView
+        android:id="@+id/tv_forget"
+        android:layout_width="375dp"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:text="Forget Password?"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/red_color"
+        android:textSize="16sp" />
+
     <Button
         android:id="@+id/btn_login"
         android:layout_width="350dp"
@@ -68,15 +78,15 @@
         android:gravity="center"
         android:background="@drawable/rounded_button"
         android:textSize="24sp" />
+
     <TextView
         android:id="@+id/tv_register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="268dp"
+        android:layout_height="33dp"
         android:layout_below="@+id/btn_login"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="35dp"
         android:text="Don't have an account? Sign Up here"
-        android:textSize="16sp"
-       />
+        android:textSize="16sp" />
 
 </LinearLayout>
