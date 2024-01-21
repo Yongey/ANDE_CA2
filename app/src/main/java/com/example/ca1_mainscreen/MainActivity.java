@@ -25,10 +25,16 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.ca1_mainscreen.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.Firebase;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
+FirebaseAuth auth;
 
+TextView textView;
+FirebaseUser user;
     private int progr = 0;
     private CheckBox checkBox;
     private boolean buttonIncrClicked = false;
@@ -45,6 +51,15 @@ public class MainActivity extends AppCompatActivity {
 
 
         setContentView(R.layout.activity_main);
+        auth = FirebaseAuth.getInstance();
+
+       user = auth.getCurrentUser();
+       if(user == null){
+           Intent i = new Intent(getApplicationContext(),Login.class);
+           startActivity(i);
+           finish();
+       }
+
         updateProgressBar();
         checkBox = findViewById(R.id.checkBox);
         RadioButton  buttonI1 = findViewById(R.id.r1);
