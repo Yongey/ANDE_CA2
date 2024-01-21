@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -29,6 +30,7 @@ import com.google.firebase.Firebase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+
 public class MainActivity extends AppCompatActivity {
 
 FirebaseAuth auth;
@@ -39,6 +41,7 @@ FirebaseUser user;
     private int progress = 0;
     private int DIW = 7;
     private CheckBox checkBox;
+    private boolean CB = false;
     private boolean buttonIncrClicked = false;
     private boolean buttonIncrClicked1 = false;
     private boolean buttonIncrClicked2 = false;
@@ -46,6 +49,7 @@ FirebaseUser user;
     private boolean buttonIncrClicked4 = false;
     private boolean buttonIncrClicked5 = false;
     private boolean buttonIncrClicked6 = false;
+   // private DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,16 +58,17 @@ FirebaseUser user;
 
         setContentView(R.layout.activity_main);
         auth = FirebaseAuth.getInstance();
-
+   //     databaseReference = FirebaseDatabase.getInstance().getReference("user_progress");
        user = auth.getCurrentUser();
        if(user == null){
            Intent i = new Intent(getApplicationContext(),Login.class);
            startActivity(i);
            finish();
        }
+      //  readDataFromDatabase();
 
+       checkBox = findViewById(R.id.checkBox);
         updateProgressBar();
-        checkBox = findViewById(R.id.checkBox);
         RadioButton  buttonI1 = findViewById(R.id.r1);
         RadioButton  buttonI2 = findViewById(R.id.r2);
         RadioButton  buttonI3 = findViewById(R.id.r3);
@@ -71,6 +76,7 @@ FirebaseUser user;
         RadioButton  buttonI5 = findViewById(R.id.r5);
         RadioButton  buttonI6 = findViewById(R.id.r6);
         RadioButton  buttonI7 = findViewById(R.id.r7);
+
         Button resetButton = findViewById(R.id.reset_button);
         CheckBox checkBox2 = findViewById(R.id.checkBox2);
         CheckBox checkBox3 = findViewById(R.id.checkBox3);
@@ -112,6 +118,14 @@ FirebaseUser user;
                 return false;
             }
         });
+        ImageButton plusbtn = findViewById(R.id.plus_button2);
+        plusbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), Add.class);
+                startActivity(i);
+            }
+        });
         bottomNavigationView.setSelectedItemId(R.id.home);
         buttonI7.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,7 +135,19 @@ FirebaseUser user;
                     progress +=1;
                     updateProgressBar();
                     buttonIncrClicked6 = true;
+
+                }else if (progr >= 10) {
+                    // Decrement progress if it's greater than or equal to 15
+                    progr -= 10;
+                    progress -= 1;
+                    buttonIncrClicked6 = false;
+                    CB = false;
                 }
+                buttonI7.setChecked(buttonIncrClicked6);
+                checkBox.setChecked(CB);
+                // Update the progress bar
+                updateProgressBar();
+                //updateDatabase();
             }
         });
         resetButton.setOnClickListener(new View.OnClickListener() {
@@ -139,7 +165,19 @@ FirebaseUser user;
                     progress +=1;
                     updateProgressBar();
                     buttonIncrClicked5 = true;
+
+                }else if (progr >= 15) {
+                    // Decrement progress if it's greater than or equal to 15
+                    progr -= 15;
+                    progress -= 1;
+                    buttonIncrClicked5 = false;
+                    CB = false;
                 }
+                buttonI6.setChecked(buttonIncrClicked5);
+                checkBox.setChecked(CB);
+                // Update the progress bar
+                updateProgressBar();
+               // updateDatabase();
             }
         });
 
@@ -151,7 +189,18 @@ FirebaseUser user;
                     progress +=1;
                     updateProgressBar();
                     buttonIncrClicked4 = true;
+                }else if (progr >= 15) {
+                    // Decrement progress if it's greater than or equal to 15
+                    progr -= 15;
+                    progress -= 1;
+                    buttonIncrClicked4 = false;
+                    CB = false;
                 }
+                buttonI5.setChecked(buttonIncrClicked4);
+                checkBox.setChecked(CB);
+                // Update the progress bar
+                updateProgressBar();
+               // updateDatabase();
             }
         });
 
@@ -163,7 +212,18 @@ FirebaseUser user;
                     progress +=1;
                     updateProgressBar();
                     buttonIncrClicked3 = true;
+                }else if (progr >= 15) {
+                    // Decrement progress if it's greater than or equal to 15
+                    progr -= 15;
+                    progress -= 1;
+                    buttonIncrClicked3 = false;
+                    CB = false;
                 }
+                buttonI4.setChecked(buttonIncrClicked3);
+                checkBox.setChecked(CB);
+                // Update the progress bar
+                updateProgressBar();
+                //updateDatabase();
             }
         });
         buttonI3.setOnClickListener(new View.OnClickListener() {
@@ -174,7 +234,18 @@ FirebaseUser user;
                     progress +=1;
                     updateProgressBar();
                     buttonIncrClicked2 = true;
+                }else if (progr >= 15) {
+                    // Decrement progress if it's greater than or equal to 15
+                    progr -= 15;
+                    progress -= 1;
+                    buttonIncrClicked2 = false;
+                    CB = false;
                 }
+                buttonI3.setChecked(buttonIncrClicked2);
+                checkBox.setChecked(CB);
+                // Update the progress bar
+                updateProgressBar();
+                //updateDatabase();
             }
         });
         buttonI2.setOnClickListener(new View.OnClickListener() {
@@ -185,7 +256,18 @@ FirebaseUser user;
                     progress +=1;
                     updateProgressBar();
                     buttonIncrClicked1 = true;
+                }else if (progr >= 15) {
+                    // Decrement progress if it's greater than or equal to 15
+                    progr -= 15;
+                    progress -= 1;
+                    buttonIncrClicked1 = false;
+                    CB = false;
                 }
+                buttonI2.setChecked(buttonIncrClicked1);
+                checkBox.setChecked(CB);
+                // Update the progress bar
+                updateProgressBar();
+               // updateDatabase();
             }
         });
 
@@ -194,29 +276,35 @@ FirebaseUser user;
         buttonI1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (progr <= 90 && !buttonIncrClicked) {
+                // Use a constant for the maximum progress value
+                int maxProgress = 90;
+
+                if (progr < maxProgress && !buttonIncrClicked) {
+                    // Increment progress if it's below the maximum and button is not clicked
                     progr += 15;
-                    progress +=1;
-                    updateProgressBar();
+                    progress += 1;
                     buttonIncrClicked = true;
+                } else if (progr >= 15) {
+                    // Decrement progress if it's greater than or equal to 15
+                    progr -= 15;
+                    progress -= 1;
+                    buttonIncrClicked = false;
+                    CB = false;
                 }
+                buttonI1.setChecked(buttonIncrClicked);
+                checkBox.setChecked(CB);
+                // Update the progress bar
+                updateProgressBar();
+                //updateDatabase();
             }
-
-
-
-
         });
 
 
 
 
     }
-//private void replaceFragment(Fragment fragment){
-//    FragmentManager fragmentManager = getSupportFragmentManager();
-//    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//    fragmentTransaction.replace(R.id.frame_layout,fragment);
-//    fragmentTransaction.commit();
-//}
+
+
     private void resetProgressBar() {
         progr = 0;
         progress = 0;
@@ -267,10 +355,12 @@ FirebaseUser user;
         textViewProgress.setText(progress +"/"+DIW);
 
         if (progr == 100) {
-            checkBox.setChecked(true);
-            checkBox.setEnabled(false);
+            checkBox.setChecked(!CB);
+            checkBox.setEnabled(CB);
             resetButton.setVisibility(View.VISIBLE); // Show the reset button
-        } else {
+        }
+        else {
+            checkBox.setChecked(CB);
             resetButton.setVisibility(View.GONE); // Hide the reset button
         }
     }
