@@ -152,7 +152,7 @@ public class Register extends AppCompatActivity {
             @Override
             public void updateDrawState(TextPaint ds) {
                 super.updateDrawState(ds);
-                ds.setUnderlineText(false);
+                ds.setUnderlineText(true);
                 ds.setColor(ContextCompat.getColor(Register.this, R.color.blue_color)); // Set color directly in the ClickableSpan
             }
         };

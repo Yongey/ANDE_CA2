@@ -36,6 +36,8 @@ FirebaseAuth auth;
 TextView textView;
 FirebaseUser user;
     private int progr = 0;
+    private int progress = 0;
+    private int DIW = 7;
     private CheckBox checkBox;
     private boolean buttonIncrClicked = false;
     private boolean buttonIncrClicked1 = false;
@@ -116,6 +118,7 @@ FirebaseUser user;
             public void onClick(View v) {
                 if (progr <= 90&& !buttonIncrClicked6) {
                     progr += 10;
+                    progress +=1;
                     updateProgressBar();
                     buttonIncrClicked6 = true;
                 }
@@ -133,6 +136,7 @@ FirebaseUser user;
             public void onClick(View v) {
                 if (progr <= 90&& !buttonIncrClicked5) {
                     progr += 15;
+                    progress +=1;
                     updateProgressBar();
                     buttonIncrClicked5 = true;
                 }
@@ -144,6 +148,7 @@ FirebaseUser user;
             public void onClick(View v) {
                 if (progr <= 90&& !buttonIncrClicked4) {
                     progr += 15;
+                    progress +=1;
                     updateProgressBar();
                     buttonIncrClicked4 = true;
                 }
@@ -155,6 +160,7 @@ FirebaseUser user;
             public void onClick(View v) {
                 if (progr <= 90&& !buttonIncrClicked3) {
                     progr += 15;
+                    progress +=1;
                     updateProgressBar();
                     buttonIncrClicked3 = true;
                 }
@@ -165,6 +171,7 @@ FirebaseUser user;
             public void onClick(View v) {
                 if (progr <= 90&& !buttonIncrClicked2) {
                     progr += 15;
+                    progress +=1;
                     updateProgressBar();
                     buttonIncrClicked2 = true;
                 }
@@ -175,6 +182,7 @@ FirebaseUser user;
             public void onClick(View v) {
                 if (progr <= 90 && !buttonIncrClicked1) {
                     progr += 15;
+                    progress +=1;
                     updateProgressBar();
                     buttonIncrClicked1 = true;
                 }
@@ -188,6 +196,7 @@ FirebaseUser user;
             public void onClick(View v) {
                 if (progr <= 90 && !buttonIncrClicked) {
                     progr += 15;
+                    progress +=1;
                     updateProgressBar();
                     buttonIncrClicked = true;
                 }
@@ -210,6 +219,8 @@ FirebaseUser user;
 //}
     private void resetProgressBar() {
         progr = 0;
+        progress = 0;
+        DIW = 7;
         resetClickedFlags(); // Reset the flags first
         updateProgressBar();
         checkBox.setChecked(false);
@@ -253,7 +264,7 @@ FirebaseUser user;
         Button resetButton = findViewById(R.id.reset_button);
 
         progressBar.setProgress(progr);
-        textViewProgress.setText(progr + "%");
+        textViewProgress.setText(progress +"/"+DIW);
 
         if (progr == 100) {
             checkBox.setChecked(true);
