@@ -34,7 +34,15 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        TextView tvForget = findViewById(R.id.tv_forget);
+        tvForget.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle the click event, navigate to ResetPasswordActivity or any other activity
+                Intent intent = new Intent(Login.this, ResetPassword.class);
+                startActivity(intent);
+            }
+        });
         initializeViews();
         setupClickableText();
     }

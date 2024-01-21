@@ -13,7 +13,7 @@
         android:theme="@style/Theme.CA1MainScreen"
         tools:targetApi="31">
         <activity
-            android:name=".DailyTask"
+            android:name=".ResetPassword"
             android:exported="false" />
         <activity
             android:name=".Register"
@@ -21,6 +21,9 @@
         <activity
             android:name=".Login"
             android:exported="true">
+        <activity
+            android:name=".DailyTask"
+            android:exported="false" />
 
             <!-- Intent-filter removed from here -->
         </activity>

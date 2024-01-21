@@ -11,7 +11,7 @@
         android:id="@+id/textView2"
         android:layout_width="150dp"
         android:layout_height="40dp"
-        android:background="@drawable/rec1"
+        android:background="@drawable/rec3"
         android:gravity="center"
         android:text="Weekly Habit"
         android:textColor="#FFFFFF"
@@ -45,10 +45,9 @@
     <TextView
         android:id="@+id/textView5"
         android:layout_width="342dp"
-        android:layout_height="175dp"
+        android:layout_height="220dp"
         android:layout_marginTop="84dp"
         android:background="@drawable/rec"
-
         android:textAlignment="textStart"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
@@ -63,18 +62,16 @@
         android:id="@+id/textView6"
         android:layout_width="340dp"
         android:layout_height="70dp"
-        android:layout_marginTop="20dp"
         android:background="@drawable/rec"
         android:gravity="center"
         android:text="30 DAYS CHALLENGE"
         android:textColor="#ECE6FF"
         android:textSize="19sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.521"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
-
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <TextView
         android:id="@+id/textView3"
@@ -97,6 +94,8 @@
         android:layout_height="wrap_content"
         android:text="4/7"
         android:textAlignment="viewStart"
+        android:textSize="25dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/progress_bar"
         app:layout_constraintEnd_toEndOf="@+id/progress_bar"
         app:layout_constraintStart_toStartOf="@+id/progress_bar"
@@ -109,8 +108,8 @@
         android:layout_height="50dp"
         android:layout_marginTop="12dp"
         android:background="@drawable/rec"
-        android:text="Completed"
         android:enabled="false"
+        android:text="Completed"
         android:textAlignment="textStart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.881"
@@ -124,7 +123,6 @@
         android:layout_below="@id/checkBox"
         android:layout_marginStart="95dp"
         android:layout_marginTop="12dp"
-
         android:layout_marginEnd="12dp"
         android:layout_marginBottom="24dp"
         android:onClick="onResetButtonClick"
@@ -134,21 +132,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
+
     <ProgressBar
         android:id="@+id/progress_bar"
-        android:layout_width="59dp"
-        android:layout_height="55dp"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
         android:indeterminateOnly="false"
         android:progressDrawable="@drawable/circle"
         app:layout_constraintBottom_toBottomOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="@+id/textView4"
-        app:layout_constraintHorizontal_bias="0.051"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textView4"
         app:layout_constraintTop_toTopOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.468"
-        tools:progress="60" />
-
+        app:layout_constraintVertical_bias="0.548"
+        tools:progress="0" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
@@ -162,7 +160,7 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="341dp"
-        android:layout_height="169dp"
+        android:layout_height="223dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@+id/textView5"
         app:layout_constraintEnd_toEndOf="@+id/textView5"
@@ -173,15 +171,68 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="212dp"
             android:orientation="vertical">
 
-            <!-- Checkbox 1 -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!-- Checkbox 1 -->
+
+                <ProgressBar
+                    android:id="@+id/progress_bar2"
+                    android:layout_width="74dp"
+                    android:layout_height="61dp"
+                    android:layout_marginTop="4dp"
+                    android:indeterminateOnly="false"
+                    android:progressDrawable="@drawable/circle2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.026"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0"
+                    tools:progress="60" />
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Today's Plan"
+                    android:textSize="25dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.057"
+                    app:layout_constraintStart_toEndOf="@+id/progress_bar2"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.592" />
+
+                <ImageButton
+                    android:id="@+id/plus_button2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:contentDescription="Plus Button"
+                    android:focusable="true"
+                    android:src="@drawable/ic_plus"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.641"
+                    app:layout_constraintStart_toEndOf="@+id/textView10"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.575" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 app:layout_constraintTop_toTopOf="parent"> <!-- Add this constraint -->
+
+                <!-- Underline for Checkbox 1 -->
 
                 <CheckBox
                     android:id="@+id/checkBox2"
@@ -190,11 +241,10 @@
                     android:background="@android:color/transparent"
                     android:text="Lorem ipsum dolor sit amet" />
 
-                <!-- Underline for Checkbox 1 -->
                 <View
                     android:id="@+id/underline2"
                     android:layout_width="match_parent"
-                    android:layout_height="2dp"
+                    android:layout_height="1dp"
                     android:layout_gravity="center"
                     android:background="#000000" /> <!-- Set your underline color -->
             </FrameLayout>
@@ -203,7 +253,6 @@
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox2"> <!-- Add this constraint -->
 
                 <CheckBox
@@ -212,30 +261,19 @@
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
                     android:text="Lorem ipsum dolor sit amet" />
-
-                <!-- Underline for Checkbox 2 -->
+                <!-- Checkbox 3 -->
                 <View
                     android:id="@+id/underline3"
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
                     android:layout_gravity="center"
-                    android:background="#000000" /> <!-- Set your underline color -->
+                    android:background="#000000" />
             </FrameLayout>
 
-            <!-- Checkbox 3 -->
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox3"> <!-- Add this constraint -->
-
-                <CheckBox
-                    android:id="@+id/checkBox4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
-                    android:text="Lorem ipsum dolor sit amet" />
-
                 <!-- Underline for Checkbox 3 -->
                 <View
                     android:id="@+id/underline4"
@@ -243,16 +281,23 @@
                     android:layout_height="2dp"
                     android:layout_gravity="center"
                     android:background="#000000" /> <!-- Set your underline color -->
+
+
+                <CheckBox
+                    android:id="@+id/checkBox4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:text="Lorem ipsum dolor sit amet" />
             </FrameLayout>
         </LinearLayout>
 
     </LinearLayout>
-<!--        <TextView-->
-<!--            android:id="@+id/textView12"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="1/6" />-->
-
+    <!--        <TextView-->
+    <!--            android:id="@+id/textView12"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:text="1/6" />-->
 
 
     <TextView
@@ -362,54 +407,53 @@
         app:layout_constraintVertical_bias="0.49" />
 
 
+    <RadioButton
+        android:id="@+id/r1"
+        android:layout_width="34dp"
+        android:layout_height="28dp"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="@+id/textView4"
+        app:layout_constraintHorizontal_bias="0.285"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
+        app:layout_constraintTop_toTopOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.82" />
 
-        <RadioButton
-            android:id="@+id/r1"
-            android:layout_width="34dp"
-            android:layout_height="28dp"
-            android:textAlignment="center"
-            app:layout_constraintBottom_toBottomOf="@+id/textView4"
-            app:layout_constraintEnd_toEndOf="@+id/textView4"
-            app:layout_constraintHorizontal_bias="0.285"
-            app:layout_constraintStart_toStartOf="@+id/textView4"
-            app:layout_constraintTop_toTopOf="@+id/textView4"
-            app:layout_constraintVertical_bias="0.82" />
+    <RadioButton
+        android:id="@+id/r2"
+        android:layout_width="36dp"
+        android:layout_height="28dp"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="@+id/textView4"
+        app:layout_constraintHorizontal_bias="0.99"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
+        app:layout_constraintTop_toTopOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.82" />
 
-        <RadioButton
-            android:id="@+id/r2"
-            android:layout_width="36dp"
-            android:layout_height="28dp"
-            android:textAlignment="center"
-            app:layout_constraintBottom_toBottomOf="@+id/textView4"
-            app:layout_constraintEnd_toEndOf="@+id/textView4"
-            app:layout_constraintHorizontal_bias="0.99"
-            app:layout_constraintStart_toStartOf="@+id/textView4"
-            app:layout_constraintTop_toTopOf="@+id/textView4"
-            app:layout_constraintVertical_bias="0.82" />
+    <RadioButton
+        android:id="@+id/r3"
+        android:layout_width="37dp"
+        android:layout_height="28dp"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="@+id/textView4"
+        app:layout_constraintHorizontal_bias="0.88"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
+        app:layout_constraintTop_toTopOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.82" />
 
-        <RadioButton
-            android:id="@+id/r3"
-            android:layout_width="37dp"
-            android:layout_height="28dp"
-            android:textAlignment="center"
-            app:layout_constraintBottom_toBottomOf="@+id/textView4"
-            app:layout_constraintEnd_toEndOf="@+id/textView4"
-            app:layout_constraintHorizontal_bias="0.88"
-            app:layout_constraintStart_toStartOf="@+id/textView4"
-            app:layout_constraintTop_toTopOf="@+id/textView4"
-            app:layout_constraintVertical_bias="0.82" />
-
-        <RadioButton
-            android:id="@+id/r4"
-            android:layout_width="34dp"
-            android:layout_height="28dp"
-            android:textAlignment="center"
-            app:layout_constraintBottom_toBottomOf="@+id/textView4"
-            app:layout_constraintEnd_toEndOf="@+id/textView4"
-            app:layout_constraintHorizontal_bias="0.77"
-            app:layout_constraintStart_toStartOf="@+id/textView4"
-            app:layout_constraintTop_toTopOf="@+id/textView4"
-            app:layout_constraintVertical_bias="0.82" />
+    <RadioButton
+        android:id="@+id/r4"
+        android:layout_width="34dp"
+        android:layout_height="28dp"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="@+id/textView4"
+        app:layout_constraintHorizontal_bias="0.77"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
+        app:layout_constraintTop_toTopOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.82" />
 
     <RadioButton
         android:id="@+id/r5"
@@ -423,29 +467,29 @@
         app:layout_constraintTop_toTopOf="@+id/textView4"
         app:layout_constraintVertical_bias="0.82" />
 
-        <RadioButton
-            android:id="@+id/r6"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            android:textAlignment="center"
-            app:layout_constraintBottom_toBottomOf="@+id/textView4"
-            app:layout_constraintEnd_toEndOf="@+id/textView4"
-            app:layout_constraintHorizontal_bias="0.52"
-            app:layout_constraintStart_toStartOf="@+id/textView4"
-            app:layout_constraintTop_toTopOf="@+id/textView4"
-            app:layout_constraintVertical_bias="0.82" />
+    <RadioButton
+        android:id="@+id/r6"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="@+id/textView4"
+        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
+        app:layout_constraintTop_toTopOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.82" />
 
-        <RadioButton
-            android:id="@+id/r7"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            android:textAlignment="center"
-            app:layout_constraintBottom_toBottomOf="@+id/textView4"
-            app:layout_constraintEnd_toEndOf="@+id/textView4"
-            app:layout_constraintHorizontal_bias="0.40"
-            app:layout_constraintStart_toStartOf="@+id/textView4"
-            app:layout_constraintTop_toTopOf="@+id/textView4"
-            app:layout_constraintVertical_bias="0.82" />
+    <RadioButton
+        android:id="@+id/r7"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="@+id/textView4"
+        app:layout_constraintHorizontal_bias="0.40"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
+        app:layout_constraintTop_toTopOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.82" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,6 +16,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class Settings extends AppCompatActivity {
     Button button;
     TextView tvUsername;
+    TextView tvEmail;
     FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,12 +27,14 @@ public class Settings extends AppCompatActivity {
         FirebaseUser user = mAuth.getCurrentUser();
 
         tvUsername = findViewById(R.id.tv_username);
-
+         tvEmail = findViewById(R.id.tv_email);
         // Check if the user is not null and get the display name
         if (user != null) {
             String displayName = user.getDisplayName();
-            if (displayName != null) {
+            String displayEmail =user.getEmail();
+            if (displayName != null || displayEmail != null) {
                 tvUsername.setText(displayName);
+                tvEmail.setText(displayEmail);
             } else {
                 tvUsername.setText("No username set");
             }
