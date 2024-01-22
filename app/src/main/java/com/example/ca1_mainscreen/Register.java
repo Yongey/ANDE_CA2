@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -25,6 +26,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Register extends AppCompatActivity {
     TextInputEditText editTextUsername, editTextEmail, editTextPassword;
@@ -86,45 +88,25 @@ public class Register extends AppCompatActivity {
                 final String password = editTextPassword.getText().toString().trim();
 
                 // Input validation
-                if (TextUtils.isEmpty(username)) {
-                    editTextUsername.setError("Username is required.");
-                    editTextUsername.requestFocus();
-                    return;
-                }
-
-                if (TextUtils.isEmpty(email)) {
-                    editTextEmail.setError("Email is required.");
-                    editTextEmail.requestFocus();
-                    return;
-                }
-
-                if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                    editTextEmail.setError("Please enter a valid email.");
-                    editTextEmail.requestFocus();
-                    return;
-                }
-
-                if (TextUtils.isEmpty(password)) {
-                    editTextPassword.setError("Password is required.");
-                    editTextPassword.requestFocus();
-                    return;
-                }
-
-                if (password.length() < 6) {
-                    editTextPassword.setError("Minimum length of password should be 6.");
-                    editTextPassword.requestFocus();
-                    return;
-                }
+                // ... [Your existing input validation code]
 
                 progressBar.setVisibility(View.VISIBLE);
 
                 mAuth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(Register.this, task -> {
                             progressBar.setVisibility(View.GONE);
-
                             if (task.isSuccessful()) {
+                                // Registration successful
                                 FirebaseUser firebaseUser = mAuth.getCurrentUser();
                                 if (firebaseUser != null) {
+                                    String userId = firebaseUser.getUid(); // Get the user ID
+                                    FirebaseDatabase.getInstance().getReference("user/" + userId)
+                                            .setValue(new User(username, email, ""))
+                                            .addOnFailureListener(e -> {
+                                                // Handle the error here
+                                                Log.e("DatabaseError", "Failed to write data: " + e.getMessage());
+                                                Toast.makeText(Register.this, "Failed to save user data: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                                            });
                                     UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                                             .setDisplayName(username)
                                             .build();
@@ -142,12 +124,12 @@ public class Register extends AppCompatActivity {
                                             });
                                 }
                             } else {
+                                // Registration failed
                                 if (task.getException() != null) {
                                     Toast.makeText(Register.this, "Registration failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                                 } else {
                                     Toast.makeText(Register.this, "Registration failed.", Toast.LENGTH_SHORT).show();
                                 }
-                                navigateToLoginPage();
                             }
                         });
             }
@@ -184,5 +166,6 @@ public class Register extends AppCompatActivity {
     }
     private void navigateToLoginPage() {
         startActivity(new Intent(this, Login.class));
+        finish();
     }
 }
