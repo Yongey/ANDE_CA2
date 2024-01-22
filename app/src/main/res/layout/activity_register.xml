@@ -82,8 +82,10 @@
     <Button
         android:id="@+id/btn_register"
         android:text="@string/sign_up"
+        android:textColor="@color/white"
         android:layout_width="350dp"
         android:textSize="24sp"
+        android:background="@color/black"
         android:layout_marginTop="100dp"
         android:layout_height="65dp"/>
 

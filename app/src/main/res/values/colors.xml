@@ -5,5 +5,6 @@
     <color name="btn_login">#FF000000</color>
     <color name="blue_color">#1162FF</color>
     <color name="dailybackground">#675E83</color>
+    <color name="nav">#E2DBFF</color>
     <color name="red_color">#FF0000</color>
 </resources>
