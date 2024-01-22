@@ -35,24 +35,20 @@ public class Settings extends AppCompatActivity {
         button = findViewById(R.id.logout);
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
+        TextView profileTextView = findViewById(R.id.tv_profile);
 
+        profileTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(),Profile.class);
+                startActivity(i);
+
+
+            }
+        });
        // readData();
 
-        tvUsername = findViewById(R.id.tv_username);
-         tvEmail = findViewById(R.id.tv_email);
-        // Check if the user is not null and get the display name
-        if (user != null) {
-            String displayName = user.getDisplayName();
-            String displayEmail =user.getEmail();
-            if (displayName != null || displayEmail != null) {
-                tvUsername.setText(displayName);
-                tvEmail.setText(displayEmail);
-            } else {
-                tvUsername.setText("No username set");
-            }
-        } else {
-            Toast.makeText(this, "No user logged in", Toast.LENGTH_SHORT).show();
-        }
+
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override

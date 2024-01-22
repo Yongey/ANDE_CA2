@@ -7,5 +7,5 @@
     <color name="dailybackground">#675E83</color>
     <color name="nav">#E2DBFF</color>
     <color name="red_color">#FF0000</color>
-
+    <color name="grey">#808080</color>
 </resources>

@@ -6,4 +6,5 @@
     </style>
 
     <style name="Theme.CA1MainScreen" parent="Base.Theme.CA1MainScreen" />
+
 </resources>

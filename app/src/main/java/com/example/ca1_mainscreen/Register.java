@@ -59,10 +59,23 @@ public class Register extends AppCompatActivity {
         buttonReg.setBackgroundColor(ContextCompat.getColor(this, R.color.black));
         mAuth = FirebaseAuth.getInstance();
 
-        editTextEmail.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
-        editTextEmail.setSingleLine();
-//        editTextPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-//        editTextPassword.setSingleLine();
+        TextInputLayout passwordLayout = findViewById(R.id.passwordforsignup);
+
+        // Set click listener to toggle password visibility and icon state
+        passwordLayout.setEndIconOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Toggle password visibility
+                if (editTextPassword.getInputType() == (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD)) {
+                    editTextPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                    passwordLayout.setEndIconDrawable(R.drawable.ic_eye_show);
+                } else {
+                    editTextPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    passwordLayout.setEndIconDrawable(R.drawable.ic_eye_hide);
+                }
+                editTextPassword.setSelection(editTextPassword.getText().length()); // Maintain cursor position
+            }
+        });
         TextView loginTextView = findViewById(R.id.tv_login);
         setupLoginTextView(loginTextView);
         buttonReg.setOnClickListener(new View.OnClickListener() {
@@ -123,6 +136,8 @@ public class Register extends AppCompatActivity {
                                                     editTextUsername.setText("");
                                                     editTextEmail.setText("");
                                                     editTextPassword.setText("");
+                                                    mAuth.signOut(); // Sign out the user after registration
+                                                    navigateToLoginPage(); // Redirect to login page
                                                 }
                                             });
                                 }
@@ -132,6 +147,7 @@ public class Register extends AppCompatActivity {
                                 } else {
                                     Toast.makeText(Register.this, "Registration failed.", Toast.LENGTH_SHORT).show();
                                 }
+                                navigateToLoginPage();
                             }
                         });
             }

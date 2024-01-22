@@ -7,10 +7,12 @@
     android:gravity="center"
     android:padding="15dp"
     android:layout_height="match_parent"
-    tools:context=".Login">
+    tools:context=".Login"
+    android:background="@android:color/background_light">
 
     <TextView
         android:text="@string/login"
+        android:textColor="@color/black"
         android:textSize="45sp"
         android:textStyle="bold"
         android:gravity="left"
@@ -25,13 +27,15 @@
         android:textStyle="italic"
         android:layout_marginTop="-170dp"
         android:text="@string/welcome_back"
+        android:textColor="@color/black"
         android:textSize="20sp" />
 
     <com.google.android.material.textfield.TextInputLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
-        app:startIconDrawable="@drawable/ic_email">
+        app:startIconDrawable="@drawable/ic_email"
+        >
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/email"
