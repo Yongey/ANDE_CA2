@@ -2,6 +2,7 @@ package com.example.ca1_mainscreen;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.SpannableString;
 import android.text.TextPaint;
 import android.text.TextUtils;
@@ -9,6 +10,7 @@ import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +37,16 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         TextView tvForget = findViewById(R.id.tv_forget);
+
+        initializeViews();
+        setupClickableText();
+        editTextPassword.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                handleLogin();
+                return true;
+            }
+            return false;
+        });
         tvForget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,8 +55,6 @@ public class Login extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        initializeViews();
-        setupClickableText();
     }
 
     private void initializeViews() {

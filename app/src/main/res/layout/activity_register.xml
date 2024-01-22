@@ -57,12 +57,13 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/passwordforsignup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:startIconDrawable="@drawable/ic_lock"
         android:layout_marginTop="10dp"
         app:endIconMode="password_toggle"
-        app:endIconDrawable="@drawable/ic_eye_show">
+        app:endIconDrawable="@drawable/ic_eye_hide">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/password"
             android:hint="@string/password"
