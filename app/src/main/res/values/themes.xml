@@ -3,8 +3,16 @@
     <style name="Base.Theme.CA1MainScreen" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name= "colorPrimaryDark">#675E83</item>
     </style>
 
     <style name="Theme.CA1MainScreen" parent="Base.Theme.CA1MainScreen" />
+
+
+    <style name = "DialogStyle" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name= "android:windowIsFloating">false</item>
+        <item name= "android:statusBarColor">@android:color/transparent</item>
+        <item name= "android:windowSoftInputMode">adjustResize</item>
+    </style>
 
 </resources>
