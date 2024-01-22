@@ -39,6 +39,8 @@
         android:layout_marginTop="8dp"
         android:text="Log Out"
         android:textSize="25dp"
+        android:backgroundTint="@android:color/holo_red_light"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
@@ -110,30 +112,30 @@
             android:id="@+id/textView12"
             android:layout_width="match_parent"
             android:layout_height="85dp"
-            android:text="TextView" />
+            android:text="Profile" />
 
         <TextView
             android:id="@+id/textView18"
             android:layout_width="match_parent"
             android:layout_height="93dp"
-            android:text="TextView" />
+            android:text="Notification" />
 
         <TextView
             android:id="@+id/textView22"
             android:layout_width="match_parent"
             android:layout_height="76dp"
-            android:text="TextView" />
+            android:text="@string/ps" />
 
         <TextView
             android:id="@+id/textView23"
             android:layout_width="match_parent"
             android:layout_height="83dp"
-            android:text="TextView" />
+            android:text="Help and Support" />
 
         <TextView
             android:id="@+id/textView24"
             android:layout_width="match_parent"
             android:layout_height="97dp"
-            android:text="TextView" />
+            android:text="About" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
