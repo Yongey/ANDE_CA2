@@ -3,7 +3,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
@@ -15,9 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.Firebase;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.FirebaseOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -25,9 +21,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import java.util.List;
-
 public class MainActivity extends AppCompatActivity {
 
 FirebaseAuth auth;
@@ -333,7 +326,7 @@ FirebaseUser user;
         buttonI1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final int maxProgress = 90;
+                final int maxProgress = 100;
                 final int progressIncrement = 15;
 
                 if (!buttonIncrClicked && progr + progressIncrement <= maxProgress) {
