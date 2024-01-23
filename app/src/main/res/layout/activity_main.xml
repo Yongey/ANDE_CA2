@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@android:color/background_light">
 
 
     <TextView
@@ -48,9 +49,7 @@
         android:layout_height="220dp"
         android:layout_marginTop="84dp"
         android:background="@drawable/rec"
-        android:textAlignment="textStart"
         android:textColor="#FFFFFF"
-        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.521"
@@ -110,27 +109,15 @@
         android:background="@drawable/rec"
         android:enabled="false"
         android:text="Completed"
+        android:buttonTint="@color/black"
+        android:textColor="@color/black"
         android:textAlignment="textStart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.881"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
-    <Button
-        android:id="@+id/reset_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/checkBox"
-        android:layout_marginStart="95dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginBottom="24dp"
-        android:onClick="onResetButtonClick"
-        android:text="Reset Progress"
-        app:layout_constraintBottom_toTopOf="@+id/textView5"
-        app:layout_constraintEnd_toStartOf="@+id/checkBox"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
 
 
     <ProgressBar
@@ -153,32 +140,49 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@color/nav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_nav_menu" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="341dp"
-        android:layout_height="223dp"
+        android:layout_width="342dp"
+        android:layout_height="220dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@+id/textView5"
         app:layout_constraintEnd_toEndOf="@+id/textView5"
-        app:layout_constraintHorizontal_bias="0.0"
+
         app:layout_constraintStart_toStartOf="@+id/textView5"
         app:layout_constraintTop_toTopOf="@+id/textView5"
-        app:layout_constraintVertical_bias="0.0">
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="212dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@color/nav">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <!-- Checkbox 1 -->
+
+                <TextView
+                    android:id="@+id/text_view_progress2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0/3"
+                    android:gravity="center"
+                    android:textSize="22dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/progress_bar2"
+                    app:layout_constraintEnd_toEndOf="@+id/progress_bar2"
+                    app:layout_constraintHorizontal_bias="0.575"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/progress_bar2"
+                    app:layout_constraintVertical_bias="0.53" />
 
                 <ProgressBar
                     android:id="@+id/progress_bar2"
@@ -192,7 +196,7 @@
                     app:layout_constraintHorizontal_bias="0.026"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="1.0"
+                    app:layout_constraintVertical_bias="0.0"
                     tools:progress="60" />
 
                 <TextView
@@ -238,12 +242,13 @@
                     android:id="@+id/checkBox2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
+                    android:layout_marginTop="15dp"
                     android:text="Lorem ipsum dolor sit amet" />
 
                 <View
                     android:id="@+id/underline2"
                     android:layout_width="match_parent"
+                    android:layout_marginTop="7.5dp"
                     android:layout_height="1dp"
                     android:layout_gravity="center"
                     android:background="#000000" /> <!-- Set your underline color -->
@@ -259,13 +264,14 @@
                     android:id="@+id/checkBox3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
+                    android:layout_marginTop="15dp"
                     android:text="Lorem ipsum dolor sit amet" />
                 <!-- Checkbox 3 -->
                 <View
                     android:id="@+id/underline3"
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
+                    android:layout_marginTop="7.5dp"
                     android:layout_gravity="center"
                     android:background="#000000" />
             </FrameLayout>
@@ -280,6 +286,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
                     android:layout_gravity="center"
+                    android:layout_marginTop="7.5dp"
                     android:background="#000000" /> <!-- Set your underline color -->
 
 
@@ -287,7 +294,7 @@
                     android:id="@+id/checkBox4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
+                    android:layout_marginTop="15dp"
                     android:text="Lorem ipsum dolor sit amet" />
             </FrameLayout>
         </LinearLayout>
@@ -323,7 +330,7 @@
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="@+id/textView4"
-        app:layout_constraintHorizontal_bias="0.953"
+        app:layout_constraintHorizontal_bias="0.975"
         app:layout_constraintStart_toStartOf="@+id/textView4"
         app:layout_constraintTop_toTopOf="@+id/textView4"
         app:layout_constraintVertical_bias="0.494" />
@@ -388,7 +395,7 @@
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="@+id/textView4"
-        app:layout_constraintHorizontal_bias="0.296"
+        app:layout_constraintHorizontal_bias="0.290"
         app:layout_constraintStart_toStartOf="@+id/textView4"
         app:layout_constraintTop_toTopOf="@+id/textView4"
         app:layout_constraintVertical_bias="0.49" />
@@ -409,9 +416,9 @@
 
     <RadioButton
         android:id="@+id/r1"
-        android:layout_width="34dp"
+        android:layout_width="28dp"
         android:layout_height="28dp"
-        android:textAlignment="center"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="@+id/textView4"
         app:layout_constraintHorizontal_bias="0.285"
@@ -421,51 +428,52 @@
 
     <RadioButton
         android:id="@+id/r2"
-        android:layout_width="36dp"
+        android:layout_width="28dp"
         android:layout_height="28dp"
-        android:textAlignment="center"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="@+id/textView4"
-        app:layout_constraintHorizontal_bias="0.99"
+        app:layout_constraintHorizontal_bias="0.982"
         app:layout_constraintStart_toStartOf="@+id/textView4"
         app:layout_constraintTop_toTopOf="@+id/textView4"
         app:layout_constraintVertical_bias="0.82" />
 
     <RadioButton
         android:id="@+id/r3"
-        android:layout_width="37dp"
+        android:layout_width="28dp"
         android:layout_height="28dp"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="@+id/textView4"
-        app:layout_constraintHorizontal_bias="0.88"
+        app:layout_constraintHorizontal_bias="0.868"
         app:layout_constraintStart_toStartOf="@+id/textView4"
         app:layout_constraintTop_toTopOf="@+id/textView4"
         app:layout_constraintVertical_bias="0.82" />
 
     <RadioButton
         android:id="@+id/r4"
-        android:layout_width="34dp"
+        android:layout_width="28dp"
         android:layout_height="28dp"
-        android:textAlignment="center"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="@+id/textView4"
-        app:layout_constraintHorizontal_bias="0.77"
+        app:layout_constraintHorizontal_bias="0.76"
         app:layout_constraintStart_toStartOf="@+id/textView4"
         app:layout_constraintTop_toTopOf="@+id/textView4"
         app:layout_constraintVertical_bias="0.82" />
 
     <RadioButton
         android:id="@+id/r5"
-        android:layout_width="30dp"
-        android:layout_height="27dp"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="@+id/textView4"
         app:layout_constraintHorizontal_bias="0.642"
         app:layout_constraintStart_toStartOf="@+id/textView4"
         app:layout_constraintTop_toTopOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.82" />
+        app:layout_constraintVertical_bias="0.82"
+       />
 
     <RadioButton
         android:id="@+id/r6"

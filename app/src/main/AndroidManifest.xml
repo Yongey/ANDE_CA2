@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,13 +13,7 @@
         android:theme="@style/Theme.CA1MainScreen"
         tools:targetApi="31">
         <activity
-            android:name=".HabitProgress"
-            android:exported="false" />
-        <activity
-            android:name=".NewHabit"
-            android:exported="false" />
-        <activity
-            android:name=".WeeklyHabit"
+            android:name=".Profile"
             android:exported="false" />
         <activity
             android:name=".ResetPassword"
@@ -29,13 +23,11 @@
             android:exported="false" />
         <activity
             android:name=".Login"
-            android:exported="true">
-            <activity
-                android:name=".DailyTask"
-                android:exported="false" />
-
-            <!-- Intent-filter removed from here -->
-        </activity>
+            android:exported="true"
+          />
+        <activity
+            android:name=".DailyTask"
+            android:exported="false" /> <!-- Intent-filter removed from here -->
         <activity
             android:name=".Settings"
             android:label="Settings">

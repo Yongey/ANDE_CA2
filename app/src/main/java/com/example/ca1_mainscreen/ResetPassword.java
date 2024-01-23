@@ -9,6 +9,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -34,6 +35,13 @@ public class ResetPassword extends AppCompatActivity {
         Button btnResetPassword = findViewById(R.id.btnResetPassword);
         auth = FirebaseAuth.getInstance();
         FirebaseApp.initializeApp(this);
+        ImageView backIcon = findViewById(R.id.backIcon);
+        backIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish(); // Closes this activity and returns to the previous one
+            }
+        });
         btnResetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
