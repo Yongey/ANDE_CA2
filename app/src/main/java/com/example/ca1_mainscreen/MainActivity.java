@@ -43,13 +43,18 @@ FirebaseUser user;
     private CheckBox checkBox;
     private boolean CB = false;
     private boolean buttonIncrClicked = false;
+    private DatabaseReference databaseReference;
+
     private boolean buttonIncrClicked1 = false;
     private boolean buttonIncrClicked2 = false;
     private boolean buttonIncrClicked3 = false;
     private boolean buttonIncrClicked4 = false;
     private boolean buttonIncrClicked5 = false;
     private boolean buttonIncrClicked6 = false;
-   // private DatabaseReference databaseReference;
+    private RadioButton buttonI1;
+
+    // private DatabaseReference databaseReference;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,6 +64,11 @@ FirebaseUser user;
         // Initialize FirebaseAuth instance
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        buttonI1 = findViewById(R.id.r1);
+        loadRadioButtonState();
+        loadProgress();
+        loadProgr();
 
         // Redirect to login if no user
         if (user == null) {
@@ -68,47 +78,13 @@ FirebaseUser user;
             return; // Exit the onCreate method if there's no user
         }
 
-        // You should initialize Firebase like this only if you have not set up the google-services.json file.
-        // Otherwise, Firebase will automatically initialize itself.
-//        if (FirebaseApp.getApps(this).isEmpty()) {
-//            FirebaseOptions options = new FirebaseOptions.Builder()
-//                    .setApiKey("AIzaSyC4qgXdHiLsDFWDhMBqCkm5lmEjq7SpLR4") // Your actual API key
-//                    .setProjectId("ca2-ande")
-//                    .setApplicationId("1:685500519655:android:fd8925a02ba2e360f17e42") // Your actual application ID
-//                    .setDatabaseUrl("https://ca2-ande-default-rtdb.asia-southeast1.firebasedatabase.app")
-//                    .build();
-//            FirebaseApp.initializeApp(this /* Context */, options);
-//        }
 
-        // Since the user is not null, fetch user details from the database
-//        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("user").child(user.getUid());
-//        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                User userdetails = snapshot.getValue(User.class);
-//                if (userdetails != null && userdetails.getImageUrl() != null) {
-//                    Log.i("Settings", "onDataChange: Image URL = " + userdetails.getImageUrl());
-//                } else {
-//                    Log.i("Settings", "User details or image URL is null.");
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//                Log.e("Settings", "Failed to read image URL", error.toException());
-//            }
-//        });
-       if(user == null){
-           Intent i = new Intent(getApplicationContext(),Login.class);
-           startActivity(i);
-           finish();
-       }
-      //  readDataFromDatabase();
+
 
        checkBox = findViewById(R.id.checkBox);
 
         updateProgressBar();
-        RadioButton  buttonI1 = findViewById(R.id.r1);
+
         RadioButton  buttonI2 = findViewById(R.id.r2);
         RadioButton  buttonI3 = findViewById(R.id.r3);
         RadioButton  buttonI4 = findViewById(R.id.r4);
@@ -357,33 +333,135 @@ FirebaseUser user;
         buttonI1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Use a constant for the maximum progress value
-                int maxProgress = 90;
+                final int maxProgress = 90;
+                final int progressIncrement = 15;
 
-                if (progr < maxProgress && !buttonIncrClicked) {
-                    // Increment progress if it's below the maximum and button is not clicked
-                    progr += 15;
+                if (!buttonIncrClicked && progr + progressIncrement <= maxProgress) {
+                    progr += progressIncrement;
                     progress += 1;
                     buttonIncrClicked = true;
-                } else if (progr >= 15) {
-                    // Decrement progress if it's greater than or equal to 15
-                    progr -= 15;
+                } else if (buttonIncrClicked && progr >= progressIncrement) {
+                    progr -= progressIncrement;
                     progress -= 1;
                     buttonIncrClicked = false;
-                    CB = false;
                 }
+
                 buttonI1.setChecked(buttonIncrClicked);
                 checkBox.setChecked(CB);
-                // Update the progress bar
+
+                // Update the progress bar and save user data
                 updateProgressBar();
-                //updateDatabase();
+                saveUserData();
+                saveButtonIncrClickedState();
             }
         });
 
 
 
 
+
+
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // Reset the state of the button when the activity is resumed
+        loadButtonIncrClickedState();
+    }
+    private void saveButtonIncrClickedState() {
+        databaseReference.child("user_data").child(user.getUid()).child("buttonIncrClicked").setValue(buttonIncrClicked)
+                .addOnSuccessListener(aVoid -> Log.d("Firebase", "Successfully saved buttonIncrClicked state."))
+                .addOnFailureListener(e -> Log.e("Firebase", "Failed to save buttonIncrClicked state.", e));
+    }
+
+    private void saveUserData() {
+        // Save the state of the radio button and progress
+        databaseReference.child("user_data").child(user.getUid()).child("buttonI1_state").setValue(buttonI1.isChecked());
+        databaseReference.child("user_data").child(user.getUid()).child("progress").setValue(progress);
+        databaseReference.child("user_data").child(user.getUid()).child("progr").setValue(progr)
+
+                .addOnSuccessListener(aVoid -> Log.d("Database", "Successfully updated user data."))
+                .addOnFailureListener(e -> Log.e("Database", "Failed to write user data.", e));
+    }
+    private void loadProgr() {
+        // Load the progress value
+        databaseReference.child("user_data").child(user.getUid()).child("progr")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            Integer storedProgr = dataSnapshot.getValue(Integer.class);
+                            if (storedProgr != null) {
+                                progr = storedProgr;
+                                updateProgressBar(); // Update progress bar with loaded progress
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        Log.e("Database", "Failed to read progress.", databaseError.toException());
+                    }
+                });
+    }
+    private void loadProgress() {
+        // Load the progress value
+        databaseReference.child("user_data").child(user.getUid()).child("progress")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            Integer storedProgress = dataSnapshot.getValue(Integer.class);
+                            if (storedProgress != null) {
+                                progress = storedProgress;
+                                updateProgressBar(); // Update progress bar with loaded progress
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        Log.e("Database", "Failed to read progress.", databaseError.toException());
+                    }
+                });
+    }
+    private void loadButtonIncrClickedState() {
+        databaseReference.child("user_data").child(user.getUid()).child("buttonIncrClicked")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            buttonIncrClicked = dataSnapshot.getValue(Boolean.class);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        Log.e("Firebase", "Failed to read buttonIncrClicked state.", databaseError.toException());
+                    }
+                });
+    }
+
+    private void loadRadioButtonState() {
+        databaseReference.child("user_data").child(user.getUid()).child("buttonI1_state")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            Boolean state = dataSnapshot.getValue(Boolean.class);
+                            buttonI1.setChecked(state != null && state);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        Log.e("Database", "Failed to read radio button state.", databaseError.toException());
+                    }
+                });
+    }
+
+    // ... [Rest of your code]
 
 
     private void updateProgressBar() {
