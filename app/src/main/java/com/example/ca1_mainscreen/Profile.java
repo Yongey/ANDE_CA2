@@ -102,7 +102,7 @@ public class Profile extends AppCompatActivity {
 private void uploadImage(){
     FirebaseUser user = mAuth.getCurrentUser();
     if (user == null || imagePath == null) {
-        Toast.makeText(this, "No image selected or user not logged in", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "No image selected", Toast.LENGTH_SHORT).show();
         return;
     }
     ProgressDialog progressDialog = new ProgressDialog(this);
