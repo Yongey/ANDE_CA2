@@ -35,7 +35,7 @@ import java.util.UUID;
 
 public class Profile extends AppCompatActivity {
     TextView tvUsername;
-    private Button btnUpload;
+    private Button btnUpload,btnCFA;
     TextView tvEmail;
     FirebaseAuth mAuth;
     private ImageView imgProfile;
@@ -51,6 +51,7 @@ public class Profile extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
         mAuth = FirebaseAuth.getInstance();
         imgProfile = findViewById(R.id.userprofile);
+        btnCFA = findViewById(R.id.chooseFA);
         FirebaseUser user = mAuth.getCurrentUser();
         tvUsername = findViewById(R.id.tv_username);
         tvEmail = findViewById(R.id.tv_email);
@@ -62,7 +63,7 @@ public class Profile extends AppCompatActivity {
                 uploadImage();
             }
         });
-        imgProfile.setOnClickListener(new View.OnClickListener() {
+        btnCFA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent photoIntent = new Intent(Intent.ACTION_PICK);
@@ -81,8 +82,8 @@ public class Profile extends AppCompatActivity {
             String displayName = user.getDisplayName();
             String displayEmail =user.getEmail();
             if (displayName != null || displayEmail != null) {
-                tvUsername.setText(displayName);
-                tvEmail.setText(displayEmail);
+                tvUsername.setText("Username: " +displayName);
+                tvEmail.setText("User Email: "+displayEmail);
             } else {
                 tvUsername.setText("No username set");
             }
@@ -105,28 +106,33 @@ private void uploadImage(){
         Toast.makeText(this, "No image selected", Toast.LENGTH_SHORT).show();
         return;
     }
-    ProgressDialog progressDialog = new ProgressDialog(this);
+    final ProgressDialog progressDialog = new ProgressDialog(this);
     progressDialog.setTitle("Uploading...");
     progressDialog.show();
 
-
-    FirebaseStorage.getInstance().getReference("images/"+ UUID.randomUUID().toString()).putFile(imagePath).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+    String imageRef = "images/" + UUID.randomUUID().toString();
+    FirebaseStorage.getInstance().getReference(imageRef).putFile(imagePath).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
         @Override
         public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+            progressDialog.dismiss();
             if(task.isSuccessful()){
                 task.getResult().getStorage().getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                     @Override
                     public void onComplete(@NonNull Task<Uri> task) {
                    if(task.isSuccessful()){
-                       updateProfilePicture(task.getResult().toString());
+                       String imageUrl = task.getResult().toString();
+                       updateProfilePicture(imageUrl);
+                       Toast.makeText(Profile.this, "Image Uploaded!", Toast.LENGTH_SHORT).show();
+                   }else {
+                       Toast.makeText(Profile.this, "Failed to get download URL", Toast.LENGTH_SHORT).show();
                    }
                     }
                 });
-                Toast.makeText(Profile.this,"Image Uploaded!",Toast.LENGTH_SHORT).show();
+
             }else{
                 Toast.makeText(Profile.this,task.getException().getLocalizedMessage(),Toast.LENGTH_SHORT).show();
             }
-            progressDialog.dismiss();
+
         }
     }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
         @Override
@@ -138,7 +144,18 @@ private void uploadImage(){
 
 }
     private void updateProfilePicture(String url){
-        FirebaseDatabase.getInstance().getReference("user/"+FirebaseAuth.getInstance().getCurrentUser().getUid()+"/imageUrl").setValue(url);
+        FirebaseDatabase.getInstance().getReference("user/"+FirebaseAuth.getInstance().getCurrentUser().getUid()+"/imageUrl").setValue(url) .addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(Profile.this, "Profile image updated.", Toast.LENGTH_SHORT).show();
+                    // Load the updated image
+                    loadProfileImage();
+                } else {
+                    Toast.makeText(Profile.this, "Failed to update profile image in Firebase.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 }
     private void getImageInImageView() {
         Bitmap bitmap = null;
