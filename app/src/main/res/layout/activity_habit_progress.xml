@@ -53,12 +53,10 @@
             android:layout_height="wrap_content"
             android:text="Journal"/>
 
-        <Button
+        <CalendarView
+            android:id="@+id/calendarView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Delete Habit"
-            android:textColor="#FFFFFF"
-            android:background="#FF0000"/>
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
 
