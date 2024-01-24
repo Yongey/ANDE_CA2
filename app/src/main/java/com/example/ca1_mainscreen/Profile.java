@@ -35,11 +35,13 @@ import java.util.UUID;
 
 public class Profile extends AppCompatActivity {
     TextView tvUsername;
-    private Button btnUpload;
+    private Button btnCFA;
     TextView tvEmail;
     FirebaseAuth mAuth;
     private ImageView imgProfile;
     private Uri imagePath;
+    private String currentImageUrl = null;
+    private String originalImageUrl = null;
     @Override
     protected void onStart() {
         super.onStart();
@@ -51,18 +53,13 @@ public class Profile extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
         mAuth = FirebaseAuth.getInstance();
         imgProfile = findViewById(R.id.userprofile);
+        btnCFA = findViewById(R.id.chooseFA);
         FirebaseUser user = mAuth.getCurrentUser();
         tvUsername = findViewById(R.id.tv_username);
         tvEmail = findViewById(R.id.tv_email);
-        btnUpload = findViewById(R.id.btnUploadImage);
         ImageView backIcon = findViewById(R.id.backIcon);
-        btnUpload.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                uploadImage();
-            }
-        });
-        imgProfile.setOnClickListener(new View.OnClickListener() {
+
+        btnCFA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent photoIntent = new Intent(Intent.ACTION_PICK);
@@ -81,8 +78,8 @@ public class Profile extends AppCompatActivity {
             String displayName = user.getDisplayName();
             String displayEmail =user.getEmail();
             if (displayName != null || displayEmail != null) {
-                tvUsername.setText(displayName);
-                tvEmail.setText(displayEmail);
+                tvUsername.setText("Username: " +displayName);
+                tvEmail.setText("User Email: "+displayEmail);
             } else {
                 tvUsername.setText("No username set");
             }
@@ -95,38 +92,51 @@ public class Profile extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && resultCode == RESULT_OK && data != null) {
+            // Save the original image URL when loading for the first time
+            if (originalImageUrl == null) {
+                originalImageUrl = currentImageUrl;
+            }
             imagePath=data.getData();
             getImageInImageView();
+            uploadImage();
         }
     }
 private void uploadImage(){
     FirebaseUser user = mAuth.getCurrentUser();
     if (user == null || imagePath == null) {
-        Toast.makeText(this, "No image selected or user not logged in", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "No image selected", Toast.LENGTH_SHORT).show();
         return;
     }
-    ProgressDialog progressDialog = new ProgressDialog(this);
+    final ProgressDialog progressDialog = new ProgressDialog(this);
     progressDialog.setTitle("Uploading...");
     progressDialog.show();
 
-
-    FirebaseStorage.getInstance().getReference("images/"+ UUID.randomUUID().toString()).putFile(imagePath).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+    String imageRef = "images/" + UUID.randomUUID().toString();
+    FirebaseStorage.getInstance().getReference(imageRef).putFile(imagePath).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
         @Override
         public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+            progressDialog.dismiss();
             if(task.isSuccessful()){
                 task.getResult().getStorage().getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                     @Override
                     public void onComplete(@NonNull Task<Uri> task) {
                    if(task.isSuccessful()){
-                       updateProfilePicture(task.getResult().toString());
+                       String imageUrl = task.getResult().toString();
+                       updateProfilePicture(imageUrl);
+                       Toast.makeText(Profile.this, "Image Uploaded!", Toast.LENGTH_SHORT).show();
+                   }else {
+                       // Restore the original image URL if getting download URL fails
+                       currentImageUrl = originalImageUrl;
+                       Toast.makeText(Profile.this, "Failed to get download URL", Toast.LENGTH_SHORT).show();
                    }
                     }
                 });
-                Toast.makeText(Profile.this,"Image Uploaded!",Toast.LENGTH_SHORT).show();
+
             }else{
+                currentImageUrl = originalImageUrl;
                 Toast.makeText(Profile.this,task.getException().getLocalizedMessage(),Toast.LENGTH_SHORT).show();
             }
-            progressDialog.dismiss();
+
         }
     }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
         @Override
@@ -138,19 +148,47 @@ private void uploadImage(){
 
 }
     private void updateProfilePicture(String url){
-        FirebaseDatabase.getInstance().getReference("user/"+FirebaseAuth.getInstance().getCurrentUser().getUid()+"/imageUrl").setValue(url);
+        FirebaseDatabase.getInstance().getReference("user/"+FirebaseAuth.getInstance().getCurrentUser().getUid()+"/imageUrl").setValue(url) .addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    currentImageUrl = url;
+                    Toast.makeText(Profile.this, "Profile image updated.", Toast.LENGTH_SHORT).show();
+                    // Load the updated image
+                    loadProfileImage();
+                } else {
+                    Toast.makeText(Profile.this, "Failed to update profile image in Firebase.", Toast.LENGTH_SHORT).show();
+                    revertToOriginalImage();
+                }
+            }
+        });
 }
+    private void revertToOriginalImage() {
+        if (originalImageUrl != null) {
+            Glide.with(Profile.this)
+                    .load(originalImageUrl)
+                    .into(imgProfile);
+            currentImageUrl = originalImageUrl;
+        }
+    }
     private void getImageInImageView() {
         Bitmap bitmap = null;
         try {
             bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imagePath);
+
+            if (bitmap != null) {
+                imgProfile.setImageBitmap(bitmap);
+            } else {
+                // Handle the case where bitmap is null (error loading image)
+                Toast.makeText(this, "Error loading image", Toast.LENGTH_SHORT).show();
+            }
         } catch (IOException e) {
+            // Handle the IOException
             Toast.makeText(this, "Error loading image", Toast.LENGTH_SHORT).show();
             e.printStackTrace();
-            return;
         }
-        imgProfile.setImageBitmap(bitmap);
     }
+
     private void loadProfileImage() {
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
@@ -161,8 +199,12 @@ private void uploadImage(){
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             if (dataSnapshot.exists()) {
                                 String imageUrl = dataSnapshot.getValue(String.class);
+                                if (currentImageUrl == null) {
+                                    originalImageUrl = imageUrl; // Save the original image URL when loading for the first time
+                                }
+                                currentImageUrl = imageUrl;
                                 Glide.with(Profile.this)
-                                        .load(imageUrl)
+                                        .load(currentImageUrl)
                                         .into(imgProfile);
                             }
                         }
@@ -174,4 +216,5 @@ private void uploadImage(){
                     });
         }
     }
+
 }
