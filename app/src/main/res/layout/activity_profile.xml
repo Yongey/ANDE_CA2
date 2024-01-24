@@ -59,19 +59,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.13" />
 
-    <Button
-        android:id="@+id/btnUploadImage"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="204dp"
-        android:text="Upload Photo"
-        android:textColor="@color/white"
-        android:background="#906DCF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.707" />
+
 
     <Button
         android:id="@+id/chooseFA"
