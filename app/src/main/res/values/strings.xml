@@ -9,5 +9,9 @@
     <string name="welcome_back">Welcome Back!</string>
     <string name="sign_up">Sign Up</string>
     <string name="ps">Privacy &amp; Security</string>
-    s
+    <string-array name="gender_options">
+        <item>Male</item>
+        <item>Female</item>
+        <item>Other</item>
+    </string-array>
 </resources>
