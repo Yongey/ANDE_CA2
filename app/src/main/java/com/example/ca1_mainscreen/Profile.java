@@ -517,7 +517,7 @@ private void uploadImage(){
 
         // Assuming you have a TextView to display age
         tvAge = findViewById(R.id.ageOfUser);
-        tvAge.setText("Age: " + age);
+        tvAge.setText("   Age: " + age);
     }
 
 }

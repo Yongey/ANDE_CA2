@@ -147,6 +147,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.55"
+            android:drawableLeft="@drawable/email_icon"
             android:text="Email:"
             android:textAlignment="center"
             android:textColor="@color/black"
@@ -181,6 +182,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.88"
+            android:drawableLeft="@drawable/gender_icon"
             android:text="Gender:"
             android:textAlignment="center"
             android:textColor="@color/black"
@@ -215,6 +217,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="2"
+            android:drawableLeft="@drawable/dob_icon"
             android:text="Date of Birth:"
             android:textAlignment="center"
             android:textColor="@color/black"
@@ -255,8 +258,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:drawableLeft="@drawable/age_icon"
             android:textSize="30dp"
-            android:layout_marginLeft="18dp"
+
             android:textColor="@color/black"
             android:text="TextView" />
     </LinearLayout>
