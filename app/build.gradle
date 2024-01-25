@@ -35,6 +35,7 @@ android {
 
 
 dependencies {
+    //tests
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'com.wdullaer:materialdatetimepicker:4.2.3'
     implementation 'androidx.appcompat:appcompat:1.6.1'
