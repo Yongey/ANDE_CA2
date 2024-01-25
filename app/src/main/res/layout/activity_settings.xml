@@ -39,15 +39,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Settings"
-        android:textStyle="bold"
         android:textColor="@color/black"
         android:textSize="40dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintHorizontal_bias="0.049"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.047" />
+        app:layout_constraintVertical_bias="0.106" />
 
     <TextView
         android:id="@+id/textView9"
@@ -61,7 +61,7 @@
         app:layout_constraintHorizontal_bias="0.038"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.017" />
 
     <View
         android:id="@+id/divider"
@@ -75,12 +75,13 @@
         app:layout_constraintHorizontal_bias="0.413"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9"
-        app:layout_constraintVertical_bias="0.041" />
+        app:layout_constraintVertical_bias="0.021" />
 
     <LinearLayout
-        android:layout_width="409dp"
-        android:layout_height="434dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_marginBottom="50dp"
         app:layout_constraintBottom_toTopOf="@+id/logout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -89,7 +90,7 @@
         <TextView
             android:id="@+id/tv_profile"
             android:layout_width="match_parent"
-            android:layout_height="84dp"
+            android:layout_height="80dp"
             android:clickable="true"
             android:drawableLeft="@drawable/person_icon"
             android:drawablePadding="8dp"
@@ -105,7 +106,7 @@
         <TextView
             android:id="@+id/tv_notification"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="80dp"
             android:drawableStart="@drawable/notification_icon"
             android:drawablePadding="8dp"
             android:gravity="center_vertical"
@@ -120,7 +121,7 @@
         <TextView
             android:id="@+id/tv_ps"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="80dp"
             android:clickable="true"
             android:drawableStart="@drawable/lock_icon"
             android:drawablePadding="8dp"
@@ -135,7 +136,7 @@
         <TextView
             android:id="@+id/tv_hs"
             android:layout_width="match_parent"
-            android:layout_height="90dp"
+            android:layout_height="80dp"
             android:text="Help and Support"
             android:drawableStart="@drawable/hs_icon"
             android:drawablePadding="8dp"
@@ -150,7 +151,7 @@
         <TextView
             android:id="@+id/tv_about"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="80dp"
             android:clickable="true"
             android:drawableStart="@drawable/about_icon"
             android:drawablePadding="8dp"

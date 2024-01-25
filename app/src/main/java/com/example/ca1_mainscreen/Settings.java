@@ -36,17 +36,17 @@ public class Settings extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
         TextView profileTextView = findViewById(R.id.tv_profile);
-
-        profileTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(),Profile.class);
-                startActivity(i);
-
-
-            }
+        TextView notificationTextView = findViewById(R.id.tv_notification);
+        notificationTextView.setOnClickListener(v -> {
+            Intent intent = new Intent(Settings.this, Notification.class);
+            startActivity(intent);
         });
-       // readData();
+
+        profileTextView.setOnClickListener(view -> {
+            Intent intent = new Intent(Settings.this, Profile.class);
+            startActivity(intent);
+        });
+
 
 
 
@@ -79,22 +79,5 @@ public class Settings extends AppCompatActivity {
         bottomNavigationView.setSelectedItemId(R.id.settings);
     }
 
-//    public void readData() {
-//        FirebaseDatabase database = FirebaseDatabase.getInstance();
-//        DatabaseReference myRef = database.getReference("user").child("CTKDba0Cp3XUDqJqDqFOCzOeM4H2");
-//
-//        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                User userdetails = snapshot.getValue(User.class);
-//
-//                Log.i("Settings", "onDataChange: " + userdetails.getImageUrl());
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-//    }
+
 }

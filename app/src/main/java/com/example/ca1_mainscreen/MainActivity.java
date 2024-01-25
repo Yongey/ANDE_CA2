@@ -35,6 +35,7 @@ FirebaseUser user;
     private int DIW = 7;
     private CheckBox checkBox;
     private boolean CB = false;
+    private View onlineIndicator;
     private boolean buttonIncrClicked = false;
     private DatabaseReference databaseReference;
 
@@ -53,7 +54,17 @@ FirebaseUser user;
     private RadioButton buttonI7;
 
     // private DatabaseReference databaseReference;
+    @Override
+    protected void onStart() {
+        super.onStart();
+        updateOnlineStatus(true); // User goes online
+    }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        updateOnlineStatus(false); // User goes offline
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -62,6 +73,8 @@ FirebaseUser user;
 
         // Initialize FirebaseAuth instance
         auth = FirebaseAuth.getInstance();
+        onlineIndicator = findViewById(R.id.onlineIndicator);
+
         user = auth.getCurrentUser();
         databaseReference = FirebaseDatabase.getInstance().getReference();
         buttonI1 = findViewById(R.id.r1);
@@ -123,6 +136,7 @@ FirebaseUser user;
                 return false;
             }
         });
+
         ImageButton plusbtn = findViewById(R.id.plus_button2);
         plusbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -668,6 +682,18 @@ FirebaseUser user;
 
         }
     }
+
+        private void updateOnlineStatus(boolean isOnline) {
+            FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+            if (currentUser != null) {
+                DatabaseReference userStatusRef = FirebaseDatabase.getInstance()
+                        .getReference("UserStatus")
+                        .child(currentUser.getUid())
+                        .child("isOnline");
+                userStatusRef.setValue(isOnline);
+            }
+        }
+
 
 
 }
