@@ -25,16 +25,19 @@ import java.util.List;
 
 public class Settings extends AppCompatActivity {
     Button button;
-    TextView tvUsername;
-    TextView tvEmail;
     FirebaseAuth mAuth;
+    @Override
+    protected void onStart() {
+        super.onStart();
+        updateOnlineStatus(true); // User goes online
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         button = findViewById(R.id.logout);
         mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = mAuth.getCurrentUser();
         TextView profileTextView = findViewById(R.id.tv_profile);
         TextView notificationTextView = findViewById(R.id.tv_notification);
         notificationTextView.setOnClickListener(v -> {
@@ -46,9 +49,6 @@ public class Settings extends AppCompatActivity {
             Intent intent = new Intent(Settings.this, Profile.class);
             startActivity(intent);
         });
-
-
-
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +78,15 @@ public class Settings extends AppCompatActivity {
         });
         bottomNavigationView.setSelectedItemId(R.id.settings);
     }
-
+    private void updateOnlineStatus(boolean isOnline) {
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser != null) {
+            DatabaseReference userStatusRef = FirebaseDatabase.getInstance()
+                    .getReference("UserStatus")
+                    .child(currentUser.getUid())
+                    .child("isOnline");
+            userStatusRef.setValue(isOnline);
+        }
+    }
 
 }
