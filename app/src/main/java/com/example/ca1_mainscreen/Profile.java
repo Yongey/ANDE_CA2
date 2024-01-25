@@ -67,6 +67,7 @@ public class Profile extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         updateOnlineStatus(true); // User goes online
+        //test
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser != null) {
             DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("user").child(currentUser.getUid());
