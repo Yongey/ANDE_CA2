@@ -14,10 +14,10 @@
         android:theme="@style/Theme.CA1MainScreen"
         tools:targetApi="31">
         <activity
-            android:name=".UpdateProfile"
+            android:name=".Test"
             android:exported="false" />
         <activity
-            android:name=".UpdateUserName"
+            android:name=".UpdateProfile"
             android:exported="false" />
         <activity
             android:name=".Notification"
@@ -61,6 +61,21 @@
         <activity
             android:name=".MainActivity"
             android:exported="false" />
+
+        <service
+            android:name=".MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <meta-data
+            android:name="firebase_messaging_auto_init_enabled"
+            android:value="false" />
+        <meta-data
+            android:name="firebase_analytics_collection_enabled"
+            android:value="false" />
     </application>
 
 </manifest>

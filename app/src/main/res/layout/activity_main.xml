@@ -4,8 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="@android:color/background_light">
+    android:background="@android:color/background_light"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/yourButtonId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:foreground="?android:attr/selectableItemBackgroundBorderless"
+        android:text="Click me"
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.869"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.118" />
 
     <View
         android:id="@+id/onlineIndicator"
@@ -20,6 +37,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="150dp"
@@ -119,17 +139,15 @@
         android:layout_height="50dp"
         android:layout_marginTop="12dp"
         android:background="@drawable/rec"
+        android:buttonTint="@color/black"
         android:enabled="false"
         android:text="Completed"
-        android:buttonTint="@color/black"
-        android:textColor="@color/black"
         android:textAlignment="textStart"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.881"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-
 
 
     <ProgressBar
@@ -151,17 +169,17 @@
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:background="@color/nav"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_nav_menu" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:background="@color/nav"
         android:layout_width="342dp"
         android:layout_height="220dp"
+        android:background="@color/nav"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@+id/textView5"
         app:layout_constraintEnd_toEndOf="@+id/textView5"
@@ -173,8 +191,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="212dp"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -186,8 +203,8 @@
                     android:id="@+id/text_view_progress2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0/3"
                     android:gravity="center"
+                    android:text="0/3"
                     android:textSize="22dp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/progress_bar2"
@@ -240,7 +257,8 @@
                     app:layout_constraintHorizontal_bias="0.641"
                     app:layout_constraintStart_toEndOf="@+id/textView10"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.575" />
+                    app:layout_constraintVertical_bias="0.575"
+                    tools:ignore="TouchTargetSizeCheck" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -257,14 +275,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:buttonTint="@color/colorPrimaryDark"
-                    android:text="Lorem ipsum dolor sit amet" />
+                    android:text="Lorem ipsum dolor sit amet"
+                    tools:ignore="TouchTargetSizeCheck" />
 
                 <View
                     android:id="@+id/underline2"
                     android:layout_width="match_parent"
-                    android:layout_marginTop="7.5dp"
                     android:layout_height="1dp"
                     android:layout_gravity="center"
+                    android:layout_marginTop="7.5dp"
                     android:background="#000000" /> <!-- Set your underline color -->
             </FrameLayout>
 
@@ -280,14 +299,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:buttonTint="@color/colorPrimaryDark"
-                    android:text="Lorem ipsum dolor sit amet" />
+                    android:text="Lorem ipsum dolor sit amet"
+                    tools:ignore="TouchTargetSizeCheck" />
                 <!-- Checkbox 3 -->
                 <View
                     android:id="@+id/underline3"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginTop="7.5dp"
                     android:layout_gravity="center"
+                    android:layout_marginTop="7.5dp"
                     android:background="#000000" />
             </FrameLayout>
 
@@ -302,8 +322,8 @@
                     android:layout_height="1dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="7.5dp"
-                    android:buttonTint="@color/colorPrimaryDark"
-                    android:background="#000000" /> <!-- Set your underline color -->
+                    android:background="#000000"
+                    android:buttonTint="@color/colorPrimaryDark" /> <!-- Set your underline color -->
 
 
                 <CheckBox
@@ -312,7 +332,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:buttonTint="@color/colorPrimaryDark"
-                    android:text="Lorem ipsum dolor sit amet" />
+                    android:text="Lorem ipsum dolor sit amet"
+                    tools:ignore="TouchTargetSizeCheck" />
             </FrameLayout>
         </LinearLayout>
 
@@ -435,93 +456,99 @@
         android:id="@+id/r1"
         android:layout_width="28dp"
         android:layout_height="28dp"
-        android:gravity="center"
         android:buttonTint="@color/colorPrimaryDark"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="@+id/textView4"
         app:layout_constraintHorizontal_bias="0.285"
         app:layout_constraintStart_toStartOf="@+id/textView4"
         app:layout_constraintTop_toTopOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.82" />
+        app:layout_constraintVertical_bias="0.82"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <RadioButton
         android:id="@+id/r2"
         android:layout_width="28dp"
         android:layout_height="28dp"
-        android:gravity="center"
         android:buttonTint="@color/colorPrimaryDark"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="@+id/textView4"
         app:layout_constraintHorizontal_bias="0.982"
         app:layout_constraintStart_toStartOf="@+id/textView4"
         app:layout_constraintTop_toTopOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.82" />
+        app:layout_constraintVertical_bias="0.82"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <RadioButton
         android:id="@+id/r3"
         android:layout_width="28dp"
         android:layout_height="28dp"
-        android:textAlignment="center"
         android:buttonTint="@color/colorPrimaryDark"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="@+id/textView4"
         app:layout_constraintHorizontal_bias="0.868"
         app:layout_constraintStart_toStartOf="@+id/textView4"
         app:layout_constraintTop_toTopOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.82" />
+        app:layout_constraintVertical_bias="0.82"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <RadioButton
         android:id="@+id/r4"
         android:layout_width="28dp"
         android:layout_height="28dp"
-        android:gravity="center"
         android:buttonTint="@color/colorPrimaryDark"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="@+id/textView4"
         app:layout_constraintHorizontal_bias="0.76"
         app:layout_constraintStart_toStartOf="@+id/textView4"
         app:layout_constraintTop_toTopOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.82" />
+        app:layout_constraintVertical_bias="0.82"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <RadioButton
         android:id="@+id/r5"
         android:layout_width="28dp"
         android:layout_height="28dp"
-        android:textAlignment="center"
         android:buttonTint="@color/colorPrimaryDark"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="@+id/textView4"
         app:layout_constraintHorizontal_bias="0.642"
         app:layout_constraintStart_toStartOf="@+id/textView4"
         app:layout_constraintTop_toTopOf="@+id/textView4"
         app:layout_constraintVertical_bias="0.82"
-       />
+        tools:ignore="TouchTargetSizeCheck" />
 
     <RadioButton
         android:id="@+id/r6"
         android:layout_width="28dp"
         android:layout_height="28dp"
-        android:textAlignment="center"
         android:buttonTint="@color/colorPrimaryDark"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="@+id/textView4"
         app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="@+id/textView4"
         app:layout_constraintTop_toTopOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.82" />
+        app:layout_constraintVertical_bias="0.82"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <RadioButton
         android:id="@+id/r7"
         android:layout_width="28dp"
         android:layout_height="28dp"
-        android:textAlignment="center"
         android:buttonTint="@color/colorPrimaryDark"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="@+id/textView4"
         app:layout_constraintHorizontal_bias="0.40"
         app:layout_constraintStart_toStartOf="@+id/textView4"
         app:layout_constraintTop_toTopOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.82" />
+        app:layout_constraintVertical_bias="0.82"
+        tools:ignore="TouchTargetSizeCheck" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
