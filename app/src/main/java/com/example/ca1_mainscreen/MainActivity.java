@@ -145,6 +145,18 @@ FirebaseUser user;
                 startActivity(i);
             }
         });
+
+
+        TextView habits = findViewById(R.id.textView4);
+        habits.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), WeeklyHabit.class);
+                startActivity(intent);
+            }
+        });
+
+
         bottomNavigationView.setSelectedItemId(R.id.home);
         checkBox2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -369,8 +381,6 @@ FirebaseUser user;
                 saveButtonIncrClickedState();
             }
         });
-
-
 
 
 
@@ -693,7 +703,6 @@ FirebaseUser user;
                 userStatusRef.setValue(isOnline);
             }
         }
-
 
 
 }

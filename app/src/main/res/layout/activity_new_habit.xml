@@ -25,13 +25,17 @@
         android:id="@+id/savebtn"
         android:layout_width="128dp"
         android:layout_height="41dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="39dp"
         android:layout_marginEnd="33dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/savebtn"
         android:text="Save"
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cancelbtn"
+        app:layout_constraintTop_toBottomOf="@+id/view5" />
 
     <View
         android:id="@+id/view"
@@ -59,7 +63,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view"
-        app:layout_constraintVertical_bias="0.02" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <LinearLayout
         android:id="@+id/daypicker_layout"
@@ -72,16 +76,18 @@
 
     <TextView
         android:id="@+id/textView10"
-        android:layout_width="318dp"
-        android:layout_height="105dp"
+        android:layout_width="314dp"
+        android:layout_height="78dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="-50dp"
         android:layout_marginEnd="20dp"
-        android:text="Start off by making your habit very easy to achieve. By doing this you won’t get burned out and give up"
+        android:text="Start off by making your habit easy to achieve. By doing this you won’t get burned out and give up!"
+        android:textAlignment="center"
         android:textColor="#ECE6FF"
         android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
@@ -120,7 +126,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.565"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9">
+        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        app:layout_constraintVertical_bias="0.55">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/layoutText"
@@ -137,16 +144,21 @@
         android:textAlignment="center"
         android:textColor="@color/nav"
         android:textSize="25dp"
-        tools:layout_editor_absoluteX="48dp"
-        tools:layout_editor_absoluteY="414dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/view5"
+        app:layout_constraintEnd_toEndOf="@+id/view5"
+        app:layout_constraintStart_toStartOf="@+id/view5"
+        app:layout_constraintTop_toTopOf="@+id/view5"
+        app:layout_constraintVertical_bias="0.165" />
 
     <include
         android:id="@+id/daypicker"
         layout="@layout/daypicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="61dp"
-        tools:layout_editor_absoluteY="518dp"></include>
+        app:layout_constraintBottom_toBottomOf="@+id/view5"
+        app:layout_constraintEnd_toEndOf="@+id/view5"
+        app:layout_constraintStart_toStartOf="@+id/view5"
+        app:layout_constraintTop_toBottomOf="@+id/textView12"></include>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,19 +8,17 @@
 
 
     <ImageButton
-        android:id="@+id/plus_button"
+        android:id="@+id/newhabit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:clickable="true"
-        android:contentDescription="Plus Button"
         android:focusable="true"
         android:src="@drawable/ic_plus"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.641"
-        app:layout_constraintStart_toEndOf="@+id/textView10"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.896" />
 
@@ -48,7 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Weekly Habit"
+        android:text="Weekly Habits"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="24sp"
