@@ -81,16 +81,24 @@ FirebaseUser user;
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button gotoNewPageButton = findViewById(R.id.yourButtonId);
 
-        gotoNewPageButton.setOnClickListener(new View.OnClickListener() {
+        Button userChallenge = findViewById(R.id.btn_challenge);
+        Button check = findViewById(R.id.button2);
+        check.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                // Code to run when the button is clicked
-                Intent intent = new Intent(MainActivity.this, Test.class);
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, StartChallenge.class);
                 startActivity(intent);
             }
         });
+        userChallenge.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, UserChallenge.class);
+                startActivity(intent);
+            }
+        });
+
         // Initialize FirebaseAuth instance
         auth = FirebaseAuth.getInstance();
         onlineIndicator = findViewById(R.id.onlineIndicator);

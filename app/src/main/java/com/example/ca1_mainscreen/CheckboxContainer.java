@@ -6,9 +6,17 @@ public class CheckboxContainer {
 
     private String containerId;
     private List<CheckboxData> checkboxDataList;
+    private long timestamp;
 
     // Empty constructor for Firebase
     public CheckboxContainer() {
+    }
+    public long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
     }
 
     public CheckboxContainer(String containerId, List<CheckboxData> checkboxDataList) {

@@ -7,22 +7,6 @@
     android:background="@android:color/background_light"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/yourButtonId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:background="?android:attr/selectableItemBackground"
-        android:foreground="?android:attr/selectableItemBackgroundBorderless"
-        android:text="Click me"
-        android:textColor="@color/colorPrimaryDark"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.869"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.118" />
 
     <View
         android:id="@+id/onlineIndicator"
@@ -89,8 +73,8 @@
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
 
-    <TextView
-        android:id="@+id/textView6"
+    <Button
+        android:id="@+id/btn_challenge"
         android:layout_width="340dp"
         android:layout_height="70dp"
         android:background="@drawable/rec"
@@ -102,7 +86,7 @@
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <TextView
         android:id="@+id/textView3"
@@ -165,15 +149,6 @@
         app:layout_constraintVertical_bias="0.548"
         tools:progress="0" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/nav"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_nav_menu" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -338,11 +313,7 @@
         </LinearLayout>
 
     </LinearLayout>
-    <!--        <TextView-->
-    <!--            android:id="@+id/textView12"-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:text="1/6" />-->
+
 
 
     <TextView
@@ -549,6 +520,24 @@
         app:layout_constraintTop_toTopOf="@+id/textView4"
         app:layout_constraintVertical_bias="0.82"
         tools:ignore="TouchTargetSizeCheck" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/nav"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        tools:layout_editor_absoluteX="282dp"
+        tools:layout_editor_absoluteY="72dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
