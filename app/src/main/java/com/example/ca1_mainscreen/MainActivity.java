@@ -60,10 +60,14 @@ FirebaseUser user;
         updateOnlineStatus(true); // User goes online
     }
 
+
+
     @Override
-    protected void onStop() {
-        super.onStop();
-        updateOnlineStatus(false); // User goes offline
+    protected void onPause() {
+        super.onPause();
+        if (isFinishing()) {
+            updateOnlineStatus(false); // User is leaving the app
+        }
     }
 
     @Override
@@ -379,7 +383,7 @@ FirebaseUser user;
     @Override
     protected void onResume() {
         super.onResume();
-
+        updateOnlineStatus(true); // User comes back to the app
         // Reset the state of the button when the activity is resumed
         loadButtonIncrClickedState();
     }
