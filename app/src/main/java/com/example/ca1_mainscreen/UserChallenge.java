@@ -1,6 +1,7 @@
 package com.example.ca1_mainscreen;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -51,7 +52,7 @@ public class UserChallenge extends AppCompatActivity {
                 parentLayout.removeAllViews();
                 for (DataSnapshot containerSnapshot : dataSnapshot.getChildren()) {
                     String containerId = containerSnapshot.getKey();
-
+                    CardView cardView = createCardView();
                     // Create a container layout for each set of checkboxes
                     LinearLayout containerLayout = new LinearLayout(UserChallenge.this);
                     containerLayout.setOrientation(LinearLayout.VERTICAL);
@@ -61,7 +62,7 @@ public class UserChallenge extends AppCompatActivity {
                     TextView containerTitle = new TextView(UserChallenge.this);
                     containerTitle.setText("Container ID: " + containerId);
                     containerLayout.addView(containerTitle);
-
+                    cardView.addView(containerLayout);
                     for (DataSnapshot checkboxSnapshot : containerSnapshot.child("checkboxDataList").getChildren()) {
                         CheckBox checkBox = new CheckBox(UserChallenge.this);
                         String checkboxId = checkboxSnapshot.getKey();
@@ -77,7 +78,7 @@ public class UserChallenge extends AppCompatActivity {
 
                         containerLayout.addView(checkBox);
                     }
-
+                    parentLayout.addView(cardView);
                     // Add a visual separator between containers for clarity
                     View separator = new View(UserChallenge.this);
                     separator.setLayoutParams(new LinearLayout.LayoutParams(
@@ -86,8 +87,7 @@ public class UserChallenge extends AppCompatActivity {
                     ));
                     separator.setBackgroundColor(Color.parseColor("#B3B3B3"));
 
-                    parentLayout.addView(containerLayout);
-                    parentLayout.addView(separator); // Add the separator view here
+
                 }
             }
 
@@ -97,7 +97,19 @@ public class UserChallenge extends AppCompatActivity {
             }
         });
     }
-
+    private CardView createCardView() {
+        CardView cardView = new CardView(UserChallenge.this);
+        LinearLayout.LayoutParams cardLayoutParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+        cardLayoutParams.setMargins(30, 20, 30, 20);
+        cardView.setLayoutParams(cardLayoutParams);
+        cardView.setCardBackgroundColor(Color.parseColor("#FFFFFF"));
+        cardView.setRadius(16);
+        cardView.setCardElevation(8);
+        return cardView;
+    }
 
     private void saveCheckboxStatusToDatabase() {
         DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference("checkboxContainers");
