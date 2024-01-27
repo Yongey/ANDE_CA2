@@ -53,6 +53,7 @@ public class Settings extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                updateOnlineStatus(false);
                 FirebaseAuth.getInstance().signOut();
                 Intent i = new Intent(getApplicationContext(),Login.class);
                 startActivity(i);

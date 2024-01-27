@@ -9,6 +9,9 @@
     <string name="welcome_back">Welcome Back!</string>
     <string name="sign_up">Sign Up</string>
     <string name="ps">Privacy &amp; Security</string>
+    <string name="msg_token_fmt">FCM Token: %1$s</string>
+    <string name="channel_name">My Notification Channel</string>
+    <string name="channel_description">Description for my notification channel</string>
     <string-array name="gender_options">
         <item>Male</item>
         <item>Female</item>

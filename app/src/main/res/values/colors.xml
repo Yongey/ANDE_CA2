@@ -10,4 +10,5 @@
     <color name="grey">#808080</color>
     <color name = "dailybackground">#FFFFFFFF</color>
     <color name = "editName">#00BCD4</color>
+    <color name="purple_200">#FFBB86FC</color>
 </resources>
