@@ -103,9 +103,10 @@ public class UserChallenge extends AppCompatActivity {
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
         );
+
         cardLayoutParams.setMargins(30, 20, 30, 20);
         cardView.setLayoutParams(cardLayoutParams);
-        cardView.setCardBackgroundColor(Color.parseColor("#FFFFFF"));
+        cardView.setCardBackgroundColor(Color.parseColor("#E2DBFF"));
         cardView.setRadius(16);
         cardView.setCardElevation(8);
         return cardView;

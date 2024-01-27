@@ -61,6 +61,7 @@ public class Test extends AppCompatActivity {
         rowLayout.setOrientation(LinearLayout.HORIZONTAL);
 
         CheckBox checkBox = new CheckBox(this);
+
         checkBox.setLayoutParams(new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT,
