@@ -11,7 +11,7 @@ import android.widget.CompoundButton;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ca1_mainscreen.AddNewTask;
+import com.example.ca1_mainscreen.DailyTask;
 import com.example.ca1_mainscreen.Model.ToDoModel;
 import com.example.ca1_mainscreen.R;
 import com.example.ca1_mainscreen.TodaysPlan;
@@ -72,14 +72,21 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
         return plan;
     }
 
+    public void deleteItem(int position) {
+        ToDoModel item = todoList.get(position);
+        db.deleteTask(item.getId());
+        todoList.remove(position);
+        notifyItemRemoved(position);
+    }
+
     public void editItem(int position) {
         ToDoModel item = todoList.get(position);
         Bundle bundle = new Bundle();
         bundle.putInt("id", item.getId());
         bundle.putString("task", item.getTask());
-        AddNewTask fragment = new AddNewTask();
+        DailyTask fragment = new DailyTask();
         fragment.setArguments(bundle);
-        fragment.show(plan.getSupportFragmentManager(), AddNewTask.TAG);
+        fragment.show(plan.getSupportFragmentManager(), DailyTask.TAG);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{

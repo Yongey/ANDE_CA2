@@ -145,10 +145,11 @@ FirebaseUser user;
         plusbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), DailyTask.class);
-                startActivity(i);
+                DailyTask dailyTaskFragment = DailyTask.newInstance();
+                dailyTaskFragment.show(getSupportFragmentManager(), DailyTask.TAG);
             }
         });
+
         bottomNavigationView.setSelectedItemId(R.id.home);
         checkBox2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -697,7 +698,5 @@ FirebaseUser user;
                 userStatusRef.setValue(isOnline);
             }
         }
-
-
 
 }
