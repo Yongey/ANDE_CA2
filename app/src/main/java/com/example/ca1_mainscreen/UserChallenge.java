@@ -3,122 +3,124 @@ package com.example.ca1_mainscreen;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
-import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
+
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class UserChallenge extends AppCompatActivity {
+    // Map to track the state of each checkbox within its container
+    private Map<String, Boolean> checkboxStates = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_challenge);
-        Button gotoNewPageButton = findViewById(R.id.bottomButton);
-        gotoNewPageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Code to run when the button is clicked
-                Intent intent = new Intent(UserChallenge.this, Test.class);
-                startActivity(intent);
-            }
-        });
-        // Initialize Firebase Database reference
-        DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference("checkboxContainers");
 
-        // Create a layout to hold all the containers
+        Button gotoNewPageButton = findViewById(R.id.bottomButton);
+        gotoNewPageButton.setOnClickListener(view -> {
+            Intent intent = new Intent(UserChallenge.this, Test.class);
+            startActivity(intent);
+        });
+
+        Button saveStatusButton = findViewById(R.id.saveStatus);
+        saveStatusButton.setOnClickListener(view -> saveCheckboxStatusToDatabase());
+
+        loadCheckboxes();
+    }
+
+    private void loadCheckboxes() {
+        DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference("checkboxContainers");
         LinearLayout parentLayout = findViewById(R.id.parentLayout);
 
-        // Listen for changes in Firebase data
         databaseRef.addValueEventListener(new ValueEventListener() {
-
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                // Clear the existing containers
                 parentLayout.removeAllViews();
-
-                // List to hold CheckboxContainer objects with their timestamps
-                List<Pair<Long, DataSnapshot>> containerList = new ArrayList<>();
-
-                // Retrieve containers and add them to the list with their timestamp
                 for (DataSnapshot containerSnapshot : dataSnapshot.getChildren()) {
-                    CheckboxContainer container = containerSnapshot.getValue(CheckboxContainer.class);
-                    if (container != null) {
-                        long timestamp = container.getTimestamp();
-                        containerList.add(new Pair<>(timestamp, containerSnapshot));
-                    }
-                }
+                    String containerId = containerSnapshot.getKey();
 
-                // Sort the list by the timestamp
-                Collections.sort(containerList, new Comparator<Pair<Long, DataSnapshot>>() {
-                    @Override
-                    public int compare(Pair<Long, DataSnapshot> o1, Pair<Long, DataSnapshot> o2) {
-                        return o1.first.compareTo(o2.first);
-                    }
-                });
-
-                // Now create the containers in sorted order
-                for (Pair<Long, DataSnapshot> pair : containerList) {
-                    DataSnapshot containerSnapshot = pair.second;
-                    CheckboxContainer checkboxContainer = containerSnapshot.getValue(CheckboxContainer.class);
-                    List<CheckboxData> checkboxes = checkboxContainer.getCheckboxDataList();
-
+                    // Create a container layout for each set of checkboxes
                     LinearLayout containerLayout = new LinearLayout(UserChallenge.this);
                     containerLayout.setOrientation(LinearLayout.VERTICAL);
-                    containerLayout.setBackgroundColor(getResources().getColor(R.color.nav)); // Set the container background color to purple
+                    containerLayout.setPadding(10, 10, 10, 10); // Add some padding for visual separation
 
-                    // Add layout parameters to the container with bottom margin
-                    LinearLayout.LayoutParams containerParams = new LinearLayout.LayoutParams(
-                            LinearLayout.LayoutParams.MATCH_PARENT,
-                            LinearLayout.LayoutParams.WRAP_CONTENT);
-                    containerParams.bottomMargin = 30; // Add bottom margin for spacing
-                    containerLayout.setLayoutParams(containerParams);
+                    // Optional: Add a TextView or some identifier for each container
+                    TextView containerTitle = new TextView(UserChallenge.this);
+                    containerTitle.setText("Container ID: " + containerId);
+                    containerLayout.addView(containerTitle);
 
-                    // Add checkboxes to the container
-                    for (CheckboxData checkboxData : checkboxes) {
+                    for (DataSnapshot checkboxSnapshot : containerSnapshot.child("checkboxDataList").getChildren()) {
                         CheckBox checkBox = new CheckBox(UserChallenge.this);
-                        checkBox.setText(checkboxData.getText());
+                        String checkboxId = checkboxSnapshot.getKey();
+                        checkBox.setText(checkboxSnapshot.child("text").getValue(String.class));
+                        Boolean isChecked = checkboxSnapshot.child("checked").getValue(Boolean.class);
+                        checkBox.setChecked(isChecked != null ? isChecked : false);
+
+                        checkBox.setOnCheckedChangeListener((buttonView, isChecked1) -> {
+                            // Update checkboxStates map when checkbox state changes
+                            String key = containerId + "_" + checkboxId;
+                            checkboxStates.put(key, isChecked1);
+                        });
+
                         containerLayout.addView(checkBox);
                     }
 
-                    parentLayout.addView(containerLayout);
+                    // Add a visual separator between containers for clarity
+                    View separator = new View(UserChallenge.this);
+                    separator.setLayoutParams(new LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            5
+                    ));
+                    separator.setBackgroundColor(Color.parseColor("#B3B3B3"));
 
-                    // Add a divider View
-                    View divider = new View(UserChallenge.this);
-                    LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-                            LinearLayout.LayoutParams.MATCH_PARENT, 20);
-                    layoutParams.setMargins(0, 10, 0, 10);
-                    divider.setLayoutParams(layoutParams);
-                    divider.setBackgroundColor(getResources().getColor(android.R.color.white));
-                    parentLayout.addView(divider);
+                    parentLayout.addView(containerLayout);
+                    parentLayout.addView(separator); // Add the separator view here
                 }
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 // Handle any errors here
             }
         });
     }
-    private void saveCheckboxStates(String containerId, List<CheckboxData> checkboxes) {
-        DatabaseReference checkboxesRef = FirebaseDatabase.getInstance().getReference("checkboxContainers")
-                .child(containerId).child("checkboxDataList");
 
-        for (CheckboxData checkboxData : checkboxes) {
-            checkboxesRef.child(checkboxData.getId()).child("isChecked").setValue(checkboxData.isChecked());
+
+    private void saveCheckboxStatusToDatabase() {
+        DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference("checkboxContainers");
+
+        for (Map.Entry<String, Boolean> entry : checkboxStates.entrySet()) {
+            String[] keys = entry.getKey().split("_");
+            if (keys.length < 2) continue;
+
+            String containerId = keys[0];
+            String checkboxId = keys[1];
+            Boolean isChecked = entry.getValue();
+
+            databaseRef.child(containerId).child("checkboxDataList").child(checkboxId).child("checked")
+                    .setValue(isChecked)
+                    .addOnSuccessListener(aVoid -> {
+                        // Handle successful save here
+                    })
+                    .addOnFailureListener(e -> {
+                        // Handle failed save here
+                    });
         }
+
+        // Optionally clear the states after saving
+        checkboxStates.clear();
     }
 }
