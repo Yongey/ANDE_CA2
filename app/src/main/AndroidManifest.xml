@@ -42,6 +42,9 @@
             android:exported="true" />
         <activity
             android:name=".DailyTask"
+            android:exported="false" />
+        <activity
+            android:name=".TodaysPlan"
             android:exported="false" /> <!-- Intent-filter removed from here -->
         <activity
             android:name=".Settings"

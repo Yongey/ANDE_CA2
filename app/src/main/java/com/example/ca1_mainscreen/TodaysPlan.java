@@ -1,6 +1,7 @@
 package com.example.ca1_mainscreen;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -30,7 +31,6 @@ public class TodaysPlan extends AppCompatActivity implements DialogCloseListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todaysplan);
-        getSupportActionBar().hide();
 
         db = new DatabaseHandler(this);
         db.openDatabase();
@@ -44,6 +44,9 @@ public class TodaysPlan extends AppCompatActivity implements DialogCloseListener
 
         fab =findViewById(R.id.fab);
 
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new RecyclerItemTouchHelper(tasksAdapter));
+        itemTouchHelper.attachToRecyclerView(tasksRecyclerView);
+
         taskList = db.getAllTasks();
         Collections.reverse(taskList);
         tasksAdapter.setTasks(taskList);
@@ -51,10 +54,11 @@ public class TodaysPlan extends AppCompatActivity implements DialogCloseListener
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AddNewTask.newInstance().show(getSupportFragmentManager(), AddNewTask.TAG);
+                DailyTask.newInstance().show(getSupportFragmentManager(), DailyTask.TAG);
             }
         });
     }
+
 
     @Override
     public void handleDialogClose(DialogInterface dialog) {
@@ -63,4 +67,5 @@ public class TodaysPlan extends AppCompatActivity implements DialogCloseListener
         tasksAdapter.setTasks(taskList);
         tasksAdapter.notifyDataSetChanged();
     }
+
 }
