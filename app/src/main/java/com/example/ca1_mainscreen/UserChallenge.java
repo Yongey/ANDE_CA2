@@ -2,6 +2,8 @@ package com.example.ca1_mainscreen;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -33,11 +35,13 @@ public class UserChallenge extends AppCompatActivity {
     private String userId;
     private int remainingSaves = 0;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_challenge);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
         if (user != null) {
             userId = user.getUid();
             loadCheckboxes(userId); // Load checkboxes for the signed-in user
@@ -167,5 +171,6 @@ public class UserChallenge extends AppCompatActivity {
     private void redirectToLogin() {
         // Redirect user to login activity
     }
+
 }
 
