@@ -42,8 +42,8 @@ public class Test extends AppCompatActivity {
 
         // Container layout with purple background
         containerLayout = findViewById(R.id.containerLayout);
-        containerLayout.setBackgroundColor(getResources().getColor(R.color.purple_200)); // Use your purple color here
-
+        containerLayout.setBackgroundColor(getResources().getColor(R.color.nav)); // Use your purple color here
+        String receivedText = getIntent().getStringExtra("clickedText");
         // Button to add checkboxes dynamically
         Button addCheckboxButton = findViewById(R.id.addCheckboxButton);
         addCheckboxButton.setOnClickListener(view -> addCheckboxToContainer(containerLayout));
@@ -117,13 +117,24 @@ public class Test extends AppCompatActivity {
 
 
     private void saveCheckboxStatesToFirebase() {
+        // Get the received text from the Intent
+        String receivedText = getIntent().getStringExtra("clickedText");
+
+        // Generate a unique key for the new container
         String containerId = databaseRef.push().getKey();
-        CheckboxContainer checkboxContainer = new CheckboxContainer(containerId, checkboxDataList);
-        databaseRef.child(containerId).setValue(checkboxContainer);
-        if (containerLayout != null) {
-            containerLayout.removeAllViews();
-        }
-        checkboxDataList.clear();
-        Toast.makeText(this, "Data saved successfully", Toast.LENGTH_SHORT).show();
+
+        // Create a new CheckboxContainer instance including the received text
+        CheckboxContainer checkboxContainer = new CheckboxContainer(containerId, checkboxDataList, receivedText);
+
+        // Save the container to Firebase
+        databaseRef.child(containerId).setValue(checkboxContainer).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                Toast.makeText(Test.this, "Data saved successfully", Toast.LENGTH_SHORT).show();
+                containerLayout.removeAllViews(); // Clear the UI
+                checkboxDataList.clear(); // Clear the local list
+            } else {
+                Toast.makeText(Test.this, "Failed to save data", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

@@ -7,6 +7,15 @@ public class CheckboxContainer {
     private String containerId;
     private List<CheckboxData> checkboxDataList;
     private long timestamp;
+    private String receivedText;
+
+    public String getReceivedText() {
+        return receivedText;
+    }
+
+    public void setReceivedText(String receivedText) {
+        this.receivedText = receivedText;
+    }
 
     // Empty constructor for Firebase
     public CheckboxContainer() {
@@ -19,9 +28,10 @@ public class CheckboxContainer {
         this.timestamp = timestamp;
     }
 
-    public CheckboxContainer(String containerId, List<CheckboxData> checkboxDataList) {
+    public CheckboxContainer(String containerId, List<CheckboxData> checkboxDataList,String receivedText) {
         this.containerId = containerId;
         this.checkboxDataList = checkboxDataList;
+        this.receivedText = receivedText;
     }
 
     public String getContainerId() {

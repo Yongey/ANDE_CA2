@@ -1,5 +1,6 @@
 package com.example.ca1_mainscreen;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.SpannableString;
@@ -8,7 +9,9 @@ import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.UnderlineSpan;
+import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,12 +19,22 @@ import androidx.appcompat.app.AppCompatActivity;
 public class StartChallenge extends AppCompatActivity {
 
     private TextView lastClickedTextView;
+private LinearLayout learnNewLanguageLayout;
+    private LinearLayout LoremLayout;
+    private LinearLayout movieLayout;
+    private LinearLayout WorkoutLayout;
+    private LinearLayout studyLayout;
+    private LinearLayout studyPlanLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_challenge);
-
+        learnNewLanguageLayout = findViewById(R.id.learnNewLanguageLayout);
+        movieLayout= findViewById(R.id.movieLayout);
+        WorkoutLayout = findViewById(R.id.WorkoutLayout);
+        studyLayout = findViewById(R.id.studyLayout);
+        LoremLayout=findViewById(R.id.LoremLayout);
         // Find your TextViews by their IDs
         TextView newText = findViewById(R.id.newText);
         TextView health = findViewById(R.id.health);
@@ -29,7 +42,6 @@ public class StartChallenge extends AppCompatActivity {
         TextView enjoymen = findViewById(R.id.enjoymen);
         TextView learning1 = findViewById(R.id.learning1);
         TextView learning2 = findViewById(R.id.learning2);
-
         // Set the text to be clickable
         setClickableText(newText);
         setClickableText(health);
@@ -37,6 +49,35 @@ public class StartChallenge extends AppCompatActivity {
         setClickableText(enjoymen);
         setClickableText(learning1);
         setClickableText(learning2);
+        newText.setOnClickListener(v -> {
+            toggleVisibility(learnNewLanguageLayout);
+        });
+        health.setOnClickListener(v -> {
+            toggleVisibility(WorkoutLayout);
+        });
+        learning.setOnClickListener(v -> {
+            toggleVisibility(studyLayout);
+        });
+        enjoymen.setOnClickListener(v -> {
+            toggleVisibility( movieLayout);
+        });
+        learning1.setOnClickListener(v -> {
+            toggleVisibility( LoremLayout);
+        });
+        learning2.setOnClickListener(v->{
+            toggleVisibilityAll();
+        });
+
+        TextView studyTextView = findViewById(R.id.studys);
+        String textToPass = studyTextView.getText().toString();
+        studyLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(StartChallenge.this, Test.class);
+                intent.putExtra("clickedText",textToPass);
+                startActivity(intent);
+            }
+        });
     }
 
     private void setClickableText(final TextView textView) {
@@ -80,6 +121,26 @@ public class StartChallenge extends AppCompatActivity {
             spannable.removeSpan(span);
         }
     }
+    private void toggleVisibility(LinearLayout layoutToShow) {
+        // First, make all layouts gone
+        learnNewLanguageLayout.setVisibility(View.GONE);
+        LoremLayout.setVisibility(View.GONE);
+        movieLayout.setVisibility(View.GONE);
+        WorkoutLayout.setVisibility(View.GONE);
+        studyLayout.setVisibility(View.GONE);
 
+        // ... set other layouts to GONE ...
+
+        // Now, make the selected layout visible
+        layoutToShow.setVisibility(View.VISIBLE);
+    }
+    private void toggleVisibilityAll() {
+        // First, make all layouts gone
+        learnNewLanguageLayout.setVisibility(View.VISIBLE);
+        LoremLayout.setVisibility(View.VISIBLE);
+        movieLayout.setVisibility(View.VISIBLE);
+        WorkoutLayout.setVisibility(View.VISIBLE);
+        studyLayout.setVisibility(View.VISIBLE);
+    }
 
 }

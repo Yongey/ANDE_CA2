@@ -40,9 +40,9 @@ public class UserChallenge extends AppCompatActivity {
             redirectToLogin();
         }
 
-        Button gotoNewPageButton = findViewById(R.id.bottomButton);
-        gotoNewPageButton.setOnClickListener(view -> {
-            Intent intent = new Intent(UserChallenge.this, Test.class);
+        Button startCreateChallenge = findViewById(R.id.bottomButton);
+        startCreateChallenge.setOnClickListener(view -> {
+            Intent intent = new Intent(UserChallenge.this, StartChallenge.class);
             startActivity(intent);
         });
 
@@ -63,6 +63,7 @@ public class UserChallenge extends AppCompatActivity {
                 parentLayout.removeAllViews();
                 for (DataSnapshot containerSnapshot : dataSnapshot.getChildren()) {
                     String containerId = containerSnapshot.getKey();
+                    String receivedText = containerSnapshot.child("receivedText").getValue(String.class);
                     CardView cardView = createCardView();
                     // Create a container layout for each set of checkboxes
                     LinearLayout containerLayout = new LinearLayout(UserChallenge.this);
@@ -71,7 +72,7 @@ public class UserChallenge extends AppCompatActivity {
 
                     // Optional: Add a TextView or some identifier for each container
                     TextView containerTitle = new TextView(UserChallenge.this);
-                    containerTitle.setText("Container ID: " + containerId);
+                    containerTitle.setText(receivedText);
                     containerLayout.addView(containerTitle);
                     cardView.addView(containerLayout);
                     for (DataSnapshot checkboxSnapshot : containerSnapshot.child("checkboxDataList").getChildren()) {

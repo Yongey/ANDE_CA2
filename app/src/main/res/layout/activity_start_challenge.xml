@@ -120,7 +120,7 @@
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
                     android:textStyle="bold"
-                    android:text="Learning"
+                    android:text="ALL"
                     android:textColor="@color/grey"
                     />
             </LinearLayout>
@@ -128,16 +128,18 @@
 
 
             <LinearLayout
+                android:id="@+id/LoremLayout"
                 android:layout_width="match_parent"
                 android:layout_height="85dp"
                 android:layout_marginTop="25dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <ImageView
 
                     android:layout_width="88dp"
                     android:layout_height="match_parent"
-                    android:src="@drawable/woman" />
+                    android:src="@drawable/learn" />
 
 
                 <LinearLayout
@@ -151,7 +153,9 @@
                         android:clickable="true"
                         android:focusable="true"
                         android:text="Lorem ipsum dolor sit amet"
-                        android:textAppearance="?attr/textAppearanceListItem" />
+                        android:textStyle="bold"
+                        android:textAppearance="?attr/textAppearanceListItem"
+                        tools:ignore="TouchTargetSizeCheck" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -164,10 +168,12 @@
 
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/learnNewLanguageLayout"
                 android:layout_width="match_parent"
                 android:layout_height="85dp"
                 android:layout_marginTop="25dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <ImageView
 
@@ -187,7 +193,9 @@
                         android:clickable="true"
                         android:focusable="true"
                         android:text="Learn a new language"
-                        android:textAppearance="?attr/textAppearanceListItem" />
+                        android:textStyle="bold"
+                        android:textAppearance="?attr/textAppearanceListItem"
+                        tools:ignore="TouchTargetSizeCheck" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -200,16 +208,18 @@
 
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/movieLayout"
                 android:layout_width="match_parent"
                 android:layout_height="85dp"
                 android:layout_marginTop="25dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <ImageView
 
                     android:layout_width="88dp"
                     android:layout_height="match_parent"
-                    android:src="@drawable/woman" />
+                    android:src="@drawable/spiderman" />
 
 
                 <LinearLayout
@@ -222,8 +232,10 @@
                         android:layout_height="wrap_content"
                         android:clickable="true"
                         android:focusable="true"
-                        android:text="Lorem ipsum dolor sit amet"
-                        android:textAppearance="?attr/textAppearanceListItem" />
+                        android:textStyle="bold"
+                        android:text="Movie"
+                        android:textAppearance="?attr/textAppearanceListItem"
+                        tools:ignore="TouchTargetSizeCheck" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -236,16 +248,18 @@
 
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/WorkoutLayout"
                 android:layout_width="match_parent"
                 android:layout_height="85dp"
                 android:layout_marginTop="25dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <ImageView
 
                     android:layout_width="88dp"
                     android:layout_height="match_parent"
-                    android:src="@drawable/woman" />
+                    android:src="@drawable/workout" />
 
 
                 <LinearLayout
@@ -258,8 +272,10 @@
                         android:layout_height="wrap_content"
                         android:clickable="true"
                         android:focusable="true"
-                        android:text="Lorem ipsum dolor sit amet"
-                        android:textAppearance="?attr/textAppearanceListItem" />
+                        android:textStyle="bold"
+                        android:text="WorkOut"
+                        android:textAppearance="?attr/textAppearanceListItem"
+                        tools:ignore="TouchTargetSizeCheck" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -272,36 +288,41 @@
 
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/studyLayout"
                 android:layout_width="match_parent"
                 android:layout_height="85dp"
                 android:layout_marginTop="25dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:clickable="true"
+                android:focusable="true"
+                >
 
                 <ImageView
 
                     android:layout_width="88dp"
                     android:layout_height="match_parent"
-                    android:src="@drawable/woman" />
+                    android:src="@drawable/study" />
 
 
                 <LinearLayout
+                    android:id="@+id/studyPlanLayout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    >
 
                     <TextView
+                        android:id="@+id/studys"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:text="Lorem ipsum dolor sit amet"
-                        android:textAppearance="?attr/textAppearanceListItem" />
+                        android:textStyle="bold"
+                        android:text="Study Plan"
+                        android:textAppearance="?attr/textAppearanceListItem"
+                        tools:ignore="TouchTargetSizeCheck" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="62dp"
-                        android:clickable="true"
-                        android:focusable="true"
                         android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                         android:textAppearance="?attr/textAppearanceListItem" />
                 </LinearLayout>

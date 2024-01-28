@@ -83,14 +83,7 @@ FirebaseUser user;
         setContentView(R.layout.activity_main);
 
         Button userChallenge = findViewById(R.id.btn_challenge);
-        Button check = findViewById(R.id.button2);
-        check.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, StartChallenge.class);
-                startActivity(intent);
-            }
-        });
+
         userChallenge.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
