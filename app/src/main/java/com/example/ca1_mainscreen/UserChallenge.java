@@ -29,6 +29,8 @@ public class UserChallenge extends AppCompatActivity {
     // Map to track the state of each checkbox within its container
     private Map<String, Boolean> checkboxStates = new HashMap<>();
     private String userId;
+    private int remainingSaves = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +57,6 @@ public class UserChallenge extends AppCompatActivity {
     }
 
     private void loadCheckboxes(String userId) {
-        DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference("checkboxContainers");
         DatabaseReference databaseUser = FirebaseDatabase.getInstance().getReference("checkboxContainers").child(userId);
         LinearLayout parentLayout = findViewById(R.id.parentLayout);
 
@@ -74,7 +75,7 @@ public class UserChallenge extends AppCompatActivity {
 
                     // Optional: Add a TextView or some identifier for each container
                     TextView containerTitle = new TextView(UserChallenge.this);
-                    containerTitle.setText(receivedText);
+                    containerTitle.setText(receivedText+" in 30 Days Challenge");
                     containerLayout.addView(containerTitle);
                     cardView.addView(containerLayout);
                     for (DataSnapshot checkboxSnapshot : containerSnapshot.child("checkboxDataList").getChildren()) {
@@ -132,28 +133,26 @@ public class UserChallenge extends AppCompatActivity {
             // Handle case where userId is null
             return;
         }
-        AtomicInteger remainingSaves = new AtomicInteger(checkboxStates.size());
+        Map<String, Object> updates = new HashMap<>();
         for (Map.Entry<String, Boolean> entry : checkboxStates.entrySet()) {
             String[] keys = entry.getKey().split("_");
-            if (keys.length < 2) continue;
+            if (keys.length >= 2) {
+                String containerId = keys[0];
+                String checkboxId = keys[1];
+                Boolean isChecked = entry.getValue();
 
-            String containerId = keys[0];
-            String checkboxId = keys[1];
-            Boolean isChecked = entry.getValue();
-
-            databaseUser.child(containerId).child("checkboxDataList").child(checkboxId).child("checked")
-                    .setValue(isChecked)
+                updates.put(containerId + "/checkboxDataList/" + checkboxId + "/checked", isChecked);
+            }
+            databaseUser.updateChildren(updates)
                     .addOnSuccessListener(aVoid -> {
                         // Handle successful save here
-                        if (remainingSaves.decrementAndGet() == 0) {
-                            // This was the last checkbox to be saved, show the toast
-                            Toast.makeText(UserChallenge.this, "All checkbox states saved successfully", Toast.LENGTH_SHORT).show();
-                        }
+                        Toast.makeText(UserChallenge.this, "All checkbox states saved successfully", Toast.LENGTH_SHORT).show();
                     })
                     .addOnFailureListener(e -> {
                         // Handle failed save here
-                        Toast.makeText(UserChallenge.this, "Failed to save checkbox state", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(UserChallenge.this, "Failed to save checkbox states", Toast.LENGTH_SHORT).show();
                     });
+
         }
 
         // Optionally clear the states after saving
