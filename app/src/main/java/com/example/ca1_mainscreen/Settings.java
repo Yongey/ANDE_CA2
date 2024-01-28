@@ -40,6 +40,21 @@ public class Settings extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         TextView profileTextView = findViewById(R.id.tv_profile);
         TextView notificationTextView = findViewById(R.id.tv_notification);
+        TextView ps = findViewById(R.id.tv_ps);
+        TextView hs = findViewById(R.id.tv_hs);
+        TextView about = findViewById(R.id.tv_about);
+        ps.setOnClickListener(v -> {
+           Intent intent = new Intent(Settings.this, PrivacyAndSecurity.class);
+           startActivity(intent);
+        });
+        hs.setOnClickListener(v -> {
+            Intent intent = new Intent(Settings.this, HelpAndSupport.class);
+            startActivity(intent);
+        });
+        about.setOnClickListener(v -> {
+            Intent intent = new Intent(Settings.this, About.class);
+            startActivity(intent);
+        });
         notificationTextView.setOnClickListener(v -> {
             Intent intent = new Intent(Settings.this, Notification.class);
             startActivity(intent);
