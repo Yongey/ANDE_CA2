@@ -19,7 +19,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ca1_mainscreen.Adapter.ToDoAdapter;
+import com.example.ca1_mainscreen.Model.ToDoModel;
+import com.example.ca1_mainscreen.Utils.DatabaseHandler;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -28,6 +33,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
 FirebaseAuth auth;
@@ -59,6 +69,10 @@ FirebaseUser user;
     private RadioButton buttonI5;
     private RadioButton buttonI6;
     private RadioButton buttonI7;
+    private RecyclerView mRecyclerView;
+    private ToDoAdapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private DatabaseHandler db;
 
     // private DatabaseReference databaseReference;
     @Override
@@ -116,29 +130,43 @@ FirebaseUser user;
             finish();
             return; // Exit the onCreate method if there's no user
         }
-       checkBox = findViewById(R.id.checkBox);
-        updateProgressBar();
-        CheckBox checkBox2 = findViewById(R.id.checkBox2);
-        CheckBox checkBox3 = findViewById(R.id.checkBox3);
-        CheckBox checkBox4 = findViewById(R.id.checkBox4);
-        View underline2 = findViewById(R.id.underline2);
-        View underline3 = findViewById(R.id.underline3);
-        View underline4 = findViewById(R.id.underline4);
-        underline2.setVisibility(checkBox2.isChecked() ? View.VISIBLE : View.INVISIBLE);
-        underline3.setVisibility(checkBox3.isChecked() ? View.VISIBLE : View.INVISIBLE);
-        underline4.setVisibility(checkBox4.isChecked() ? View.VISIBLE : View.INVISIBLE);
+//       checkBox = findViewById(R.id.checkBox);
+//        updateProgressBar();
+//        CheckBox checkBox2 = findViewById(R.id.checkBox2);
+//        CheckBox checkBox3 = findViewById(R.id.checkBox3);
+//        CheckBox checkBox4 = findViewById(R.id.checkBox4);
+//        View underline2 = findViewById(R.id.underline2);
+//        View underline3 = findViewById(R.id.underline3);
+//        View underline4 = findViewById(R.id.underline4);
+//        underline2.setVisibility(checkBox2.isChecked() ? View.VISIBLE : View.INVISIBLE);
+//        underline3.setVisibility(checkBox3.isChecked() ? View.VISIBLE : View.INVISIBLE);
+//        underline4.setVisibility(checkBox4.isChecked() ? View.VISIBLE : View.INVISIBLE);
+//
+//        checkBox2.setOnCheckedChangeListener((buttonView, isChecked) -> {
+//            underline2.setVisibility(isChecked ? View.VISIBLE : View.INVISIBLE);
+//        });
+//
+//        checkBox3.setOnCheckedChangeListener((buttonView, isChecked) -> {
+//            underline3.setVisibility(isChecked ? View.VISIBLE : View.INVISIBLE);
+//        });
+//
+//        checkBox4.setOnCheckedChangeListener((buttonView, isChecked) -> {
+//            underline4.setVisibility(isChecked ? View.VISIBLE : View.INVISIBLE);
+//        });
 
-        checkBox2.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            underline2.setVisibility(isChecked ? View.VISIBLE : View.INVISIBLE);
-        });
+            mRecyclerView = findViewById(R.id.tasksRecyclerView);
+            mRecyclerView.setHasFixedSize(true);
 
-        checkBox3.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            underline3.setVisibility(isChecked ? View.VISIBLE : View.INVISIBLE);
-        });
+            mLayoutManager = new LinearLayoutManager(this);
+            mRecyclerView.setLayoutManager(mLayoutManager);
 
-        checkBox4.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            underline4.setVisibility(isChecked ? View.VISIBLE : View.INVISIBLE);
-        });
+            db = new DatabaseHandler(this);
+            db.openDatabase();
+            List<ToDoModel> todoList = db.getAllTasks();
+            TodaysPlan todaysPlan = new TodaysPlan();
+            mAdapter = new ToDoAdapter(db, todaysPlan);
+            mAdapter.setTasks(todoList);
+            mRecyclerView.setAdapter(mAdapter);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnItemSelectedListener(item -> {
@@ -168,54 +196,55 @@ FirebaseUser user;
         });
 
         bottomNavigationView.setSelectedItemId(R.id.home);
-        checkBox2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                // Perform actions based on the checked state of the CheckBox
-                if (isChecked) {
-                   progrBox += 35;
-                   numProgr +=1;
-                   underline2.setVisibility(View.VISIBLE);
-                } else {
-                   progrBox -= 35;
-                    numProgr -=1;
-                    underline2.setVisibility(View.INVISIBLE);
-                }
-                updateProgressBar();
-            }
-        });
-        checkBox3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                // Perform actions based on the checked state of the CheckBox
-                if (isChecked) {
-                    progrBox += 30;
-                    numProgr +=1;
-                    underline3.setVisibility(View.VISIBLE);
-                } else {
-                    progrBox -= 30;
-                    numProgr -=1;
-                    underline3.setVisibility(View.INVISIBLE);
-                }
-                updateProgressBar();
-            }
-        });
-        checkBox4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                // Perform actions based on the checked state of the CheckBox
-                if (isChecked) {
-                    progrBox += 35;
-                    numProgr +=1;
-                    underline4.setVisibility(View.VISIBLE);
-                } else {
-                    progrBox -= 35;
-                    numProgr -=1;
-                    underline4.setVisibility(View.INVISIBLE);
-                }
-                updateProgressBar();
-            }
-        });
+
+//        checkBox2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                // Perform actions based on the checked state of the CheckBox
+//                if (isChecked) {
+//                   progrBox += 35;
+//                   numProgr +=1;
+//                   underline2.setVisibility(View.VISIBLE);
+//                } else {
+//                   progrBox -= 35;
+//                    numProgr -=1;
+//                    underline2.setVisibility(View.INVISIBLE);
+//                }
+//                updateProgressBar();
+//            }
+//        });
+//        checkBox3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                // Perform actions based on the checked state of the CheckBox
+//                if (isChecked) {
+//                    progrBox += 30;
+//                    numProgr +=1;
+//                    underline3.setVisibility(View.VISIBLE);
+//                } else {
+//                    progrBox -= 30;
+//                    numProgr -=1;
+//                    underline3.setVisibility(View.INVISIBLE);
+//                }
+//                updateProgressBar();
+//            }
+//        });
+//        checkBox4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                // Perform actions based on the checked state of the CheckBox
+//                if (isChecked) {
+//                    progrBox += 35;
+//                    numProgr +=1;
+//                    underline4.setVisibility(View.VISIBLE);
+//                } else {
+//                    progrBox -= 35;
+//                    numProgr -=1;
+//                    underline4.setVisibility(View.INVISIBLE);
+//                }
+//                updateProgressBar();
+//            }
+//        });
         buttonI7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -694,15 +723,15 @@ FirebaseUser user;
         progressBar.setProgress(progr);
         textViewProgress.setText(progress +"/"+DIW);
 
-        if (progr == 100) {
-            checkBox.setChecked(!CB);
-            checkBox.setEnabled(CB);
-
-        }
-        else {
-            checkBox.setChecked(CB);
-
-        }
+//        if (progr == 100) {
+//            checkBox.setChecked(!CB);
+//            checkBox.setEnabled(CB);
+//
+//        }
+//        else {
+//            checkBox.setChecked(CB);
+//
+//        }
     }
 
         private void updateOnlineStatus(boolean isOnline) {

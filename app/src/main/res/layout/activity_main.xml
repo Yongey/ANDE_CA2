@@ -237,79 +237,86 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <FrameLayout
+<!--            <FrameLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:layout_constraintTop_toTopOf="parent"> &lt;!&ndash; Add this constraint &ndash;&gt;-->
+
+<!--                &lt;!&ndash; Underline for Checkbox 1 &ndash;&gt;-->
+
+<!--                <CheckBox-->
+<!--                    android:id="@+id/checkBox2"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="15dp"-->
+<!--                    android:buttonTint="@color/colorPrimaryDark"-->
+<!--                    android:text="Lorem ipsum dolor sit amet"-->
+<!--                    tools:ignore="TouchTargetSizeCheck" />-->
+
+<!--                <View-->
+<!--                    android:id="@+id/underline2"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="1dp"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:layout_marginTop="7.5dp"-->
+<!--                    android:background="#000000" /> &lt;!&ndash; Set your underline color &ndash;&gt;-->
+<!--            </FrameLayout>-->
+
+<!--            &lt;!&ndash; Checkbox 2 &ndash;&gt;-->
+<!--            <FrameLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/checkBox2"> &lt;!&ndash; Add this constraint &ndash;&gt;-->
+
+<!--                <CheckBox-->
+<!--                    android:id="@+id/checkBox3"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="15dp"-->
+<!--                    android:buttonTint="@color/colorPrimaryDark"-->
+<!--                    android:text="Lorem ipsum dolor sit amet"-->
+<!--                    tools:ignore="TouchTargetSizeCheck" />-->
+<!--                &lt;!&ndash; Checkbox 3 &ndash;&gt;-->
+<!--                <View-->
+<!--                    android:id="@+id/underline3"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="1dp"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:layout_marginTop="7.5dp"-->
+<!--                    android:background="#000000" />-->
+<!--            </FrameLayout>-->
+
+<!--            <FrameLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/checkBox3"> &lt;!&ndash; Add this constraint &ndash;&gt;-->
+<!--                &lt;!&ndash; Underline for Checkbox 3 &ndash;&gt;-->
+<!--                <View-->
+<!--                    android:id="@+id/underline4"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="1dp"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:layout_marginTop="7.5dp"-->
+<!--                    android:background="#000000"-->
+<!--                    android:buttonTint="@color/colorPrimaryDark" /> &lt;!&ndash; Set your underline color &ndash;&gt;-->
+
+
+<!--                <CheckBox-->
+<!--                    android:id="@+id/checkBox4"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="15dp"-->
+<!--                    android:buttonTint="@color/colorPrimaryDark"-->
+<!--                    android:text="Lorem ipsum dolor sit amet"-->
+<!--                    tools:ignore="TouchTargetSizeCheck" />-->
+<!--            </FrameLayout>-->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/tasksRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"> <!-- Add this constraint -->
-
-                <!-- Underline for Checkbox 1 -->
-
-                <CheckBox
-                    android:id="@+id/checkBox2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:buttonTint="@color/colorPrimaryDark"
-                    android:text="Lorem ipsum dolor sit amet"
-                    tools:ignore="TouchTargetSizeCheck" />
-
-                <View
-                    android:id="@+id/underline2"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="7.5dp"
-                    android:background="#000000" /> <!-- Set your underline color -->
-            </FrameLayout>
-
-            <!-- Checkbox 2 -->
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/checkBox2"> <!-- Add this constraint -->
-
-                <CheckBox
-                    android:id="@+id/checkBox3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:buttonTint="@color/colorPrimaryDark"
-                    android:text="Lorem ipsum dolor sit amet"
-                    tools:ignore="TouchTargetSizeCheck" />
-                <!-- Checkbox 3 -->
-                <View
-                    android:id="@+id/underline3"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="7.5dp"
-                    android:background="#000000" />
-            </FrameLayout>
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/checkBox3"> <!-- Add this constraint -->
-                <!-- Underline for Checkbox 3 -->
-                <View
-                    android:id="@+id/underline4"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="7.5dp"
-                    android:background="#000000"
-                    android:buttonTint="@color/colorPrimaryDark" /> <!-- Set your underline color -->
-
-
-                <CheckBox
-                    android:id="@+id/checkBox4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:buttonTint="@color/colorPrimaryDark"
-                    android:text="Lorem ipsum dolor sit amet"
-                    tools:ignore="TouchTargetSizeCheck" />
-            </FrameLayout>
+                app:layout_constraintTop_toTopOf="parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:nestedScrollingEnabled="true"/>
         </LinearLayout>
 
     </LinearLayout>
