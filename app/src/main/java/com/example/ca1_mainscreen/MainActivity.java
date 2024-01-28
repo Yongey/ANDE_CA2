@@ -130,8 +130,8 @@ FirebaseUser user;
             finish();
             return; // Exit the onCreate method if there's no user
         }
-//       checkBox = findViewById(R.id.checkBox);
-//        updateProgressBar();
+       checkBox = findViewById(R.id.checkBox);
+        updateProgressBar();
 //        CheckBox checkBox2 = findViewById(R.id.checkBox2);
 //        CheckBox checkBox3 = findViewById(R.id.checkBox3);
 //        CheckBox checkBox4 = findViewById(R.id.checkBox4);
@@ -723,15 +723,15 @@ FirebaseUser user;
         progressBar.setProgress(progr);
         textViewProgress.setText(progress +"/"+DIW);
 
-//        if (progr == 100) {
-//            checkBox.setChecked(!CB);
-//            checkBox.setEnabled(CB);
-//
-//        }
-//        else {
-//            checkBox.setChecked(CB);
-//
-//        }
+        if (progr == 100) {
+            checkBox.setChecked(!CB);
+            checkBox.setEnabled(CB);
+
+        }
+        else {
+            checkBox.setChecked(CB);
+
+        }
     }
 
         private void updateOnlineStatus(boolean isOnline) {
