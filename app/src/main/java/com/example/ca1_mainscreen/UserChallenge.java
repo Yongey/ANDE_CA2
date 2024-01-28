@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -22,6 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class UserChallenge extends AppCompatActivity {
     // Map to track the state of each checkbox within its container
@@ -130,6 +132,7 @@ public class UserChallenge extends AppCompatActivity {
             // Handle case where userId is null
             return;
         }
+        AtomicInteger remainingSaves = new AtomicInteger(checkboxStates.size());
         for (Map.Entry<String, Boolean> entry : checkboxStates.entrySet()) {
             String[] keys = entry.getKey().split("_");
             if (keys.length < 2) continue;
@@ -142,9 +145,14 @@ public class UserChallenge extends AppCompatActivity {
                     .setValue(isChecked)
                     .addOnSuccessListener(aVoid -> {
                         // Handle successful save here
+                        if (remainingSaves.decrementAndGet() == 0) {
+                            // This was the last checkbox to be saved, show the toast
+                            Toast.makeText(UserChallenge.this, "All checkbox states saved successfully", Toast.LENGTH_SHORT).show();
+                        }
                     })
                     .addOnFailureListener(e -> {
                         // Handle failed save here
+                        Toast.makeText(UserChallenge.this, "Failed to save checkbox state", Toast.LENGTH_SHORT).show();
                     });
         }
 
