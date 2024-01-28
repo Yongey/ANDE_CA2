@@ -133,7 +133,9 @@
                 android:layout_height="85dp"
                 android:layout_marginTop="25dp"
                 android:orientation="horizontal"
-                android:visibility="gone">
+                android:visibility="gone"
+                android:clickable="true"
+                android:focusable="true">
 
                 <ImageView
 
@@ -148,10 +150,9 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/Lorem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:clickable="true"
-                        android:focusable="true"
                         android:text="Lorem ipsum dolor sit amet"
                         android:textStyle="bold"
                         android:textAppearance="?attr/textAppearanceListItem"
@@ -160,8 +161,6 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="62dp"
-                        android:clickable="true"
-                        android:focusable="true"
                         android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                         android:textAppearance="?attr/textAppearanceListItem" />
                 </LinearLayout>
@@ -173,6 +172,8 @@
                 android:layout_height="85dp"
                 android:layout_marginTop="25dp"
                 android:orientation="horizontal"
+                android:clickable="true"
+                android:focusable="true"
                 android:visibility="gone">
 
                 <ImageView
@@ -188,10 +189,9 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/language"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:clickable="true"
-                        android:focusable="true"
                         android:text="Learn a new language"
                         android:textStyle="bold"
                         android:textAppearance="?attr/textAppearanceListItem"
@@ -200,8 +200,6 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="62dp"
-                        android:clickable="true"
-                        android:focusable="true"
                         android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                         android:textAppearance="?attr/textAppearanceListItem" />
                 </LinearLayout>
@@ -213,6 +211,8 @@
                 android:layout_height="85dp"
                 android:layout_marginTop="25dp"
                 android:orientation="horizontal"
+                android:clickable="true"
+                android:focusable="true"
                 android:visibility="gone">
 
                 <ImageView
@@ -228,10 +228,9 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/movie"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:clickable="true"
-                        android:focusable="true"
                         android:textStyle="bold"
                         android:text="Movie"
                         android:textAppearance="?attr/textAppearanceListItem"
@@ -240,8 +239,6 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="62dp"
-                        android:clickable="true"
-                        android:focusable="true"
                         android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                         android:textAppearance="?attr/textAppearanceListItem" />
                 </LinearLayout>
@@ -253,6 +250,8 @@
                 android:layout_height="85dp"
                 android:layout_marginTop="25dp"
                 android:orientation="horizontal"
+                android:clickable="true"
+                android:focusable="true"
                 android:visibility="gone">
 
                 <ImageView
@@ -268,10 +267,9 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/workout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:clickable="true"
-                        android:focusable="true"
                         android:textStyle="bold"
                         android:text="WorkOut"
                         android:textAppearance="?attr/textAppearanceListItem"
@@ -280,8 +278,6 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="62dp"
-                        android:clickable="true"
-                        android:focusable="true"
                         android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                         android:textAppearance="?attr/textAppearanceListItem" />
                 </LinearLayout>
@@ -293,6 +289,7 @@
                 android:layout_height="85dp"
                 android:layout_marginTop="25dp"
                 android:orientation="horizontal"
+                android:visibility="gone"
                 android:clickable="true"
                 android:focusable="true"
                 >

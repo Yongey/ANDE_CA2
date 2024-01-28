@@ -70,11 +70,51 @@ private LinearLayout learnNewLanguageLayout;
 
         TextView studyTextView = findViewById(R.id.studys);
         String textToPass = studyTextView.getText().toString();
+        TextView gymTextView = findViewById(R.id.workout);
+        String textToPass1 = gymTextView.getText().toString();
+        TextView movieTextView = findViewById(R.id.movie);
+        String textToPass2 = movieTextView.getText().toString();
+        TextView languageTextView = findViewById(R.id.language);
+        String textToPass3 = languageTextView.getText().toString();
+        TextView loremTextView = findViewById(R.id.Lorem);
+        String textToPass4 = loremTextView.getText().toString();
         studyLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(StartChallenge.this, Test.class);
                 intent.putExtra("clickedText",textToPass);
+                startActivity(intent);
+            }
+        });
+        movieLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(StartChallenge.this, Test.class);
+                intent.putExtra("clickedText",textToPass2);
+                startActivity(intent);
+            }
+        });
+        WorkoutLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(StartChallenge.this, Test.class);
+                intent.putExtra("clickedText",textToPass1);
+                startActivity(intent);
+            }
+        });
+        learnNewLanguageLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(StartChallenge.this, Test.class);
+                intent.putExtra("clickedText",textToPass3);
+                startActivity(intent);
+            }
+        });
+        LoremLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(StartChallenge.this, Test.class);
+                intent.putExtra("clickedText",textToPass4);
                 startActivity(intent);
             }
         });

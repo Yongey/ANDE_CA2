@@ -2,6 +2,8 @@ package com.example.ca1_mainscreen;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.text.InputType;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -10,6 +12,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -33,6 +37,7 @@ public class Test extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        ImageView backIcon = findViewById(R.id.backIcon);
         if (user != null) {
             userId = user.getUid();
 
@@ -51,6 +56,13 @@ public class Test extends AppCompatActivity {
         // Button to save checkboxes to Firebase
         Button saveButton = findViewById(R.id.saveButton);
         saveButton.setOnClickListener(view -> saveCheckboxStatesToFirebase());
+        backIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(new Intent(Test.this,MainActivity.class));
+                startActivity(i);
+            }
+        });
     }
 
     private void addCheckboxToContainer(LinearLayout containerLayout) {
@@ -132,6 +144,7 @@ public class Test extends AppCompatActivity {
                 Toast.makeText(Test.this, "Data saved successfully", Toast.LENGTH_SHORT).show();
                 containerLayout.removeAllViews(); // Clear the UI
                 checkboxDataList.clear(); // Clear the local list
+
             } else {
                 Toast.makeText(Test.this, "Failed to save data", Toast.LENGTH_SHORT).show();
             }

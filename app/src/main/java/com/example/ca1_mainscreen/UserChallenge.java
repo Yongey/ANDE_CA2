@@ -34,6 +34,7 @@ public class UserChallenge extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_challenge);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
         if (user != null) {
             userId = user.getUid();
             loadCheckboxes(userId); // Load checkboxes for the signed-in user
@@ -99,7 +100,7 @@ public class UserChallenge extends AppCompatActivity {
                             LinearLayout.LayoutParams.MATCH_PARENT,
                             5
                     ));
-                    separator.setBackgroundColor(Color.parseColor("#B3B3B3"));
+                    separator.setBackgroundColor(Color.parseColor("#FF000000"));
 
 
                 }
@@ -120,7 +121,7 @@ public class UserChallenge extends AppCompatActivity {
 
         cardLayoutParams.setMargins(30, 20, 30, 20);
         cardView.setLayoutParams(cardLayoutParams);
-        cardView.setCardBackgroundColor(Color.parseColor("#E2DBFF"));
+        cardView.setCardBackgroundColor(Color.parseColor("#FFFFFFFF"));
         cardView.setRadius(16);
         cardView.setCardElevation(8);
         return cardView;
@@ -163,3 +164,4 @@ public class UserChallenge extends AppCompatActivity {
         // Redirect user to login activity
     }
 }
+
