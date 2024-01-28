@@ -34,7 +34,6 @@ public class UserChallenge extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_challenge);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
         if (user != null) {
             userId = user.getUid();
             loadCheckboxes(userId); // Load checkboxes for the signed-in user

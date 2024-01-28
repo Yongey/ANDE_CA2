@@ -5,6 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Test">
+
+
+
     <ImageView
         android:id="@+id/backIcon"
         android:layout_width="wrap_content"
@@ -32,9 +35,11 @@
 
     <Button
         android:id="@+id/addCheckboxButton"
-        android:layout_width="130dp"
+        android:layout_width="170dp"
         android:layout_height="49dp"
         android:text="Add Checkbox"
+        android:background="@drawable/custom_createnewchallenge"
+        android:textColor="#FF9900"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/saveButton"
         app:layout_constraintHorizontal_bias="0.547"
@@ -44,9 +49,11 @@
 
     <Button
         android:id="@+id/saveButton"
-        android:layout_width="192dp"
+        android:layout_width="170dp"
         android:layout_height="49dp"
-        android:text="Save to Firebase"
+        android:text="Save"
+        android:background="@drawable/custom_savebtn"
+        android:textColor="@color/blue_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.885"
