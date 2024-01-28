@@ -11,4 +11,8 @@
     <color name = "dailybackground">#FFFFFFFF</color>
     <color name = "editName">#00BCD4</color>
     <color name="purple_200">#FFBB86FC</color>
+    <color name="colorPressed">#FFC107</color>
+    <color name="colorFocused">#FFA000</color> <!-- Replace with your desired focused color -->
+    <color name="colorNormal">#FF9800</color>
+
 </resources>

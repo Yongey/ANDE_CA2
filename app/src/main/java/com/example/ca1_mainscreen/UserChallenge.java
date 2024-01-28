@@ -12,6 +12,8 @@ import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,11 +26,19 @@ import java.util.Map;
 public class UserChallenge extends AppCompatActivity {
     // Map to track the state of each checkbox within its container
     private Map<String, Boolean> checkboxStates = new HashMap<>();
-
+    private String userId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_challenge);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            userId = user.getUid();
+            loadCheckboxes(userId); // Load checkboxes for the signed-in user
+        } else {
+            // Redirect to login activity or handle user not logged in
+            redirectToLogin();
+        }
 
         Button gotoNewPageButton = findViewById(R.id.bottomButton);
         gotoNewPageButton.setOnClickListener(view -> {
@@ -39,14 +49,15 @@ public class UserChallenge extends AppCompatActivity {
         Button saveStatusButton = findViewById(R.id.saveStatus);
         saveStatusButton.setOnClickListener(view -> saveCheckboxStatusToDatabase());
 
-        loadCheckboxes();
+
     }
 
-    private void loadCheckboxes() {
+    private void loadCheckboxes(String userId) {
         DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference("checkboxContainers");
+        DatabaseReference databaseUser = FirebaseDatabase.getInstance().getReference("checkboxContainers").child(userId);
         LinearLayout parentLayout = findViewById(R.id.parentLayout);
 
-        databaseRef.addValueEventListener(new ValueEventListener() {
+        databaseUser.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 parentLayout.removeAllViews();
@@ -113,8 +124,11 @@ public class UserChallenge extends AppCompatActivity {
     }
 
     private void saveCheckboxStatusToDatabase() {
-        DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference("checkboxContainers");
-
+        DatabaseReference databaseUser = FirebaseDatabase.getInstance().getReference("checkboxContainers").child(userId);
+        if (userId == null) {
+            // Handle case where userId is null
+            return;
+        }
         for (Map.Entry<String, Boolean> entry : checkboxStates.entrySet()) {
             String[] keys = entry.getKey().split("_");
             if (keys.length < 2) continue;
@@ -123,7 +137,7 @@ public class UserChallenge extends AppCompatActivity {
             String checkboxId = keys[1];
             Boolean isChecked = entry.getValue();
 
-            databaseRef.child(containerId).child("checkboxDataList").child(checkboxId).child("checked")
+            databaseUser.child(containerId).child("checkboxDataList").child(checkboxId).child("checked")
                     .setValue(isChecked)
                     .addOnSuccessListener(aVoid -> {
                         // Handle successful save here
@@ -135,5 +149,8 @@ public class UserChallenge extends AppCompatActivity {
 
         // Optionally clear the states after saving
         checkboxStates.clear();
+    }
+    private void redirectToLogin() {
+        // Redirect user to login activity
     }
 }

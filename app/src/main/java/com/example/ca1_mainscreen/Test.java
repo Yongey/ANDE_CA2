@@ -13,6 +13,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -23,15 +25,20 @@ public class Test extends AppCompatActivity {
     private List<CheckboxData> checkboxDataList = new ArrayList<>();
     private DatabaseReference databaseRef;
     private LinearLayout containerLayout;
+    private String userId;
     private static final int MAX_CHECKBOX_COUNT = 6;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            userId = user.getUid();
 
+        }
         // Initialize Firebase Database reference
-        databaseRef = FirebaseDatabase.getInstance().getReference("checkboxContainers");
+        databaseRef = FirebaseDatabase.getInstance().getReference("checkboxContainers").child(userId);
 
         // Container layout with purple background
         containerLayout = findViewById(R.id.containerLayout);
