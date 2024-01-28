@@ -5,7 +5,9 @@ import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -76,6 +78,10 @@ public class UserChallenge extends AppCompatActivity {
                     // Optional: Add a TextView or some identifier for each container
                     TextView containerTitle = new TextView(UserChallenge.this);
                     containerTitle.setText(receivedText+" in 30 Days Challenge");
+                    containerTitle.setTypeface(null, Typeface.BOLD);
+                    containerTitle.setTextColor(Color.BLACK);
+// Make the text bigger (adjust the size as needed)
+                    containerTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
                     containerLayout.addView(containerTitle);
                     cardView.addView(containerLayout);
                     for (DataSnapshot checkboxSnapshot : containerSnapshot.child("checkboxDataList").getChildren()) {
