@@ -72,46 +72,56 @@ public class UserChallenge extends AppCompatActivity {
                 parentLayout.removeAllViews();
                 for (DataSnapshot containerSnapshot : dataSnapshot.getChildren()) {
                     String containerId = containerSnapshot.getKey();
-                    String receivedText = containerSnapshot.child("receivedText").getValue(String.class);
-                    CardView cardView = createCardView();
-                    // Create a container layout for each set of checkboxes
+                    CardView cardView = new CardView(UserChallenge.this); // Create a new CardView
+                    setupCardView(cardView); // Apply styling to CardView
+
                     LinearLayout containerLayout = new LinearLayout(UserChallenge.this);
                     containerLayout.setOrientation(LinearLayout.VERTICAL);
-                    containerLayout.setPadding(10, 10, 10, 10); // Add some padding for visual separation
+                    containerLayout.setPadding(10, 10, 10, 10);
+                    cardView.addView(containerLayout);
 
-                    // Optional: Add a TextView or some identifier for each container
                     TextView containerTitle = new TextView(UserChallenge.this);
-                    containerTitle.setText(receivedText+" in 30 Days Challenge");
+                    containerTitle.setText(containerSnapshot.child("receivedText").getValue(String.class) + " in 30 Days Challenge");
                     containerTitle.setTypeface(null, Typeface.BOLD);
                     containerTitle.setTextColor(Color.BLACK);
-// Make the text bigger (adjust the size as needed)
                     containerTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
                     containerLayout.addView(containerTitle);
-                    cardView.addView(containerLayout);
+
+                    AtomicInteger checkBoxCount = new AtomicInteger();
+                    AtomicInteger checkedCount = new AtomicInteger();
+
                     for (DataSnapshot checkboxSnapshot : containerSnapshot.child("checkboxDataList").getChildren()) {
                         CheckBox checkBox = new CheckBox(UserChallenge.this);
                         String checkboxId = checkboxSnapshot.getKey();
                         checkBox.setText(checkboxSnapshot.child("text").getValue(String.class));
                         Boolean isChecked = checkboxSnapshot.child("checked").getValue(Boolean.class);
                         checkBox.setChecked(isChecked != null ? isChecked : false);
+                        checkBoxCount.getAndIncrement();
+                        if (isChecked != null && isChecked) {
+                            checkedCount.getAndIncrement();
+                        }
 
                         checkBox.setOnCheckedChangeListener((buttonView, isChecked1) -> {
-                            // Update checkboxStates map when checkbox state changes
                             String key = containerId + "_" + checkboxId;
                             checkboxStates.put(key, isChecked1);
+                            if (isChecked1) {
+                                checkedCount.getAndIncrement();
+                            } else {
+                                checkedCount.getAndDecrement();
+                            }
+
                         });
 
                         containerLayout.addView(checkBox);
                     }
+
+                    // Add the delete button to the container layout
+
                     parentLayout.addView(cardView);
                     // Add a visual separator between containers for clarity
                     View separator = new View(UserChallenge.this);
-                    separator.setLayoutParams(new LinearLayout.LayoutParams(
-                            LinearLayout.LayoutParams.MATCH_PARENT,
-                            5
-                    ));
+                    separator.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 5));
                     separator.setBackgroundColor(Color.parseColor("#FF000000"));
-
 
                 }
             }
@@ -122,20 +132,40 @@ public class UserChallenge extends AppCompatActivity {
             }
         });
     }
-    private CardView createCardView() {
-        CardView cardView = new CardView(UserChallenge.this);
-        LinearLayout.LayoutParams cardLayoutParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-        );
 
+    private void setupCardView(CardView cardView) {
+        LinearLayout.LayoutParams cardLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         cardLayoutParams.setMargins(30, 20, 30, 20);
         cardView.setLayoutParams(cardLayoutParams);
         cardView.setCardBackgroundColor(Color.parseColor("#FFFFFFFF"));
         cardView.setRadius(16);
         cardView.setCardElevation(8);
-        return cardView;
     }
+
+//    private void updateDeleteButtonVisibility(LinearLayout containerLayout, AtomicInteger checkBoxCount, AtomicInteger checkedCount) {
+//        int childCount = containerLayout.getChildCount();
+//        if (childCount > 0) {
+//            View lastChild = containerLayout.getChildAt(childCount - 1);
+//            if (lastChild instanceof Button) {
+//                lastChild.setVisibility(checkedCount.get() == checkBoxCount.get() ? View.VISIBLE : View.GONE);
+//            }
+//        }
+//    }
+
+//    private CardView createCardView() {
+//        CardView cardView = new CardView(UserChallenge.this);
+//        LinearLayout.LayoutParams cardLayoutParams = new LinearLayout.LayoutParams(
+//                LinearLayout.LayoutParams.MATCH_PARENT,
+//                LinearLayout.LayoutParams.WRAP_CONTENT
+//        );
+//
+//        cardLayoutParams.setMargins(30, 20, 30, 20);
+//        cardView.setLayoutParams(cardLayoutParams);
+//        cardView.setCardBackgroundColor(Color.parseColor("#FFFFFFFF"));
+//        cardView.setRadius(16);
+//        cardView.setCardElevation(8);
+//        return cardView;
+//    }
 
     private void saveCheckboxStatusToDatabase() {
         DatabaseReference databaseUser = FirebaseDatabase.getInstance().getReference("checkboxContainers").child(userId);
@@ -165,8 +195,7 @@ public class UserChallenge extends AppCompatActivity {
 
         }
 
-        // Optionally clear the states after saving
-        checkboxStates.clear();
+
     }
     private void redirectToLogin() {
         // Redirect user to login activity
