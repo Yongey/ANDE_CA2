@@ -98,6 +98,7 @@ FirebaseUser user;
 
         Button userChallenge = findViewById(R.id.btn_challenge);
 
+
         userChallenge.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

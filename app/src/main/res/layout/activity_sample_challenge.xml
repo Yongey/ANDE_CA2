@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:minHeight="48dp"
-            android:text="Spanish"
+            android:text="@string/ld"
             android:textSize="15dp"
             android:textStyle="bold"
             tools:ignore="TextSizeCheck" />
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:minHeight="48dp"
-            android:text="Tamil"
+            android:text="Imitate The Locals And Speak The Language!"
             android:textSize="15dp"
             android:textStyle="bold"
             tools:ignore="TextSizeCheck" />
@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:minHeight="48dp"
-            android:text="Malay"
+            android:text="Differentiate Between Informal And Formal Malay"
             android:textSize="15dp"
             android:textStyle="bold"
             tools:ignore="TextSizeCheck" />
@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:minHeight="48dp"
-            android:text="English"
+            android:text="Remember Common Malay Phrases By Heart"
             android:textSize="15dp"
             android:textStyle="bold"
             tools:ignore="TextSizeCheck" />
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:minHeight="48dp"
-            android:text="Chinese"
+            android:text="Learn Malay Slangs"
             android:textSize="15dp"
             android:textStyle="bold"
             tools:ignore="TextSizeCheck" />
@@ -83,7 +83,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="15dp"
             android:minHeight="48dp"
-            android:text="German"
+            android:text="Sing-Along To Malay Songs!"
             android:textSize="15dp"
             android:textStyle="bold"
             tools:ignore="TextSizeCheck" />
