@@ -1,0 +1,369 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/footer"
+        android:background="#F7F9FA"
+        tools:ignore="UnknownId">
+    <!-- ScrollView to allow scrolling through the content -->
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+
+            <!-- LinearLayout for the card -->
+            <LinearLayout
+                android:id="@+id/firstLayout"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="260dp"
+                android:background="@color/nav"
+            android:gravity="bottom"
+            android:clipChildren="false">
+            <!-- Other content goes here, like a title or text -->
+        </LinearLayout>
+        <!-- Ensure the drawable and string resources exist in your project -->
+        <ImageView
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_marginTop="-190dp"
+            android:src="@drawable/meditation"
+            android:layout_gravity="center_horizontal"
+        />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lth"
+        android:textColor="@color/black"
+        android:layout_marginTop="15dp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:padding="4dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+        <!-- Horizontal ScrollView for category labels -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:layout_marginTop="22dp"
+            android:padding="8dp"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/newText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:text="New"
+                    android:textStyle="bold"
+                    android:textColor="@color/grey"
+                    />
+                <TextView
+                    android:id="@+id/health"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:text="Health"
+                    android:textStyle="bold"
+                    android:textColor="@color/grey"
+                    />
+                <TextView
+                    android:id="@+id/learning"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:text="Learning"
+                    android:textStyle="bold"
+                    android:textColor="@color/grey"
+                    />
+                <TextView
+                    android:id="@+id/enjoymen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:textStyle="bold"
+                    android:text="Enjoymen"
+                    android:textColor="@color/grey"
+                    />
+                <TextView
+                    android:id="@+id/learning1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:textStyle="bold"
+                    android:text="Learning"
+                    android:textColor="@color/grey"
+                    />
+                <TextView
+                    android:id="@+id/learning2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:textStyle="bold"
+                    android:text="ALL"
+                    android:textColor="@color/grey"
+                    />
+            </LinearLayout>
+        </HorizontalScrollView>
+
+
+            <LinearLayout
+                android:id="@+id/LoremLayout"
+                android:layout_width="match_parent"
+                android:layout_height="85dp"
+                android:layout_marginTop="25dp"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+
+                    android:layout_width="88dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/learn" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/Lorem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Lorem ipsum dolor sit amet"
+                        android:textStyle="bold"
+                        android:textAppearance="?attr/textAppearanceListItem"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="62dp"
+                        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                        android:textAppearance="?attr/textAppearanceListItem" />
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/learnNewLanguageLayout"
+                android:layout_width="match_parent"
+                android:layout_height="85dp"
+                android:layout_marginTop="25dp"
+                android:orientation="horizontal"
+                android:clickable="true"
+                android:focusable="true"
+                android:visibility="gone">
+
+                <ImageView
+
+                    android:layout_width="88dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/newlanguage" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/language"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Learn a new language"
+                        android:textStyle="bold"
+                        android:textAppearance="?attr/textAppearanceListItem"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="62dp"
+                        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                        android:textAppearance="?attr/textAppearanceListItem" />
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/SampleLayout"
+                android:layout_width="match_parent"
+                android:layout_height="85dp"
+                android:layout_marginTop="25dp"
+                android:orientation="horizontal"
+                android:clickable="true"
+                android:focusable="true"
+               >
+
+                <ImageView
+
+                    android:layout_width="88dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/sample" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/sample"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Learn a new language"
+                        android:textStyle="bold"
+                        android:textAppearance="?attr/textAppearanceListItem"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="62dp"
+                        android:text="Six challenges has set for you!"
+                        android:textAppearance="?attr/textAppearanceListItem" />
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/movieLayout"
+                android:layout_width="match_parent"
+                android:layout_height="85dp"
+                android:layout_marginTop="25dp"
+                android:orientation="horizontal"
+                android:clickable="true"
+                android:focusable="true"
+                android:visibility="gone">
+
+                <ImageView
+
+                    android:layout_width="88dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/spiderman" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/movie"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="Movie"
+                        android:textAppearance="?attr/textAppearanceListItem"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="62dp"
+                        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                        android:textAppearance="?attr/textAppearanceListItem" />
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/WorkoutLayout"
+                android:layout_width="match_parent"
+                android:layout_height="85dp"
+                android:layout_marginTop="25dp"
+                android:orientation="horizontal"
+                android:clickable="true"
+                android:focusable="true"
+                android:visibility="gone">
+
+                <ImageView
+
+                    android:layout_width="88dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/workout" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/workout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="WorkOut"
+                        android:textAppearance="?attr/textAppearanceListItem"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="62dp"
+                        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                        android:textAppearance="?attr/textAppearanceListItem" />
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/studyLayout"
+                android:layout_width="match_parent"
+                android:layout_height="85dp"
+                android:layout_marginTop="25dp"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                android:clickable="true"
+                android:focusable="true"
+                >
+
+                <ImageView
+
+                    android:layout_width="88dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/study" />
+
+
+                <LinearLayout
+                    android:id="@+id/studyPlanLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    >
+
+                    <TextView
+                        android:id="@+id/studys"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="Study Plan"
+                        android:textAppearance="?attr/textAppearanceListItem"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="62dp"
+                        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                        android:textAppearance="?attr/textAppearanceListItem" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

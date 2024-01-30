@@ -25,18 +25,36 @@ import java.util.List;
 
 public class Settings extends AppCompatActivity {
     Button button;
-    TextView tvUsername;
-    TextView tvEmail;
     FirebaseAuth mAuth;
+    @Override
+    protected void onStart() {
+        super.onStart();
+        updateOnlineStatus(true); // User goes online
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         button = findViewById(R.id.logout);
         mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = mAuth.getCurrentUser();
         TextView profileTextView = findViewById(R.id.tv_profile);
         TextView notificationTextView = findViewById(R.id.tv_notification);
+        TextView ps = findViewById(R.id.tv_ps);
+        TextView hs = findViewById(R.id.tv_hs);
+        TextView about = findViewById(R.id.tv_about);
+        ps.setOnClickListener(v -> {
+           Intent intent = new Intent(Settings.this, PrivacyAndSecurity.class);
+           startActivity(intent);
+        });
+        hs.setOnClickListener(v -> {
+            Intent intent = new Intent(Settings.this, HelpAndSupport.class);
+            startActivity(intent);
+        });
+        about.setOnClickListener(v -> {
+            Intent intent = new Intent(Settings.this, About.class);
+            startActivity(intent);
+        });
         notificationTextView.setOnClickListener(v -> {
             Intent intent = new Intent(Settings.this, Notification.class);
             startActivity(intent);
@@ -47,12 +65,10 @@ public class Settings extends AppCompatActivity {
             startActivity(intent);
         });
 
-
-
-
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                updateOnlineStatus(false);
                 FirebaseAuth.getInstance().signOut();
                 Intent i = new Intent(getApplicationContext(),Login.class);
                 startActivity(i);
@@ -78,6 +94,15 @@ public class Settings extends AppCompatActivity {
         });
         bottomNavigationView.setSelectedItemId(R.id.settings);
     }
-
+    private void updateOnlineStatus(boolean isOnline) {
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser != null) {
+            DatabaseReference userStatusRef = FirebaseDatabase.getInstance()
+                    .getReference("UserStatus")
+                    .child(currentUser.getUid())
+                    .child("isOnline");
+            userStatusRef.setValue(isOnline);
+        }
+    }
 
 }

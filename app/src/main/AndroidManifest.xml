@@ -14,7 +14,31 @@
         android:theme="@style/Theme.CA1MainScreen"
         tools:targetApi="31">
         <activity
-            android:name=".EditHabit"
+            android:name=".SampleChallenge"
+            android:exported="false" />
+        <activity
+            android:name=".HelpAndSupport"
+            android:exported="false" />
+        <activity
+            android:name=".PrivacyAndSecurity"
+            android:exported="false" />
+        <activity
+            android:name=".About"
+            android:exported="false" />
+        <activity
+            android:name=".NextActivity"
+            android:exported="false" />
+        <activity
+            android:name=".StartChallenge"
+            android:exported="false" />
+        <activity
+            android:name=".UserChallenge"
+            android:exported="false" />
+        <activity
+            android:name=".Test"
+            android:exported="false" />
+        <activity
+            android:name=".UpdateProfile"
             android:exported="false" />
         <activity
             android:name=".Notification"
@@ -33,6 +57,9 @@
             android:exported="true" />
         <activity
             android:name=".DailyTask"
+            android:exported="false" />
+        <activity
+            android:name=".TodaysPlan"
             android:exported="false" /> <!-- Intent-filter removed from here -->
         <activity
             android:name=".Settings"
@@ -46,8 +73,6 @@
 
             <!-- Additional activity settings if needed -->
         </activity>
-        <activity android:name=".WeeklyHabit"></activity>
-        <activity android:name=".NewHabit"></activity>
         <activity
             android:name=".splashscreen"
             android:exported="true">
@@ -60,6 +85,21 @@
         <activity
             android:name=".MainActivity"
             android:exported="false" />
+
+        <service
+            android:name=".MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <meta-data
+            android:name="firebase_messaging_auto_init_enabled"
+            android:value="false" />
+        <meta-data
+            android:name="firebase_analytics_collection_enabled"
+            android:value="false" />
     </application>
 
 </manifest>

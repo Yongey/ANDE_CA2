@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background ="@color/nav"
+    tools:ignore="SpeakableTextPresentCheck">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/checkboxRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".UserChallenge">
+
+        <!-- Parent layout for dividing checkboxes into containers -->
+        <LinearLayout
+            android:id="@+id/parentLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/bottomButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/bottomButton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+        </LinearLayout>
+
+        <!-- Button at the end of the ScrollView -->
+        <Button
+            android:id="@+id/bottomButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Create new Challenge"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/custom_createnewchallenge"
+            android:textColor="#FF9900"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/saveStatus"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/parentLayout"
+            app:layout_constraintHorizontal_weight="1"/>
+
+        <Button
+            android:id="@+id/saveStatus"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Save the progress"
+            android:background="@drawable/custom_savebtn"
+            android:textColor="@color/blue_color"
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/bottomButton"
+            app:layout_constraintTop_toBottomOf="@+id/parentLayout"
+            app:layout_constraintHorizontal_weight="1"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

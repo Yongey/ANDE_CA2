@@ -48,7 +48,7 @@ import java.util.Locale;
 import java.util.UUID;
 
 public class Profile extends AppCompatActivity {
-    TextView tvUsername;
+    TextView tvUsername,tvGender;
     EditText etUsername;
     private Button btnCFA;
     TextView tvEmail;
@@ -61,12 +61,13 @@ public class Profile extends AppCompatActivity {
     private String originalImageUrl = null;
     private TextView etDob;
     private TextView tvAge;
-    private Button btnSave,btnEditUsername;
+    private Button btnEditUser;
     private String dob;
     @Override
     protected void onStart() {
         super.onStart();
         updateOnlineStatus(true); // User goes online
+        //test
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser != null) {
             DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("user").child(currentUser.getUid());
@@ -147,13 +148,14 @@ public class Profile extends AppCompatActivity {
         spinnerGender = findViewById(R.id.spinner_gender);
         FirebaseUser user = mAuth.getCurrentUser();
         etUsername = findViewById(R.id.etUsername);
-        btnEditUsername = findViewById(R.id.btnEditUsername);
+        btnEditUser = findViewById(R.id.btnEditUsername);
         tvUsername = findViewById(R.id.tv_username);
         tvEmail = findViewById(R.id.tv_email);
         tvAge = findViewById(R.id.ageOfUser);
         ImageView backIcon = findViewById(R.id.backIcon);
         etDob = findViewById(R.id.etDob);
-        btnSave = findViewById(R.id.btnSave);
+        tvGender = findViewById(R.id.tvGender);
+        View onlineIndicator = findViewById(R.id.onlineIndicator);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.gender_options, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerGender.setAdapter(adapter);
@@ -167,7 +169,6 @@ public class Profile extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
                         boolean isUserOnline = dataSnapshot.getValue(Boolean.class);
-                        View onlineIndicator = findViewById(R.id.onlineIndicator);
                         if (isUserOnline) {
                             onlineIndicator.setVisibility(View.VISIBLE);
                         } else {
@@ -182,60 +183,11 @@ public class Profile extends AppCompatActivity {
                 }
             });
         }
-        btnEditUsername.setOnClickListener(new View.OnClickListener() {
+        btnEditUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Toggle visibility: if EditText is visible, hide it and show TextView, and vice versa
-                if (etUsername.getVisibility() == View.VISIBLE) {
-                    // If EditText is currently visible, hide it and show the TextView
-                    tvUsername.setVisibility(View.VISIBLE);
-                    etUsername.setVisibility(View.GONE);
-                } else {
-                    // EditText is not visible, so show it for editing
-                    etUsername.setVisibility(View.VISIBLE);
-                    etUsername.setText(tvUsername.getText().toString());
-                    tvUsername.setVisibility(View.GONE);
-                    etUsername.requestFocus(); // Optional: bring focus to the EditText
-                }
-            }
-        });
-
-        etDob.setOnTouchListener((v, event) -> {
-            // Assuming the drawable is at the end (right side)
-            if (event.getAction() == MotionEvent.ACTION_UP) {
-                if (event.getRawX() >= (etDob.getRight() - etDob.getCompoundDrawables()[2].getBounds().width())) {
-                    showDatePickerDialog();
-                    return true;
-                }
-            }
-            return false;
-        });
-        btnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Get the edited email and selected gender
-                String newUsername = etUsername.getText().toString().trim();
-                String selectedGender = spinnerGender.getSelectedItem().toString();
-                DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("user").child(user.getUid());
-                userRef.child("username").setValue(newUsername)
-                        .addOnSuccessListener(aVoid -> {
-                            // Hide the EditText for editing the username
-                            etUsername.setVisibility(View.GONE);
-                            // Show the TextView displaying the updated username
-                            tvUsername.setText(newUsername);
-                            tvUsername.setVisibility(View.VISIBLE);
-
-                            Toast.makeText(Profile.this, "Username saved successfully", Toast.LENGTH_SHORT).show();
-                        })
-                        .addOnFailureListener(e -> Toast.makeText(Profile.this, "Failed to save username", Toast.LENGTH_SHORT).show());
-                // Update the email and gender data in Firebase
-                // You need to replace "yourFirebaseReference" with your actual Firebase reference
-                userRef.child("gender").setValue(selectedGender)
-                        .addOnSuccessListener(aVoid -> Toast.makeText(Profile.this, "Gender saved successfully", Toast.LENGTH_SHORT).show())
-                        .addOnFailureListener(e -> Toast.makeText(Profile.this, "Failed to save DOB", Toast.LENGTH_SHORT).show());
-                saveDataToFirebase();
-                // Optionally, show a message to indicate the data has been saved
-                Toast.makeText(Profile.this, "Data saved successfully", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(Profile.this,UpdateProfile.class);
+                startActivity(i);
             }
         });
 
@@ -251,7 +203,8 @@ public class Profile extends AppCompatActivity {
         backIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish(); // Closes this activity and returns to the previous one
+                Intent i = new Intent(new Intent(Profile.this,Settings.class));
+                startActivity(i);
             }
         });
         // Check if the user is not null and get the display name
@@ -273,7 +226,7 @@ public class Profile extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
                         String dob = dataSnapshot.getValue(String.class);
-                        etDob.setText("Date Of Birth: " + dob);
+                        etDob.setText(dob);
                     }
                 }
 
@@ -300,7 +253,7 @@ public class Profile extends AppCompatActivity {
             uploadImage();
         }
     }
-private void uploadImage(){
+    private void uploadImage(){
     FirebaseUser user = mAuth.getCurrentUser();
     if (user == null || imagePath == null) {
         Toast.makeText(this, "No image selected", Toast.LENGTH_SHORT).show();
@@ -432,38 +385,7 @@ private void uploadImage(){
 
         }
     }
-    private void showDatePickerDialog() {
-        Calendar now = Calendar.getInstance();
-        com.wdullaer.materialdatetimepicker.date.DatePickerDialog dpd = com.wdullaer.materialdatetimepicker.date.DatePickerDialog.newInstance(
-                (view, year, monthOfYear, dayOfMonth) -> {
-                    Calendar selectedDate = Calendar.getInstance();
-                    selectedDate.set(year, monthOfYear, dayOfMonth);
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-                    dob = sdf.format(selectedDate.getTime());
-                    etDob.setText(dob);
-                },
-                now.get(Calendar.YEAR),
-                now.get(Calendar.MONTH),
-                now.get(Calendar.DAY_OF_MONTH)
-        );
 
-        // Customize the date picker (colors, buttons)
-        dpd.setAccentColor(Color.parseColor("#5F44CF"));
-        dpd.show(getSupportFragmentManager(), "Datepickerdialog"); // Use getSupportFragmentManager() here
-    }
-    private void saveDataToFirebase() {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-        if (user != null && dob != null) {
-            int age = calculateAge(dob);
-            DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("user").child(user.getUid());
-            userRef.child("dob").setValue(dob);
-            userRef.child("age").setValue(age)
-                    .addOnSuccessListener(aVoid -> Toast.makeText(Profile.this, "DOB saved successfully", Toast.LENGTH_SHORT).show())
-                    .addOnFailureListener(e -> Toast.makeText(Profile.this, "Failed to save DOB", Toast.LENGTH_SHORT).show());
-
-        }
-    }
     private void loadGenderFromFirebase(Spinner spinnerGender) {
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
@@ -473,7 +395,7 @@ private void uploadImage(){
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
                         String gender = dataSnapshot.getValue(String.class);
-                        setGenderSelection(spinnerGender, gender);
+                        tvGender.setText(gender != null ? gender : "Not set");
                     }
                 }
 
@@ -482,20 +404,6 @@ private void uploadImage(){
                     Toast.makeText(Profile.this, "Failed to load gender", Toast.LENGTH_SHORT).show();
                 }
             });
-        }
-    }
-    private int calculateAge(String dobString) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate dob = LocalDate.parse(dobString, formatter);
-        LocalDate currentDate = LocalDate.now();
-        return Period.between(dob, currentDate).getYears();
-    }
-
-    private void setGenderSelection(Spinner spinnerGender, String gender) {
-        if (gender != null) {
-            ArrayAdapter<CharSequence> adapter = (ArrayAdapter<CharSequence>) spinnerGender.getAdapter();
-            int position = adapter.getPosition(gender);
-            spinnerGender.setSelection(position);
         }
     }
     private void updateOnlineStatus(boolean isOnline) {
