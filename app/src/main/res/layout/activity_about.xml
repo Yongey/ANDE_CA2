@@ -5,26 +5,45 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".About">
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="16dp">
 
-        <ImageView
-            android:id="@+id/imgAbout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_info" />
+    <!-- Background Gradient -->
 
-        <TextView
-            android:id="@+id/txtAbout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="About"
-            android:layout_marginTop="8dp"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
-    </LinearLayout>
+    <!-- Title TextView -->
+
+    <!-- About Text -->
+
+    <ImageView
+        android:id="@+id/backgroundImage"
+        android:layout_width="346dp"
+        android:layout_height="344dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/img"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.341" />
+
+    <TextView
+        android:id="@+id/aboutText"
+        android:layout_width="376dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Welcome to our amazing app. We are dedicated to providing you with the best experience possible. Learn more about us!"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.043" />
+
+    <!-- Image -->
+
+    <!-- More Content or Buttons can be added below the image -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
