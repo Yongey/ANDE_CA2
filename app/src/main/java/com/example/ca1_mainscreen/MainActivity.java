@@ -73,7 +73,7 @@ FirebaseUser user;
     private ToDoAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private DatabaseHandler db;
-
+private Button but;
     // private DatabaseReference databaseReference;
     @Override
     protected void onStart() {
@@ -132,28 +132,10 @@ FirebaseUser user;
             return; // Exit the onCreate method if there's no user
         }
        checkBox = findViewById(R.id.checkBox);
+
+
         updateProgressBar();
-//        CheckBox checkBox2 = findViewById(R.id.checkBox2);
-//        CheckBox checkBox3 = findViewById(R.id.checkBox3);
-//        CheckBox checkBox4 = findViewById(R.id.checkBox4);
-//        View underline2 = findViewById(R.id.underline2);
-//        View underline3 = findViewById(R.id.underline3);
-//        View underline4 = findViewById(R.id.underline4);
-//        underline2.setVisibility(checkBox2.isChecked() ? View.VISIBLE : View.INVISIBLE);
-//        underline3.setVisibility(checkBox3.isChecked() ? View.VISIBLE : View.INVISIBLE);
-//        underline4.setVisibility(checkBox4.isChecked() ? View.VISIBLE : View.INVISIBLE);
-//
-//        checkBox2.setOnCheckedChangeListener((buttonView, isChecked) -> {
-//            underline2.setVisibility(isChecked ? View.VISIBLE : View.INVISIBLE);
-//        });
-//
-//        checkBox3.setOnCheckedChangeListener((buttonView, isChecked) -> {
-//            underline3.setVisibility(isChecked ? View.VISIBLE : View.INVISIBLE);
-//        });
-//
-//        checkBox4.setOnCheckedChangeListener((buttonView, isChecked) -> {
-//            underline4.setVisibility(isChecked ? View.VISIBLE : View.INVISIBLE);
-//        });
+
 
             mRecyclerView = findViewById(R.id.tasksRecyclerView);
             mRecyclerView.setHasFixedSize(true);
