@@ -9,22 +9,27 @@
         android:id="@+id/editTextTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Title"/>
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:hint="How are you feeling?"/>
 
     <EditText
         android:id="@+id/editTextContent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Content"
+        android:layout_height="595dp"
+        android:background="@drawable/border"
+        android:backgroundTint="@color/colorPressed"
+        android:gravity="top"
+        android:hint="Write about it ♡"
         android:inputType="textMultiLine"
         android:minLines="5"
-        android:gravity="top"/>
+        android:padding="15dp" />
 
     <Button
         android:id="@+id/buttonSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save"
-        android:layout_gravity="end"/>
+        android:layout_gravity="end"
+        android:text="Save" />
 
 </LinearLayout>
