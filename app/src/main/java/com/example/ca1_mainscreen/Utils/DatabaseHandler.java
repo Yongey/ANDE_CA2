@@ -55,6 +55,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db = this.getWritableDatabase();
     }
 
+
     public void insertTask(ToDoModel task) {
         ContentValues cv = new ContentValues();
         cv.put(USER_ID, USER_ID_VALUE);
