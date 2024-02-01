@@ -184,9 +184,6 @@ private Button but;
         bottomNavigationView.setOnItemSelectedListener(item -> {
             if (item.getItemId() == R.id.home) {
                 return true;
-            }else if(item.getItemId()==R.id.add) {
-                startActivity(new Intent(MainActivity.this, Journal.class));
-                finish();
             } else if (item.getItemId() == R.id.add) {
                 showDialog();
                 return true;
