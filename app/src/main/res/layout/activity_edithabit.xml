@@ -54,7 +54,7 @@
             app:layout_constraintVertical_bias="0.55">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/layoutText"
+                android:id="@+id/habitName"
                 android:layout_width="314dp"
                 android:layout_height="56dp" />
         </com.google.android.material.textfield.TextInputLayout>

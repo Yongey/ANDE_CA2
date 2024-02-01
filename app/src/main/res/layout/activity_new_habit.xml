@@ -18,11 +18,11 @@
         android:text="Cancel"
         android:textColor="#ECE6FF"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/savebtn"
+        app:layout_constraintEnd_toStartOf="@+id/saveHabit"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/savebtn"
+        android:id="@+id/saveHabit"
         android:layout_width="128dp"
         android:layout_height="41dp"
         android:layout_marginStart="20dp"
@@ -130,7 +130,7 @@
         app:layout_constraintVertical_bias="0.55">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/layoutText"
+            android:id="@+id/habitName"
             android:layout_width="314dp"
             android:layout_height="56dp" />
     </com.google.android.material.textfield.TextInputLayout>
