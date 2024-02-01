@@ -23,24 +23,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="150dp"
-        android:layout_height="40dp"
-        android:background="@drawable/rec3"
-        android:gravity="center"
-        android:text="Weekly Habit"
-        android:textColor="#FFFFFF"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.141"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.153" />
-
     <TextView
         android:id="@+id/textView4"
         android:layout_width="344dp"
@@ -57,6 +39,273 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         app:layout_constraintVertical_bias="0.0" />
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="124dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/rec"
+        android:buttonTint="@color/black"
+        android:enabled="false"
+        android:text="Completed"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.881"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fri"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="@+id/textView4"
+        app:layout_constraintHorizontal_bias="0.865"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
+        app:layout_constraintTop_toTopOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.482" />
+
+    <RadioButton
+        android:id="@+id/r5"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:buttonTint="@color/colorPrimaryDark"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="@+id/textView4"
+        app:layout_constraintHorizontal_bias="0.642"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
+        app:layout_constraintTop_toTopOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.82"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:background="@drawable/rec3"
+        android:gravity="center"
+        android:text="Weekly Habit"
+        android:textColor="#FFFFFF"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.141"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.088" />
+
+    <RadioButton
+        android:id="@+id/r7"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:buttonTint="@color/colorPrimaryDark"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="@+id/textView4"
+        app:layout_constraintHorizontal_bias="0.401"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
+        app:layout_constraintTop_toTopOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.82"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <RadioButton
+        android:id="@+id/r2"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:buttonTint="@color/colorPrimaryDark"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="@+id/textView4"
+        app:layout_constraintHorizontal_bias="0.981"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
+        app:layout_constraintTop_toTopOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.82"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Wake up early"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="@+id/textView4"
+        app:layout_constraintHorizontal_bias="0.307"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
+        app:layout_constraintTop_toTopOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.13" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="29dp"
+        android:layout_height="19dp"
+        android:text="Tue"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="@+id/textView4"
+        app:layout_constraintHorizontal_bias="0.53"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
+        app:layout_constraintTop_toTopOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.494" />
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sun"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="@+id/textView4"
+        app:layout_constraintHorizontal_bias="0.29"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
+        app:layout_constraintTop_toTopOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.482" />
+
+    <RadioButton
+        android:id="@+id/r4"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:buttonTint="@color/colorPrimaryDark"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="@+id/textView4"
+        app:layout_constraintHorizontal_bias="0.759"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
+        app:layout_constraintTop_toTopOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.82"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:indeterminateOnly="false"
+        android:progressDrawable="@drawable/circle"
+        app:layout_constraintBottom_toBottomOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="@+id/textView4"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
+        app:layout_constraintTop_toTopOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.548"
+        tools:progress="0" />
+
+    <TextView
+        android:id="@+id/text_view_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="4/7"
+        android:textAlignment="viewStart"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/progress_bar"
+        app:layout_constraintEnd_toEndOf="@+id/progress_bar"
+        app:layout_constraintHorizontal_bias="0.513"
+        app:layout_constraintStart_toStartOf="@+id/progress_bar"
+        app:layout_constraintTop_toTopOf="@+id/progress_bar"
+        app:layout_constraintVertical_bias="0.49" />
+
+    <RadioButton
+        android:id="@+id/r6"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:buttonTint="@color/colorPrimaryDark"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="@+id/textView4"
+        app:layout_constraintHorizontal_bias="0.522"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
+        app:layout_constraintTop_toTopOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.82"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sat"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="@+id/textView4"
+        app:layout_constraintHorizontal_bias="0.978"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
+        app:layout_constraintTop_toTopOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.494" />
+
+    <RadioButton
+        android:id="@+id/r1"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:buttonTint="@color/colorPrimaryDark"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="@+id/textView4"
+        app:layout_constraintHorizontal_bias="0.284"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
+        app:layout_constraintTop_toTopOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.82"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <RadioButton
+        android:id="@+id/r3"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:buttonTint="@color/colorPrimaryDark"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="@+id/textView4"
+        app:layout_constraintHorizontal_bias="0.87"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
+        app:layout_constraintTop_toTopOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.82"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mon"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="@+id/textView4"
+        app:layout_constraintHorizontal_bias="0.401"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
+        app:layout_constraintTop_toTopOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.482" />
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Thu"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="@+id/textView4"
+        app:layout_constraintHorizontal_bias="0.765"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
+        app:layout_constraintTop_toTopOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.482" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="28dp"
+        android:layout_height="18dp"
+        android:text="Wed"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="@+id/textView4"
+        app:layout_constraintHorizontal_bias="0.645"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
+        app:layout_constraintTop_toTopOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.488" />
 
     <TextView
         android:id="@+id/textView5"
@@ -84,8 +333,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        app:layout_constraintVertical_bias="0.213" />
 
     <TextView
         android:id="@+id/textView3"
@@ -100,53 +351,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-
-    <TextView
-        android:id="@+id/text_view_progress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="4/7"
-        android:textAlignment="viewStart"
-        android:textSize="25dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/progress_bar"
-        app:layout_constraintEnd_toEndOf="@+id/progress_bar"
-        app:layout_constraintStart_toStartOf="@+id/progress_bar"
-        app:layout_constraintTop_toTopOf="@+id/progress_bar"
-        app:layout_constraintVertical_bias="0.517" />
-
-    <CheckBox
-        android:id="@+id/checkBox"
-        android:layout_width="124dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/rec"
-        android:buttonTint="@color/black"
-        android:enabled="false"
-        android:text="Completed"
-        android:textAlignment="textStart"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.881"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-
-    <ProgressBar
-        android:id="@+id/progress_bar"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:indeterminateOnly="false"
-        android:progressDrawable="@drawable/circle"
-        app:layout_constraintBottom_toBottomOf="@+id/textView4"
-        app:layout_constraintEnd_toEndOf="@+id/textView4"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toTopOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.548"
-        tools:progress="0" />
 
 
     <LinearLayout
@@ -236,79 +440,6 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-<!--            <FrameLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                app:layout_constraintTop_toTopOf="parent"> &lt;!&ndash; Add this constraint &ndash;&gt;-->
-
-<!--                &lt;!&ndash; Underline for Checkbox 1 &ndash;&gt;-->
-
-<!--                <CheckBox-->
-<!--                    android:id="@+id/checkBox2"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginTop="15dp"-->
-<!--                    android:buttonTint="@color/colorPrimaryDark"-->
-<!--                    android:text="Lorem ipsum dolor sit amet"-->
-<!--                    tools:ignore="TouchTargetSizeCheck" />-->
-
-<!--                <View-->
-<!--                    android:id="@+id/underline2"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="1dp"-->
-<!--                    android:layout_gravity="center"-->
-<!--                    android:layout_marginTop="7.5dp"-->
-<!--                    android:background="#000000" /> &lt;!&ndash; Set your underline color &ndash;&gt;-->
-<!--            </FrameLayout>-->
-
-<!--            &lt;!&ndash; Checkbox 2 &ndash;&gt;-->
-<!--            <FrameLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/checkBox2"> &lt;!&ndash; Add this constraint &ndash;&gt;-->
-
-<!--                <CheckBox-->
-<!--                    android:id="@+id/checkBox3"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginTop="15dp"-->
-<!--                    android:buttonTint="@color/colorPrimaryDark"-->
-<!--                    android:text="Lorem ipsum dolor sit amet"-->
-<!--                    tools:ignore="TouchTargetSizeCheck" />-->
-<!--                &lt;!&ndash; Checkbox 3 &ndash;&gt;-->
-<!--                <View-->
-<!--                    android:id="@+id/underline3"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="1dp"-->
-<!--                    android:layout_gravity="center"-->
-<!--                    android:layout_marginTop="7.5dp"-->
-<!--                    android:background="#000000" />-->
-<!--            </FrameLayout>-->
-
-<!--            <FrameLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/checkBox3"> &lt;!&ndash; Add this constraint &ndash;&gt;-->
-<!--                &lt;!&ndash; Underline for Checkbox 3 &ndash;&gt;-->
-<!--                <View-->
-<!--                    android:id="@+id/underline4"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="1dp"-->
-<!--                    android:layout_gravity="center"-->
-<!--                    android:layout_marginTop="7.5dp"-->
-<!--                    android:background="#000000"-->
-<!--                    android:buttonTint="@color/colorPrimaryDark" /> &lt;!&ndash; Set your underline color &ndash;&gt;-->
-
-
-<!--                <CheckBox-->
-<!--                    android:id="@+id/checkBox4"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginTop="15dp"-->
-<!--                    android:buttonTint="@color/colorPrimaryDark"-->
-<!--                    android:text="Lorem ipsum dolor sit amet"-->
-<!--                    tools:ignore="TouchTargetSizeCheck" />-->
-<!--            </FrameLayout>-->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/tasksRecyclerView"
                 android:layout_width="match_parent"
@@ -321,212 +452,6 @@
     </LinearLayout>
 
 
-
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Wake up early"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/textView4"
-        app:layout_constraintEnd_toEndOf="@+id/textView4"
-        app:layout_constraintHorizontal_bias="0.304"
-        app:layout_constraintStart_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toTopOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.137" />
-
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sat"
-        android:textColor="#000000"
-        app:layout_constraintBottom_toBottomOf="@+id/textView4"
-        app:layout_constraintEnd_toEndOf="@+id/textView4"
-        app:layout_constraintHorizontal_bias="0.975"
-        app:layout_constraintStart_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toTopOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.494" />
-
-    <TextView
-        android:id="@+id/textView15"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Fri"
-        android:textColor="#000000"
-        app:layout_constraintBottom_toBottomOf="@+id/textView4"
-        app:layout_constraintEnd_toEndOf="@+id/textView4"
-        app:layout_constraintHorizontal_bias="0.865"
-        app:layout_constraintStart_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toTopOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.49" />
-
-    <TextView
-        android:id="@+id/textView16"
-        android:layout_width="28dp"
-        android:layout_height="18dp"
-        android:text="Wed"
-        android:textColor="#000000"
-        app:layout_constraintBottom_toBottomOf="@+id/textView4"
-        app:layout_constraintEnd_toEndOf="@+id/textView4"
-        app:layout_constraintHorizontal_bias="0.645"
-        app:layout_constraintStart_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toTopOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.49" />
-
-    <TextView
-        android:id="@+id/textView17"
-        android:layout_width="29dp"
-        android:layout_height="19dp"
-        android:text="Tue"
-        android:textColor="#000000"
-        app:layout_constraintBottom_toBottomOf="@+id/textView4"
-        app:layout_constraintEnd_toEndOf="@+id/textView4"
-        app:layout_constraintHorizontal_bias="0.529"
-        app:layout_constraintStart_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toTopOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.49" />
-
-    <TextView
-        android:id="@+id/textView19"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Thu"
-        android:textColor="#000000"
-        app:layout_constraintBottom_toBottomOf="@+id/textView4"
-        app:layout_constraintEnd_toEndOf="@+id/textView4"
-        app:layout_constraintHorizontal_bias="0.762"
-        app:layout_constraintStart_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toTopOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.49" />
-
-    <TextView
-        android:id="@+id/textView20"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sun"
-        android:textColor="#000000"
-        app:layout_constraintBottom_toBottomOf="@+id/textView4"
-        app:layout_constraintEnd_toEndOf="@+id/textView4"
-        app:layout_constraintHorizontal_bias="0.290"
-        app:layout_constraintStart_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toTopOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.49" />
-
-    <TextView
-        android:id="@+id/textView21"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Mon"
-        android:textColor="#000000"
-        app:layout_constraintBottom_toBottomOf="@+id/textView4"
-        app:layout_constraintEnd_toEndOf="@+id/textView4"
-        app:layout_constraintHorizontal_bias="0.4"
-        app:layout_constraintStart_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toTopOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.49" />
-
-
-    <RadioButton
-        android:id="@+id/r1"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
-        android:buttonTint="@color/colorPrimaryDark"
-        android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="@+id/textView4"
-        app:layout_constraintEnd_toEndOf="@+id/textView4"
-        app:layout_constraintHorizontal_bias="0.285"
-        app:layout_constraintStart_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toTopOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.82"
-        tools:ignore="TouchTargetSizeCheck" />
-
-    <RadioButton
-        android:id="@+id/r2"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
-        android:buttonTint="@color/colorPrimaryDark"
-        android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="@+id/textView4"
-        app:layout_constraintEnd_toEndOf="@+id/textView4"
-        app:layout_constraintHorizontal_bias="0.982"
-        app:layout_constraintStart_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toTopOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.82"
-        tools:ignore="TouchTargetSizeCheck" />
-
-    <RadioButton
-        android:id="@+id/r3"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
-        android:buttonTint="@color/colorPrimaryDark"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="@+id/textView4"
-        app:layout_constraintEnd_toEndOf="@+id/textView4"
-        app:layout_constraintHorizontal_bias="0.868"
-        app:layout_constraintStart_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toTopOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.82"
-        tools:ignore="TouchTargetSizeCheck" />
-
-    <RadioButton
-        android:id="@+id/r4"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
-        android:buttonTint="@color/colorPrimaryDark"
-        android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="@+id/textView4"
-        app:layout_constraintEnd_toEndOf="@+id/textView4"
-        app:layout_constraintHorizontal_bias="0.76"
-        app:layout_constraintStart_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toTopOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.82"
-        tools:ignore="TouchTargetSizeCheck" />
-
-    <RadioButton
-        android:id="@+id/r5"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
-        android:buttonTint="@color/colorPrimaryDark"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="@+id/textView4"
-        app:layout_constraintEnd_toEndOf="@+id/textView4"
-        app:layout_constraintHorizontal_bias="0.642"
-        app:layout_constraintStart_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toTopOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.82"
-        tools:ignore="TouchTargetSizeCheck" />
-
-    <RadioButton
-        android:id="@+id/r6"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
-        android:buttonTint="@color/colorPrimaryDark"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="@+id/textView4"
-        app:layout_constraintEnd_toEndOf="@+id/textView4"
-        app:layout_constraintHorizontal_bias="0.52"
-        app:layout_constraintStart_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toTopOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.82"
-        tools:ignore="TouchTargetSizeCheck" />
-
-    <RadioButton
-        android:id="@+id/r7"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
-        android:buttonTint="@color/colorPrimaryDark"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="@+id/textView4"
-        app:layout_constraintEnd_toEndOf="@+id/textView4"
-        app:layout_constraintHorizontal_bias="0.40"
-        app:layout_constraintStart_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toTopOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.82"
-        tools:ignore="TouchTargetSizeCheck" />
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
@@ -536,6 +461,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_nav_menu" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
