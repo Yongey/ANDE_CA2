@@ -14,8 +14,17 @@
         android:theme="@style/Theme.CA1MainScreen"
         tools:targetApi="31">
         <activity
-            android:name=".addJournalEntry"
+            android:name=".CheckboxStatesActivity"
             android:exported="false" />
+        <activity
+            android:name=".ChallengeDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SystemSetChallenge"
+            android:exported="false" />
+        <activity
+        android:name=".addJournalEntry"
+        android:exported="false" />
         <activity
             android:name=".Journal"
             android:exported="false" />

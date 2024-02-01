@@ -36,7 +36,7 @@ private LinearLayout learnNewLanguageLayout;
         WorkoutLayout = findViewById(R.id.WorkoutLayout);
         studyLayout = findViewById(R.id.studyLayout);
         LoremLayout=findViewById(R.id.LoremLayout);
-        sampleLayout = findViewById(R.id.SampleLayout);
+
         // Find your TextViews by their IDs
         TextView newText = findViewById(R.id.newText);
         TextView health = findViewById(R.id.health);
@@ -71,8 +71,7 @@ private LinearLayout learnNewLanguageLayout;
         learning2.setOnClickListener(v->{
             toggleVisibilityAll();
         });
-        TextView sample = findViewById(R.id.sample);
-        String textToPassSample = sample.getText().toString();
+
         TextView studyTextView = findViewById(R.id.studys);
         String textToPass = studyTextView.getText().toString();
         TextView gymTextView = findViewById(R.id.workout);
@@ -83,14 +82,7 @@ private LinearLayout learnNewLanguageLayout;
         String textToPass3 = languageTextView.getText().toString();
         TextView loremTextView = findViewById(R.id.Lorem);
         String textToPass4 = loremTextView.getText().toString();
-        sampleLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(StartChallenge.this, SampleChallenge.class);
-                intent.putExtra("clickedText",textToPassSample);
-                startActivity(intent);
-            }
-        });
+
         studyLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

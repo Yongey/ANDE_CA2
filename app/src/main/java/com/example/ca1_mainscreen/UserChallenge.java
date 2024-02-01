@@ -45,6 +45,7 @@ public class UserChallenge extends AppCompatActivity {
         if (user != null) {
             userId = user.getUid();
             loadCheckboxes(userId); // Load checkboxes for the signed-in user
+
         } else {
             // Redirect to login activity or handle user not logged in
             redirectToLogin();
@@ -64,6 +65,7 @@ public class UserChallenge extends AppCompatActivity {
 
     private void loadCheckboxes(String userId) {
         DatabaseReference databaseUser = FirebaseDatabase.getInstance().getReference("checkboxContainers").child(userId);
+
         LinearLayout parentLayout = findViewById(R.id.parentLayout);
 
         databaseUser.addValueEventListener(new ValueEventListener() {
@@ -141,31 +143,6 @@ public class UserChallenge extends AppCompatActivity {
         cardView.setRadius(16);
         cardView.setCardElevation(8);
     }
-
-//    private void updateDeleteButtonVisibility(LinearLayout containerLayout, AtomicInteger checkBoxCount, AtomicInteger checkedCount) {
-//        int childCount = containerLayout.getChildCount();
-//        if (childCount > 0) {
-//            View lastChild = containerLayout.getChildAt(childCount - 1);
-//            if (lastChild instanceof Button) {
-//                lastChild.setVisibility(checkedCount.get() == checkBoxCount.get() ? View.VISIBLE : View.GONE);
-//            }
-//        }
-//    }
-
-//    private CardView createCardView() {
-//        CardView cardView = new CardView(UserChallenge.this);
-//        LinearLayout.LayoutParams cardLayoutParams = new LinearLayout.LayoutParams(
-//                LinearLayout.LayoutParams.MATCH_PARENT,
-//                LinearLayout.LayoutParams.WRAP_CONTENT
-//        );
-//
-//        cardLayoutParams.setMargins(30, 20, 30, 20);
-//        cardView.setLayoutParams(cardLayoutParams);
-//        cardView.setCardBackgroundColor(Color.parseColor("#FFFFFFFF"));
-//        cardView.setRadius(16);
-//        cardView.setCardElevation(8);
-//        return cardView;
-//    }
 
     private void saveCheckboxStatusToDatabase() {
         DatabaseReference databaseUser = FirebaseDatabase.getInstance().getReference("checkboxContainers").child(userId);
