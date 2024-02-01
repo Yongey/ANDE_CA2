@@ -1,14 +1,22 @@
 package com.example.ca1_mainscreen;
+
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -26,6 +34,7 @@ import com.example.ca1_mainscreen.Adapter.ToDoAdapter;
 import com.example.ca1_mainscreen.Model.ToDoModel;
 import com.example.ca1_mainscreen.Utils.DatabaseHandler;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -73,6 +82,8 @@ FirebaseUser user;
     private ToDoAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private DatabaseHandler db;
+    private BottomSheetDialog dialog;
+
 private Button but;
     // private DatabaseReference databaseReference;
     @Override
@@ -151,23 +162,43 @@ private Button but;
             mAdapter.setTasks(todoList);
             mRecyclerView.setAdapter(mAdapter);
 
+
+
+//        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+//        bottomNavigationView.setOnItemSelectedListener(item -> {
+//            if(item.getItemId()==R.id.home) {
+//                return true;
+//            }else if(item.getItemId()==R.id.add) {
+//                showDialog();
+//
+//            }else if(item.getItemId()==R.id.settings) {
+//                startActivity(new Intent(MainActivity.this, Settings.class));
+//                finish();
+//                return true;
+//            }else{
+//                return false;
+//            }
+//        });
+
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnItemSelectedListener(item -> {
-            if(item.getItemId()==R.id.home) {
+            if (item.getItemId() == R.id.home) {
                 return true;
             }else if(item.getItemId()==R.id.add) {
                 startActivity(new Intent(MainActivity.this, Journal.class));
                 finish();
+            } else if (item.getItemId() == R.id.add) {
+                showDialog();
                 return true;
-
-            }else if(item.getItemId()==R.id.settings) {
+            } else if (item.getItemId() == R.id.settings) {
                 startActivity(new Intent(MainActivity.this, Settings.class));
                 finish();
                 return true;
-            }else{
+            } else {
                 return false;
             }
         });
+
 
         ImageButton plusbtn = findViewById(R.id.plus_button2);
         plusbtn.setOnClickListener(new View.OnClickListener() {
@@ -188,56 +219,9 @@ private Button but;
             }
         });
 
+
         bottomNavigationView.setSelectedItemId(R.id.home);
 
-//        checkBox2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                // Perform actions based on the checked state of the CheckBox
-//                if (isChecked) {
-//                   progrBox += 35;
-//                   numProgr +=1;
-//                   underline2.setVisibility(View.VISIBLE);
-//                } else {
-//                   progrBox -= 35;
-//                    numProgr -=1;
-//                    underline2.setVisibility(View.INVISIBLE);
-//                }
-//                updateProgressBar();
-//            }
-//        });
-//        checkBox3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                // Perform actions based on the checked state of the CheckBox
-//                if (isChecked) {
-//                    progrBox += 30;
-//                    numProgr +=1;
-//                    underline3.setVisibility(View.VISIBLE);
-//                } else {
-//                    progrBox -= 30;
-//                    numProgr -=1;
-//                    underline3.setVisibility(View.INVISIBLE);
-//                }
-//                updateProgressBar();
-//            }
-//        });
-//        checkBox4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                // Perform actions based on the checked state of the CheckBox
-//                if (isChecked) {
-//                    progrBox += 35;
-//                    numProgr +=1;
-//                    underline4.setVisibility(View.VISIBLE);
-//                } else {
-//                    progrBox -= 35;
-//                    numProgr -=1;
-//                    underline4.setVisibility(View.INVISIBLE);
-//                }
-//                updateProgressBar();
-//            }
-//        });
         buttonI7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -420,6 +404,40 @@ private Button but;
 
 
     }
+
+    private void showDialog() {
+        dialog = new BottomSheetDialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.bottomsheetlayout);
+
+        LinearLayout HabitLayout = dialog.findViewById(R.id.LayoutHabit);
+        LinearLayout JournalLayout = dialog.findViewById(R.id.LayoutJournal);
+
+        HabitLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, WeeklyHabit.class);
+                startActivity(i);
+                dialog.dismiss();
+            }
+        });
+
+        JournalLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, Journal.class);
+                startActivity(i);
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+        dialog.getWindow().setGravity(Gravity.BOTTOM);
+    }
+
     @Override
     protected void onResume() {
         super.onResume();

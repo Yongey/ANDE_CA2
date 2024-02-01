@@ -17,10 +17,16 @@ public class Journal extends AppCompatActivity {
     private List<JournalEntry> journalEntries;
     private DatabaseHelper db;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+
+public class Journal extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_journal);
+        setContentView(R.layout.activity_journal
 
         db = new DatabaseHelper(this);
         journalEntries = db.getAllJournalEntries();
