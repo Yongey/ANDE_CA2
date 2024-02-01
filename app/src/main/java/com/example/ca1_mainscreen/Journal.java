@@ -7,6 +7,8 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import android.os.Bundle;
+
 
 import java.util.List;
 
@@ -17,16 +19,10 @@ public class Journal extends AppCompatActivity {
     private List<JournalEntry> journalEntries;
     private DatabaseHelper db;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Bundle;
-
-public class Journal extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_journal
+        setContentView(R.layout.activity_journal);
 
         db = new DatabaseHelper(this);
         journalEntries = db.getAllJournalEntries();
