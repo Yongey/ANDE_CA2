@@ -178,6 +178,16 @@ private Button but;
             }
         });
 
+        TextView habit = findViewById(R.id.textView4);
+        habit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Code to execute when TextView is clicked
+                Intent intent = new Intent(MainActivity.this, WeeklyHabit.class);
+                startActivity(intent);
+            }
+        });
+
         bottomNavigationView.setSelectedItemId(R.id.home);
 
 //        checkBox2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
