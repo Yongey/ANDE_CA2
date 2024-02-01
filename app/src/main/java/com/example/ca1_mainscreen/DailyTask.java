@@ -109,16 +109,16 @@ public class DailyTask extends DialogFragment {
                 dismiss();
             }
         });
-    }
 
-//    @Override
-//    public void onDismiss(@NonNull DialogInterface dialog){
-//        Activity activity = getActivity();
-//        if(activity instanceof DialogCloseListener)
-//            ((DialogCloseListener)activity).handleDialogClose(dialog);
-//    }
-//
-//}
+        Button cancelButton = getView().findViewById(R.id.cancelbtn);
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), MainActivity.class);
+                startActivity(i);
+            }
+        });
+    }
 
     @Override
     public void onDismiss(@NonNull DialogInterface dialog) {

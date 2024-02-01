@@ -11,14 +11,12 @@
         android:id="@+id/cancelbtn"
         android:layout_width="128dp"
         android:layout_height="48dp"
-        android:layout_marginStart="33dp"
-        android:layout_marginEnd="71dp"
+        android:layout_marginStart="36dp"
         android:layout_marginBottom="30dp"
         android:background="@drawable/cancelbtn"
         android:text="Cancel"
         android:textColor="#ECE6FF"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/newTaskButton"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
