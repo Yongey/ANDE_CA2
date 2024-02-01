@@ -26,6 +26,12 @@
             android:name=".SystemSetChallenge"
             android:exported="false" />
         <activity
+        android:name=".addJournalEntry"
+        android:exported="false" />
+        <activity
+            android:name=".Journal"
+            android:exported="false" />
+        <activity
             android:name=".SampleChallenge"
             android:exported="false" />
         <activity
