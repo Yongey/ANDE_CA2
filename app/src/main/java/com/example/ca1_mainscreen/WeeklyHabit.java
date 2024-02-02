@@ -11,16 +11,17 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.example.ca1_mainscreen.Adapter.HabitAdapter;
+import com.example.ca1_mainscreen.Model.HabitModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class WeeklyHabit extends AppCompatActivity{
 
-
     private RecyclerView recyclerView;
     private HabitAdapter adapter;
-    private List<String> itemList;
+    private List<HabitModel> habitList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,9 +40,8 @@ public class WeeklyHabit extends AppCompatActivity{
         recyclerView = findViewById(R.id.weeklyView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        itemList = new ArrayList<>();
-        // Add items to the list
-        adapter = new HabitAdapter(itemList);
+        habitList = new ArrayList<>();
+        adapter = new HabitAdapter(habitList);
         recyclerView.setAdapter(adapter);
     }
 

@@ -13,7 +13,7 @@
         android:layout_height="41dp"
         android:layout_marginStart="33dp"
         android:layout_marginEnd="71dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="30dp"
         android:background="@drawable/cancelbtn"
         android:text="Cancel"
         android:textColor="#ECE6FF"
@@ -28,19 +28,20 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="39dp"
         android:layout_marginEnd="33dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="30dp"
         android:background="@drawable/savebtn"
         android:text="Save"
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/cancelbtn"
-        app:layout_constraintTop_toBottomOf="@+id/view5" />
+        app:layout_constraintTop_toBottomOf="@+id/view5"
+        app:layout_constraintVertical_bias="1.0" />
 
     <View
         android:id="@+id/view"
-        android:layout_width="359dp"
-        android:layout_height="320dp"
+        android:layout_width="366dp"
+        android:layout_height="383dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="274dp"
@@ -113,7 +114,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="33dp"
+        android:layout_marginBottom="45dp"
         app:boxBackgroundColor="#FFFFFF"
         app:boxCornerRadiusBottomEnd="13dp"
         app:boxCornerRadiusBottomStart="13dp"
@@ -150,15 +151,70 @@
         app:layout_constraintTop_toTopOf="@+id/view5"
         app:layout_constraintVertical_bias="0.165" />
 
-    <include
-        android:id="@+id/daypicker"
-        layout="@layout/daypicker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/view5"
-        app:layout_constraintEnd_toEndOf="@+id/view5"
-        app:layout_constraintStart_toStartOf="@+id/view5"
-        app:layout_constraintTop_toBottomOf="@+id/textView12"></include>
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/dayPicker"
+        android:layout_width="283dp"
+        android:layout_height="107dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="52dp"
+        app:chipSpacing="8dp"
+        app:chipSpacingHorizontal="8dp"
+        app:chipSpacingVertical="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView12">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/monday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Monday"
+            android:textColor="@color/white" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/tuesday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tuesday"
+            android:textColor="@color/white" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/wednesday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Wednesday"
+            android:textColor="@color/white" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/thursday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thursday"
+            android:textColor="@color/white" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/friday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Friday"
+            android:textColor="@color/white" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/saturday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Saturday"
+            android:textColor="@color/white" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/sunday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sunday"
+            android:textColor="@color/white" />
+    </com.google.android.material.chip.ChipGroup>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
