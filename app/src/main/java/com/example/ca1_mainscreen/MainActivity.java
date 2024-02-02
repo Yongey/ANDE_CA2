@@ -724,10 +724,6 @@ private Button but;
         ProgressBar progressBar = findViewById(R.id.progress_bar);
         TextView textViewProgress = findViewById(R.id.text_view_progress);
 
-        ProgressBar progressBar2 = findViewById(R.id.progress_bar2);
-        progressBar2.setProgress(progrBox);
-        TextView textViewProgress2 = findViewById(R.id.text_view_progress2);
-        textViewProgress2.setText( numProgr+"/"+getProgrBoxTt);
         progressBar.setProgress(progr);
         textViewProgress.setText(progress +"/"+DIW);
 

@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -89,7 +90,7 @@ public class HabitAdapter extends RecyclerView.Adapter<HabitAdapter.ViewHolder> 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView habitName;
         public ChipGroup daypicker;
-        public CheckBox monday, tuesday, wednesday, thursday, friday, saturday, sunday;
+        public RadioButton monday, tuesday, wednesday, thursday, friday, saturday, sunday;
 
         public ViewHolder(View view) {
             super(view);
