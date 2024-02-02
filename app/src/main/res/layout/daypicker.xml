@@ -1,81 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <ToggleButton
-        android:id="@+id/tD"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_marginLeft="3dp"
-        android:layout_marginRight="3dp"
-        android:textOff="S"
-        android:textOn="S"
-        style="@style/toggleButton"
-        android:background="@drawable/toggle_bg" />
-    <ToggleButton
-        android:id="@+id/tL"
-        android:layout_marginLeft="3dp"
-        android:layout_marginRight="3dp"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:textOff="M"
-        android:textOn="M"
-        style="@style/toggleButton"
-        android:background="@drawable/toggle_bg" />
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
-    <ToggleButton
-        android:id="@+id/tM"
-        android:layout_marginLeft="3dp"
-        android:layout_marginRight="3dp"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:textOff="T"
-        android:textOn="T"
-        style="@style/toggleButton"
-        android:background="@drawable/toggle_bg" />
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/dayPicker"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ToggleButton
-        android:id="@+id/tMi"
-        android:layout_marginLeft="3dp"
-        android:layout_marginRight="3dp"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:textOff="W"
-        android:textOn="W"
-        style="@style/toggleButton"
-        android:background="@drawable/toggle_bg" />
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="S" />
 
-    <ToggleButton
-        android:id="@+id/tJ"
-        android:layout_marginLeft="3dp"
-        android:layout_marginRight="3dp"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:textOff="T"
-        android:textOn="T"
-        style="@style/toggleButton"
-        android:background="@drawable/toggle_bg" />
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipM"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="M" />
 
-    <ToggleButton
-        android:id="@+id/tV"
-        android:layout_marginLeft="3dp"
-        android:layout_marginRight="3dp"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:textOff="F"
-        android:textOn="F"
-        style="@style/toggleButton"
-        android:background="@drawable/toggle_bg" />
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="T" />
 
-    <ToggleButton
-        android:id="@+id/tS"
-        android:layout_marginLeft="3dp"
-        android:layout_marginRight="3dp"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:textOff="S"
-        android:textOn="S"
-        style="@style/toggleButton"
-        android:background="@drawable/toggle_bg" />
-</LinearLayout>
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipW"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="W" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipJ"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="J" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="V" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipS2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="S" />
+
+    </com.google.android.material.chip.ChipGroup>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
