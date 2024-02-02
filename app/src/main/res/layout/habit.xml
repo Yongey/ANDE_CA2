@@ -7,15 +7,31 @@
 
     <TextView
         android:id="@+id/textViewHabit"
-        android:layout_width="327dp"
-        android:layout_height="128dp"
+        android:layout_width="334dp"
+        android:layout_height="142dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="629dp"
         android:background="@drawable/border"
         android:lineSpacingExtra="10sp"
         android:paddingTop="10dp"
-        android:text="habit name"
         android:textAlignment="center"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="42dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <!-- Add this EditText in your layout -->
+
+    <EditText
+        android:id="@+id/habitName"
+        android:layout_width="173dp"
+        android:layout_height="38dp"
+        android:hint=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.331"
+        app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="36dp" />
 
     <RadioGroup
@@ -87,6 +103,6 @@
         android:layout_height="36dp"
         android:text="Edit"
         android:textSize="12sp"
-        tools:layout_editor_absoluteX="66dp"
-        tools:layout_editor_absoluteY="124dp" />
+        tools:layout_editor_absoluteX="73dp"
+        tools:layout_editor_absoluteY="133dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
