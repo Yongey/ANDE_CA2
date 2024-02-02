@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -19,6 +20,9 @@ import android.view.LayoutInflater;
 
 import com.example.ca1_mainscreen.Model.HabitModel;
 import com.example.ca1_mainscreen.Utils.DatabaseHandler;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class NewHabit extends DialogFragment {
     public static final String TAG = "NewHabitDialog";
@@ -31,6 +35,7 @@ public class NewHabit extends DialogFragment {
         return new NewHabit();
     }
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +44,7 @@ public class NewHabit extends DialogFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.habit, container, false);
+        View view = inflater.inflate(R.layout.activity_new_habit, container, false);
         getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         return view;
     }
@@ -55,7 +60,7 @@ public class NewHabit extends DialogFragment {
         fridayCheckbox = getView().findViewById(R.id.friday);
         saturdayCheckbox = getView().findViewById(R.id.saturday);
         sundayCheckbox = getView().findViewById(R.id.sunday);
-        saveButton = getView().findViewById(R.id.saveButton);
+        saveButton = getView().findViewById(R.id.saveHabit);
 
         db = new DatabaseHandler(getActivity());
         db.openDatabase();
@@ -67,14 +72,7 @@ public class NewHabit extends DialogFragment {
 
             HabitModel habit = (HabitModel) bundle.getSerializable("habit");
             habitNameEditText.setText(habit.getHabit());
-
-            mondayCheckbox.setChecked(habit.isMondaySelected());
-            tuesdayCheckbox.setChecked(habit.isTuesdaySelected());
-            wednesdayCheckbox.setChecked(habit.isWednesdaySelected());
-            thursdayCheckbox.setChecked(habit.isThursdaySelected());
-            fridayCheckbox.setChecked(habit.isFridaySelected());
-            saturdayCheckbox.setChecked(habit.isSaturdaySelected());
-            sundayCheckbox.setChecked(habit.isSundaySelected());
+            updateSelectedDays(habit.getDays());
 
             if (habit.getHabit().length() > 0) {
                 saveButton.setTextColor(ContextCompat.getColor(getContext(), R.color.colorPrimaryDark));
@@ -107,31 +105,42 @@ public class NewHabit extends DialogFragment {
             @Override
             public void onClick(View v) {
                 String name = habitNameEditText.getText().toString();
+                List<String> days = new ArrayList<>();
+                if (mondayCheckbox.isChecked()) {
+                    days.add("Monday");
+                }
+                if (tuesdayCheckbox.isChecked()) {
+                    days.add("Tuesday");
+                }
+                if (wednesdayCheckbox.isChecked()) {
+                    days.add("Wednesday");
+                }
+                if (thursdayCheckbox.isChecked()) {
+                    days.add("Thursday");
+                }
+                if (fridayCheckbox.isChecked()) {
+                    days.add("Friday");
+                }
+                if (saturdayCheckbox.isChecked()) {
+                    days.add("Saturday");
+                }
+                if (sundayCheckbox.isChecked()) {
+                    days.add("Sunday");
+                }
 
                 boolean isUpdate = false;
-                if (isUpdate) {
+                if (bundle != null) {
+                    isUpdate = true;
                     HabitModel habit = (HabitModel) bundle.getSerializable("habit");
                     habit.setHabit(name);
-                    habit.isMondaySelected();
-                    habit.isTuesdaySelected();
-                    habit.isWednesdaySelected();
-                    habit.isThursdaySelected();
-                    habit.isFridaySelected();
-                    habit.isSaturdaySelected();
-                    habit.isSundaySelected();
+                    habit.setDays(days);
 
                     int id = habit.getId();
                     db.updateHabit(id, habit);
                 } else {
                     HabitModel habit = new HabitModel();
                     habit.setHabit(name);
-                    habit.isMondaySelected();
-                    habit.isTuesdaySelected();
-                    habit.isWednesdaySelected();
-                    habit.isThursdaySelected();
-                    habit.isFridaySelected();
-                    habit.isSaturdaySelected();
-                    habit.isSundaySelected();
+                    habit.setDays(days);
                     db.insertHabit(habit);
                 }
 
@@ -148,6 +157,30 @@ public class NewHabit extends DialogFragment {
                 dismiss();
             }
         });
+    }
+
+    private void updateSelectedDays(List<String> days) {
+        if (days.contains("Monday")) {
+            mondayCheckbox.setChecked(true);
+        }
+        if (days.contains("Tuesday")) {
+            tuesdayCheckbox.setChecked(true);
+        }
+        if (days.contains("Wednesday")) {
+            wednesdayCheckbox.setChecked(true);
+        }
+        if (days.contains("Thursday")) {
+            thursdayCheckbox.setChecked(true);
+        }
+        if (days.contains("Friday")) {
+            fridayCheckbox.setChecked(true);
+        }
+        if (days.contains("Saturday")) {
+            saturdayCheckbox.setChecked(true);
+        }
+        if (days.contains("Sunday")) {
+            sundayCheckbox.setChecked(true);
+        }
     }
 
     public void update(HabitModel habit) {

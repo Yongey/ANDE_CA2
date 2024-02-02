@@ -1,13 +1,17 @@
 package com.example.ca1_mainscreen.Model;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
-public class HabitModel {
-    public static final int STATUS_COMPLETED = 1;
-    public static final int STATUS_INCOMPLETE = 0;
+public class HabitModel implements Serializable {
     private int id, status;
     private String habit;
     private List<String> days;
+
+    public HabitModel() {
+        days = new ArrayList<>();
+    }
 
     public int getId() {
         return id;
@@ -41,6 +45,10 @@ public class HabitModel {
         this.days = days;
     }
 
+    public void removeDay(String day) {
+        days.remove(day);
+    }
+
     public boolean isMondaySelected() {
         return days.contains("Monday");
     }
@@ -71,6 +79,7 @@ public class HabitModel {
 
     public String getDaysAsString() {
         StringBuilder daysString = new StringBuilder();
+
         if (isMondaySelected()) {
             daysString.append("Monday ");
         }

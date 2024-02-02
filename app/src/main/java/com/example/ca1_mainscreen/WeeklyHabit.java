@@ -12,38 +12,50 @@ import android.widget.ImageButton;
 
 import com.example.ca1_mainscreen.Adapter.HabitAdapter;
 import com.example.ca1_mainscreen.Model.HabitModel;
+import com.example.ca1_mainscreen.Utils.DatabaseHandler;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class WeeklyHabit extends AppCompatActivity{
+public class WeeklyHabit extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private HabitAdapter adapter;
+    private HabitAdapter habitAdapter;
     private List<HabitModel> habitList;
+    private DatabaseHandler db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weekly_habit);
 
+        db = new DatabaseHandler(this);
+        db.openDatabase();
+
         ImageButton newhabit = findViewById(R.id.newhabit);
         newhabit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Code to execute when TextView is clicked
-                Intent intent = new Intent(getApplicationContext(), NewHabit.class);
-                startActivity(intent);
+                openNewHabitDialog();
             }
         });
+
 
         recyclerView = findViewById(R.id.weeklyView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        habitList = new ArrayList<>();
-        adapter = new HabitAdapter(habitList);
-        recyclerView.setAdapter(adapter);
+        habitList = db.getAllHabits();
+
+        if (habitList == null) {
+            habitList = new ArrayList<>(); // Handle the case where habitList is null
+        }
+
+        habitAdapter = new HabitAdapter(habitList);
+        recyclerView.setAdapter(habitAdapter);
     }
 
-
+    private void openNewHabitDialog() {
+        NewHabit newHabitDialog = new NewHabit();
+        newHabitDialog.show(getSupportFragmentManager(), NewHabit.TAG);
+    }
 }

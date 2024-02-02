@@ -1,5 +1,6 @@
 package com.example.ca1_mainscreen.Adapter;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,12 +11,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ca1_mainscreen.DailyTask;
+
 import com.example.ca1_mainscreen.Model.HabitModel;
-import com.example.ca1_mainscreen.Model.ToDoModel;
 import com.example.ca1_mainscreen.NewHabit;
 import com.example.ca1_mainscreen.R;
 import com.example.ca1_mainscreen.Utils.DatabaseHandler;
+import com.example.ca1_mainscreen.WeeklyHabit;
 import com.google.android.material.chip.ChipGroup;
 
 import java.util.List;
@@ -23,11 +24,19 @@ import java.util.List;
 public class HabitAdapter extends RecyclerView.Adapter<HabitAdapter.ViewHolder> {
     private List<HabitModel> habitList;
     private DatabaseHandler db;
+    private WeeklyHabit habit;
 
-    public HabitAdapter(DatabaseHandler db) {
+    public HabitAdapter(DatabaseHandler db, WeeklyHabit habit) {
         this.db = db;
-        this.habitList = db.getAllHabits();
+        this.habit = habit;
     }
+
+    public HabitAdapter(List<HabitModel> habitList) {
+        this.habitList = habitList;
+        this.db = null; // Initialize as needed
+        this.habit = null; // Initialize as needed
+    }
+
 
     @NonNull
     @Override
@@ -39,7 +48,7 @@ public class HabitAdapter extends RecyclerView.Adapter<HabitAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         HabitModel item = habitList.get(position);
-        holder.habitName.setText(item.getName());
+        holder.habitName.setText(item.getHabit());
 
         holder.monday.setChecked(item.isMondaySelected());
         holder.tuesday.setChecked(item.isTuesdaySelected());
@@ -48,6 +57,7 @@ public class HabitAdapter extends RecyclerView.Adapter<HabitAdapter.ViewHolder> 
         holder.friday.setChecked(item.isFridaySelected());
         holder.saturday.setChecked(item.isSaturdaySelected());
         holder.sunday.setChecked(item.isSundaySelected());
+
     }
 
     @Override
@@ -55,9 +65,8 @@ public class HabitAdapter extends RecyclerView.Adapter<HabitAdapter.ViewHolder> 
         return habitList.size();
     }
 
-    public void setHabit(List<HabitModel> habitList) {
-        this.habitList = habitList;
-        notifyDataSetChanged();
+    public Context getContext() {
+        return habit;
     }
 
     public void deleteHabit(int position) {
@@ -74,7 +83,7 @@ public class HabitAdapter extends RecyclerView.Adapter<HabitAdapter.ViewHolder> 
         bundle.putString("habit", item.getHabit());
         NewHabit fragment = new NewHabit();
         fragment.setArguments(bundle);
-        fragment.show(plan.getSupportFragmentManager(), NewHabit.TAG);
+        fragment.show(habit.getSupportFragmentManager(), NewHabit.TAG);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

@@ -17,7 +17,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
-    private static final int VERSION = 2;
+    private static final int VERSION = 3;
     private static final String NAME = "todoListDatabase";
     private static final String TODO_TABLE = "todo";
     private static final String HABIT_TABLE = "habit";
@@ -125,7 +125,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void insertHabit(HabitModel habit) {
         ContentValues cv = new ContentValues();
         cv.put(USER_ID, USER_ID_VALUE);
-        cv.put(HABIT, habit.getName());
+        cv.put(HABIT, habit.getHabit());
         cv.put(STATUS, 0);
         db.insert(HABIT_TABLE, null, cv);
     }
@@ -140,7 +140,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 do {
                     HabitModel habit = new HabitModel();
                     habit.setId(Integer.parseInt(cur.getString(0)));
-                    habit.setName(cur.getString(2));
+                    habit.setHabit(cur.getString(2));
                     habit.setStatus(cur.getInt(3));
                     habitList.add(habit);
                 } while (cur.moveToNext());
@@ -160,7 +160,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public void updateHabit(int id, HabitModel habit) {
         ContentValues values = new ContentValues();
-        values.put(HABIT, habit.getName());
+        values.put(HABIT, habit.getHabit());
         values.put(MONDAY, habit.isMondaySelected());
         values.put(TUESDAY, habit.isTuesdaySelected());
         values.put(WEDNESDAY, habit.isWednesdaySelected());

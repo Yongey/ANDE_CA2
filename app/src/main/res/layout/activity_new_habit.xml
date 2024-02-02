@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
+    android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
     tools:context=".DailyTask">
 
     <Button
@@ -153,8 +154,8 @@
 
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/dayPicker"
-        android:layout_width="283dp"
-        android:layout_height="107dp"
+        android:layout_width="329dp"
+        android:layout_height="111dp"
         android:layout_marginStart="52dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="52dp"
@@ -162,7 +163,6 @@
         app:chipSpacingHorizontal="8dp"
         app:chipSpacingVertical="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView12">
 
@@ -171,49 +171,49 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Monday"
-            android:textColor="@color/white" />
+            android:textColor="@color/purple_200" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/tuesday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Tuesday"
-            android:textColor="@color/white" />
+            android:textColor="@color/purple_200" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/wednesday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Wednesday"
-            android:textColor="@color/white" />
+            android:textColor="@color/purple_200" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/thursday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Thursday"
-            android:textColor="@color/white" />
+            android:textColor="@color/purple_200" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/friday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Friday"
-            android:textColor="@color/white" />
+            android:textColor="@color/purple_200" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/saturday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Saturday"
-            android:textColor="@color/white" />
+            android:textColor="@color/purple_200" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/sunday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Sunday"
-            android:textColor="@color/white" />
+            android:textColor="@color/purple_200" />
     </com.google.android.material.chip.ChipGroup>
 
 
